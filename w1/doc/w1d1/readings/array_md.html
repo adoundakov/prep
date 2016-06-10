@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>array - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Arrays">Arrays</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-Creating+arrays">Creating arrays</a>
+    <li><a href="#label-Accessing+items+by+index">Accessing items by index</a>
+    <li><a href="#label-Accessing+elements+in+order">Accessing elements in order</a>
+    <li><a href="#label-Setting+and+adding+elements">Setting and adding elements</a>
+    <li><a href="#label-Array+size">Array size</a>
+    <li><a href="#label-Pushing+and+popping">Pushing and popping</a>
+    <li><a href="#label-Using+an+array+as+a+queue">Using an array as a queue</a>
+    <li><a href="#label-Turning+arrays+to+strings-3A+-23join">Turning arrays to strings: <code>#join</code></a>
+    <li><a href="#label-Finding+elements">Finding elements</a>
+    <li><a href="#label-Sorting+an+array">Sorting an array</a>
+    <li><a href="#label-Shuffling+an+array">Shuffling an array</a>
+    <li><a href="#label-Access+first+and+last+elem+in+arrays">Access first and last elem in arrays</a>
+    <li><a href="#label-Random+sampling+from+arrays">Random sampling from arrays</a>
+    <li><a href="#label-Naming+arrays">Naming arrays</a>
+    <li><a href="#label-Arrays+should+always+contain+one+type+of+thing">Arrays should always contain one type of thing</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d1/readings/array.md">
+
+<h1 id="label-Arrays">Arrays<span><a href="#label-Arrays">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Familiarize yourself with the selected, important methods here.</p>
+</li><li>
+<p>Know:</p>
+</li><li>
+<p>how to create an array literal</p>
+</li><li>
+<p>how to access items by index</p>
+</li><li>
+<p>how to set an item at an index</p>
+</li><li>
+<p>how to perform a block on each element</p>
+</li><li>
+<p>Know how to name arrays appropriately.</p>
+</li><li>
+<p>Know why not to mix types in an array.</p>
+</li></ul>
+
+<h2 id="label-Creating+arrays">Creating arrays<span><a href="#label-Creating+arrays">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Arrays store sequences of objects. There are a few ways to create an array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">empty_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">another_empty_array</span> = [] <span class="ruby-comment"># this is the preferred way, and much easier!</span>
+
+<span class="ruby-identifier">some_squares</span> = [<span class="ruby-value">4</span>, <span class="ruby-value">9</span>, <span class="ruby-value">16</span>]
+<span class="ruby-identifier">some_fruits</span> = [<span class="ruby-string">&quot;pear&quot;</span>, <span class="ruby-string">&quot;apple&quot;</span>, <span class="ruby-string">&quot;banana&quot;</span>]
+</pre>
+
+<h2 id="label-Accessing+items+by+index">Accessing items by index<span><a href="#label-Accessing+items+by+index">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The objects are stored by incrementing indices starting at zero (i.e., 0,
+1, 2, 3, etc.). We look up an item by <em>index</em>. For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">some_fruits</span> = [<span class="ruby-string">&quot;pear&quot;</span>, <span class="ruby-string">&quot;apple&quot;</span>, <span class="ruby-string">&quot;banana&quot;</span>]
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">some_fruits</span>[<span class="ruby-value">0</span>]
+<span class="ruby-comment"># =&gt; &quot;pear&quot;</span>
+
+<span class="ruby-comment"># how would you get the second item?</span>
+
+<span class="ruby-comment"># arr.length returns the number of elements in an array</span>
+<span class="ruby-comment"># `arr`. What index do you use to get the last element in an</span>
+<span class="ruby-comment"># array?</span>
+</pre>
+
+<p>If you want to get multiple consecutive items from an array, you can do
+that using a <code>Range</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">some_fruits</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>]
+<span class="ruby-comment"># 0..1 is the range from 0 to 1</span>
+<span class="ruby-comment"># =&gt; [&quot;pear&quot;, &quot;apple&quot;]</span>
+</pre>
+
+<p>Three periods - &#39;…&#39; - can also be used to define a Range, but this
+leaves off the last element in the return array.</p>
+
+<pre class="ruby"><span class="ruby-identifier">example</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span>]
+<span class="ruby-identifier">example</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>]
+<span class="ruby-comment"># =&gt; [3, 4, 5]</span>
+<span class="ruby-identifier">example</span>[<span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-value">4</span>]
+<span class="ruby-comment"># =&gt; [3, 4]</span>
+</pre>
+
+<p>You can also use -1 as the end value (-2 as the second to last value, etc.)
+of a <code>Range</code> to specify the last index of the array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">example</span> = [<span class="ruby-value">5</span>, <span class="ruby-value">3</span>, <span class="ruby-value">2</span>, <span class="ruby-value">1</span>, <span class="ruby-value">55</span>]
+<span class="ruby-identifier">example</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+<span class="ruby-comment"># =&gt; [2, 1, 55]</span>
+</pre>
+
+<h2 id="label-Accessing+elements+in+order">Accessing elements in order<span><a href="#label-Accessing+elements+in+order">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We can <em>iterate</em> through an array if we want to do something with
+each of the elements of the array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cool_things</span> = [<span class="ruby-string">&quot;race cars&quot;</span>, <span class="ruby-string">&quot;lasers&quot;</span>, <span class="ruby-string">&quot;aeroplanes&quot;</span>]
+<span class="ruby-identifier">cool_things</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cool_thing</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I like #{cool_thing}!&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># prints: I like race cars!</span>
+<span class="ruby-comment">#         I like lasers!</span>
+<span class="ruby-comment">#         I like aeroplanes!</span>
+</pre>
+
+<p>A <strong>warning</strong>: you should never modify an array while
+iterating through it; strange things will happen. An analogous
+<code>while</code> iteration through the loop might help explain the
+problem:</p>
+
+<pre class="ruby"><span class="ruby-identifier">array</span> = [<span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+<span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">i</span>)
+  <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You may think this will delete all elements in the array. But take it one
+step at a time. The first time through the loop, <code>array[0]</code> is
+deleted, and everything in the array shifts over one position; <code>array
+== [1, 2, 3]</code>. <code>i</code> is then incremented; we next try to
+delete <code>array[1]</code>. But this is not the element <code>1</code>,
+but instead <code>2</code> because of the shifting.</p>
+
+<p>For this reason, don&#39;t add/remove elements to/from an array while you
+are iterating through it.</p>
+
+<p>One alternative to delete multiple elements of an array without iteration
+is <a
+href="http://www.ruby-doc.org/core-2.1.2/Array.html#method-i-delete_if">#delete_if</a>.</p>
+
+<h2 id="label-Setting+and+adding+elements">Setting and adding elements<span><a href="#label-Setting+and+adding+elements">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You can set the element at an index like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cool_things</span> = [<span class="ruby-string">&quot;race cars&quot;</span>, <span class="ruby-string">&quot;lasers&quot;</span>, <span class="ruby-string">&quot;aeroplanes&quot;</span>]
+<span class="ruby-identifier">cool_things</span>[<span class="ruby-value">1</span>] = <span class="ruby-string">&quot;jets&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">cool_things</span>
+<span class="ruby-comment"># =&gt; [&quot;race cars&quot;, &quot;jets&quot;, &quot;aeroplanes&quot;]</span>
+</pre>
+
+<p>It&#39;s not super common to set items in the middle of an array, but it is
+quite common to add items to the end of an array.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fruits</span> = []
+<span class="ruby-identifier">fruits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;pear&quot;</span>
+<span class="ruby-identifier">fruits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;apple&quot;</span>
+<span class="ruby-identifier">fruits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;banana&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fruits</span>
+<span class="ruby-comment"># =&gt; [&quot;pear&quot;, &quot;apple&quot;, &quot;banana&quot;]</span>
+</pre>
+
+<p>The method <code>&lt;&lt;</code> is called the <em>shovel</em> operator. It
+shovels things into the array.</p>
+
+<p>Less commonly, you may want to <em>concatenate</em> two arrays:</p>
+
+<pre class="ruby"><span class="ruby-identifier">some_numbers</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">3</span>, <span class="ruby-value">5</span>]
+<span class="ruby-identifier">more_numbers</span> = [<span class="ruby-value">7</span>, <span class="ruby-value">9</span>, <span class="ruby-value">11</span>]
+
+<span class="ruby-identifier">all_numbers</span> = <span class="ruby-identifier">some_numbers</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">more_numbers</span>
+<span class="ruby-comment"># =&gt; [1, 3, 5, 7, 9, 11]</span>
+</pre>
+
+<p>Notice that the <code>+</code> method creates a new array; it doesn&#39;t
+modify either of the two other arrays. Broadly, there are two types of
+methods: some which modify the object (like <code>&lt;&lt;</code>) and
+others that create and return a new object (like <code>+</code>). When
+learning new methods, remember to note whether it returns a new object or
+modifies the existing object. (There are also some other methods, like
+<code>each</code>, that are used for their <em>side-effects</em>; they
+neither modify the object or return a new value.)</p>
+
+<p>It is somewhat wasteful for Ruby to create new objects when it is possible
+to instead modify an existing object. In the case of <code>+</code>,
+references to the elements of the two arrays need to be copied into a new
+array. You may want to use the <code>Array#concat</code> method, if
+possible, which will instead modify the first array by appending references
+to objects in the second array.</p>
+
+<p>Note that this involves much less copying if the left array is long and the
+right array small.</p>
+
+<p>Lastly, this digression isn&#39;t worth worrying too much about until you
+diagnose a real life performance problem, but it may help you understand
+how <code>+</code> works.</p>
+
+<h2 id="label-Array+size"><a href="../../Array.html">Array</a> size<span><a href="#label-Array+size">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>There are two main ways to get an array&#39;s size, or length:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">count</span>
+<span class="ruby-comment"># =&gt; 3</span>
+[].<span class="ruby-identifier">empty?</span>
+<span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p>Note that <code>arr.empty?</code> is equivalent to <code>arr.count ==
+0</code>. Why use <code>#empty?</code>? Because it expresses the purpose of
+the statement more clearly and succinctly; always prefer code that is
+expressive.</p>
+
+<h2 id="label-Pushing+and+popping">Pushing and popping<span><a href="#label-Pushing+and+popping">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It is often common to use arrays in a last-in, first-out (LIFO) way. This
+is called <em>pushing</em> (adding to the end of the array), and
+<em>popping</em> (removing from the end). To push an element into an array,
+use <code>&lt;&lt;</code> (shovel) or <code>push</code>; to pop an element
+from an array, use the <code>pop</code> method. Using Array&#39;s
+<code>push</code> and <code>pop</code>, we can treat an array like a <a
+href="http://stackoverflow.com/questions/3825050/what-do-push-and-pop-mean-for-stacks#answer-3825329">stack</a>,
+a data type that helps us solve problems that have LIFO features. One such
+problem is reverse polish calculation (remember the RPN calculator from
+Test First Ruby?):</p>
+
+<pre class="ruby"><span class="ruby-comment"># computes (1 (2 3 +) *)</span>
+<span class="ruby-identifier">nums</span> = []
+
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">2</span>
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">3</span>
+
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">nums</span>.<span class="ruby-identifier">pop</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">nums</span>.<span class="ruby-identifier">pop</span>)
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">nums</span>.<span class="ruby-identifier">pop</span>) <span class="ruby-operator">*</span> (<span class="ruby-identifier">nums</span>.<span class="ruby-identifier">pop</span>)
+</pre>
+
+<h2 id="label-Using+an+array+as+a+queue">Using an array as a queue<span><a href="#label-Using+an+array+as+a+queue">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It is sometimes useful to use arrays in a first-in, first-out way (FIFO).
+Usually this is called “queue” and “dequeue”. Using Array&#39;s
+<code>push</code> and <code>shift</code>, we can treat an array like a <a
+href="http://en.wikipedia.org/wiki/Queue_(abstract_data_type)">queue</a>, a
+data type that helps us solve problems with FIFO features.</p>
+
+<pre class="ruby"><span class="ruby-identifier">nums</span> = []
+
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">2</span>
+<span class="ruby-identifier">nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">3</span>
+
+<span class="ruby-identifier">nums</span>.<span class="ruby-identifier">shift</span>
+<span class="ruby-comment"># =&gt; 1</span>
+
+<span class="ruby-identifier">nums</span>
+<span class="ruby-comment"># =&gt; [2, 3]</span>
+</pre>
+
+<h2 id="label-Turning+arrays+to+strings-3A+-23join">Turning arrays to strings: <code>#join</code><span><a href="#label-Turning+arrays+to+strings-3A+-23join">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It is very common to want to represent an array as a string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">cool_things</span> = [<span class="ruby-string">&quot;race cars&quot;</span>, <span class="ruby-string">&quot;lasers&quot;</span>, <span class="ruby-string">&quot;aeroplanes&quot;</span>]
+<span class="ruby-node">&quot;Things I like include #{cool_things.join(&quot;, &quot;)}.&quot;</span>
+<span class="ruby-comment"># =&gt; &quot;Things I like include race cars, lasers, aeroplanes.&quot;</span>
+</pre>
+
+<p>NB: We use <em>string interpolation</em> to execute the code inside the
+<code>#{} and insert it inside the string. You can see the {string
+tutorial}[string.md#interpolation]</code> for more details.</p>
+
+<p>The argument to <code>join</code> (<code>&quot;, &quot;</code> in the
+example) is called the <em>separator</em>. It&#39;s used to separate the
+items in the string.</p>
+
+<h2 id="label-Finding+elements">Finding elements<span><a href="#label-Finding+elements">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Elements are usually either accessed in order (<code>arr.each</code>), or
+by position (<code>arr[i]</code>). Less commonly, you may want to find
+whether an array contains an object at any position:</p>
+
+<pre class="ruby"><span class="ruby-identifier">small_primes</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">5</span>, <span class="ruby-value">7</span>, <span class="ruby-value">11</span>]
+<span class="ruby-identifier">small_primes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">9</span>)
+<span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<p>The <code>#index</code> method returns the position of the first occurrence
+of an item in the array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">small_primes</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value">3</span>)
+<span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">small_primes</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value">9</span>)
+<span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<p>You may notice that the last example returns <code>nil</code>. Returning
+<code>nil</code> is idiomatic when no other value is appropriate;
+<code>nil</code> is Ruby&#39;s way to say “nothing”. In this case, 9 is not
+at any position in the array of small primes, so we return
+<code>nil</code>.</p>
+
+<h2 id="label-Sorting+an+array">Sorting an array<span><a href="#label-Sorting+an+array">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To sort an array in ascending order, use the <code>sort</code> method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">arr</span> = [<span class="ruby-value">3</span>, <span class="ruby-value">2</span>, <span class="ruby-value">1</span>]
+
+<span class="ruby-identifier">sorted_arr</span> = <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">sort</span>
+<span class="ruby-identifier">sorted_arr</span> <span class="ruby-comment"># =&gt; [1, 2, 3]</span>
+<span class="ruby-identifier">arr</span> <span class="ruby-comment"># =&gt; [3, 2, 1]</span>
+</pre>
+
+<p>Notice that <code>sort</code> returns a new, sorted array. To sort an array
+<em>in place</em>, modifying the existing array to contain the elements in
+order, use the <code>sort!</code> method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">arr</span> = [<span class="ruby-value">3</span>, <span class="ruby-value">2</span>, <span class="ruby-value">1</span>]
+
+<span class="ruby-identifier">arr</span>.<span class="ruby-identifier">sort!</span>
+<span class="ruby-identifier">arr</span> <span class="ruby-comment"># =&gt; [1, 2, 3]</span>
+</pre>
+
+<p>A common idiom in Ruby are pairs of <em>safe</em> and <em>unsafe</em>
+methods; the unsafe methods normally end in &#39;!&#39;. What it means to
+be unsafe varies from method to method, but often the unsafe version will
+modify the object, while the safe version will return a new value.
+Oftentimes the unsafe version is faster, because it only needs to modify an
+existing object. However, use the safe version as a default, and only use
+unsafe methods when you have a reason. Again, don&#39;t worry about speed
+until you see a performance problem in real life.</p>
+
+<h2 id="label-Shuffling+an+array">Shuffling an array<span><a href="#label-Shuffling+an+array">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To shuffle an array in random order, use the <code>shuffle</code> method:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">shuffle</span>
+<span class="ruby-comment"># =&gt; [2, 1, 3]</span>
+</pre>
+
+<p>Of course, the order that the array is shuffled to is random.</p>
+
+<h2 id="label-Access+first+and+last+elem+in+arrays">Access first and last elem in arrays<span><a href="#label-Access+first+and+last+elem+in+arrays">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The <code>first</code> method selects the first elem in the array. The
+<code>last</code> method selects the last elem in the array. This can be
+quicker to type than <code>arr[0]</code> and <code>arr[-1]</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">die</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span>, <span class="ruby-value">6</span>]
+
+<span class="ruby-identifier">die</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-comment"># =&gt; 1</span>
+<span class="ruby-identifier">die</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-comment"># =&gt; 6</span>
+</pre>
+
+<h2 id="label-Random+sampling+from+arrays">Random sampling from arrays<span><a href="#label-Random+sampling+from+arrays">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The <code>sample</code> method selects an element at random from an array.</p>
+
+<pre class="ruby">
+<span class="ruby-identifier">die_faces</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span>, <span class="ruby-value">6</span>]
+
+<span class="ruby-identifier">roll1</span> = <span class="ruby-identifier">die_faces</span>.<span class="ruby-identifier">sample</span>
+<span class="ruby-identifier">roll2</span> = <span class="ruby-identifier">die_faces</span>.<span class="ruby-identifier">sample</span>
+</pre>
+
+<h2 id="label-Naming+arrays">Naming arrays<span><a href="#label-Naming+arrays">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="../../Array.html">Array</a> variable names are typically
+pluralized, to indicate that the variable holds an array which may hold
+many objects. For instance, an array that holds <code>Car</code> objects
+may be called <code>cars</code>. If, while iterating through an array
+(often with <code>each</code>), I store a single element from the array in
+a variable, it is very typical to name that variable with the singular form
+of the object.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fancy_car_brands</span> = [<span class="ruby-string">&quot;Maserati&quot;</span>, <span class="ruby-string">&quot;Porsche&quot;</span>, <span class="ruby-string">&quot;Tesla&quot;</span>]
+<span class="ruby-identifier">junk_models</span> = [<span class="ruby-string">&quot;Chevy Nova&quot;</span>, <span class="ruby-string">&quot;Ford Pinto&quot;</span>]
+
+<span class="ruby-identifier">fancy_car_brands</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fancy_car_brand</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">junk_models</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">junk_model</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{fancy_car_brand} would never make junk like the #{junk_model}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Choosing appropriate names is one of the most important ways to improve
+code legibility. Compare to this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">fc</span> = [<span class="ruby-string">&quot;Maserati&quot;</span>, <span class="ruby-string">&quot;Porsche&quot;</span>, <span class="ruby-string">&quot;Tesla&quot;</span>]
+<span class="ruby-identifier">jc</span> = [<span class="ruby-string">&quot;Chevy Nova&quot;</span>, <span class="ruby-string">&quot;Ford Pinto&quot;</span>]
+
+<span class="ruby-identifier">fc</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c1</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">jc</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c2</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I like a #{c1} better than a #{c2}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Choosing good names can take a bit of thought, but it is super important to
+do. Poor naming makes code very confusing, which means you&#39;ll end up
+with more bugs. Also, other engineers don&#39;t like to work with confusing
+code, and you want people to like working with you :-)</p>
+
+<h2 id="label-Arrays+should+always+contain+one+type+of+thing">Arrays should always contain one type of thing<span><a href="#label-Arrays+should+always+contain+one+type+of+thing">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You can create arrays that hold different kinds of things:</p>
+
+<pre class="ruby"><span class="ruby-identifier">mish_mosh</span> = [<span class="ruby-string">&quot;Race cars&quot;</span>, <span class="ruby-value">42</span>, { :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Gizmo&quot;</span>, :<span class="ruby-identifier">species</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;cat&quot;</span> }]
+</pre>
+
+<p>These are called <em>heterogeneous</em> arrays (from Greek for “different
+kinds”). Arrays like <code>mish_mosh</code> are a mess, because they
+contain a grab bag of unrelated items. You will seldom want to create an
+array like this; create arrays that have one kind of thing:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cool_things</span> = [<span class="ruby-string">&quot;Race cars&quot;</span>, <span class="ruby-string">&quot;lasers&quot;</span>, <span class="ruby-string">&quot;aeroplanes&quot;</span>]
+<span class="ruby-identifier">lucky_numbers</span> = [<span class="ruby-value">3</span>, <span class="ruby-value">7</span>, <span class="ruby-value">42</span>]
+<span class="ruby-identifier">animals</span> = [
+  {:<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Gizmo&quot;</span>, :<span class="ruby-identifier">species</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;cat&quot;</span>},
+  {:<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Maurice&quot;</span>, :<span class="ruby-identifier">species</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fish&quot;</span>}
+]
+</pre>
+
+<p>Collections of items should have some unifying principle: in the three
+arrays here every element is a cool thing, or a lucky number, or an animal.
+Collections with heterogeneous types often lack a unifying idea.</p>
+
+<p>Finally, heterogeneous arrays are difficult to work with because you never
+know what kind of object you might encounter in the array. Is it a
+<code>String</code> and you can call <code>.upcase</code> on it? Or is it a
+number; will it be safe to add to it? A hash?</p>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a href="http://www.ruby-doc.org/core-2.1.2/Array.html">Ruby Doc on
+Array</a></p>
+</li><li>
+<p><a href="http://zetcode.com/lang/rubytutorial/arrays/">Ruby Array
+Article</a></p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

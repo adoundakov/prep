@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>pass-by-reference - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Pass+by+reference">Pass by reference</a>
+    <li><a href="#label-The+-5B-5D-3D+and+accessor+methods">The <code>[]=</code> and accessor methods</a>
+    <li><a href="#label-2B-3D+and+-21-3D"><code>+=</code> and <code>!=</code></a>
+    <li><a href="#label-The+or+trick">The or trick</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_md.html">README</a>
+  
+    <li><a href="./pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="./w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="./w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="./w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="./w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="./w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="./w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="./w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="./w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="./w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="./w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="./w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="./w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="./w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="./w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="./w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="./w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="./w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="./w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="./w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="./w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="./w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="./w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="./w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="./w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="./w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="./w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page pass-by-reference.md">
+
+<h1 id="label-Pass+by+reference">Pass by reference<span><a href="#label-Pass+by+reference">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>The Ruby language is what is called a <strong>pass by reference</strong>
+language. This means that variables hold <strong>references</strong> to
+objects, but let me show you what that means.</p>
+
+<pre class="ruby"><span class="ruby-identifier">my_object</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-comment"># my_object now refers to a new instance of Object</span>
+
+<span class="ruby-identifier">my_object</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-comment"># a new Object instance is created, and the my_object variable is</span>
+<span class="ruby-comment"># reassigned so that it now refers to this object, rather than the old</span>
+<span class="ruby-comment"># object.</span>
+
+<span class="ruby-comment"># call `my_method` on the object that `my_object` refers to</span>
+<span class="ruby-identifier">my_object</span>.<span class="ruby-identifier">my_method</span>
+</pre>
+
+<p>One point is that <code>=</code> does not <strong>mutate</strong> (modify)
+an object; it merely <strong>reassigns</strong> the variable so that it now
+refers to a new object.</p>
+
+<p>Here is another example of pass by reference:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">add_to_array!</span>(<span class="ruby-identifier">array</span>, <span class="ruby-identifier">item</span>)
+  <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">my_array</span> = []
+<span class="ruby-identifier">add_to_array!</span>(<span class="ruby-identifier">my_array</span>, <span class="ruby-string">&quot;an item!&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">my_array</span>
+</pre>
+
+<p>This code will modify the array referred to by <code>my_array</code>. When
+we call <code>add_to_array</code>, we&#39;re passing it a reference to the
+same object referred to by <code>my_array</code>, as well as a reference to
+the literal string <code>&quot;an item!&quot;</code>. So inside
+<code>add_to_array</code>, the variable <code>array</code> refers to the
+same object that <code>my_array</code> refers to outside the method. So
+modifications to the array inside the method will be visible outside.</p>
+
+<h2 id="label-The+-5B-5D-3D+and+accessor+methods">The <code>[]=</code> and accessor methods<span><a href="#label-The+-5B-5D-3D+and+accessor+methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We&#39;ve said that <code>=</code> never modifies an object, and merely
+reassigns a variable to refer to a new object. But then how do I explain
+this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">my_hash</span> = {}
+<span class="ruby-comment"># add a key &amp; value to the hash</span>
+<span class="ruby-identifier">my_hash</span>[:<span class="ruby-identifier">key</span>] = :<span class="ruby-identifier">value</span>
+</pre>
+
+<p>How does this work? Notice that we aren&#39;t just assigning to a variable;
+we&#39;re asking to mutate <code>my_hash</code> so that <code>:key</code>
+will refer to <code>:value</code> now. To do this, Ruby calls the
+<code>[]=</code> method on the hash. Here&#39;s how it might be defined:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Hash</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span>)
+    <span class="ruby-comment"># code to set key so that it maps to value...</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In fact, we can even write this with the usual method call notation:</p>
+
+<pre class="ruby"><span class="ruby-identifier">my_hash</span>.[]=(:<span class="ruby-identifier">key</span>, :<span class="ruby-identifier">value</span>)
+</pre>
+
+<p>Other writer methods work similarly:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">my_cat</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">my_cat</span>.<span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;Breakfast&quot;</span> <span class="ruby-comment"># == my_cat.name=(&quot;Breakfast&quot;)</span>
+</pre>
+
+<p>Conveniences like this (the ability to write <code>hash[:key] =
+:value</code> instead of <code>hash.[]=(:key, :value)</code>) are called
+<em>syntactic sugar</em>. They don&#39;t change the fundamental way the
+language works; they are merely shortcuts to make things a little easier on
+us.</p>
+
+<h2 id="label-2B-3D+and+-21-3D"><code>+=</code> and <code>!=</code><span><a href="#label-2B-3D+and+-21-3D">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>One last bit of syntactic sugar is to discuss how Ruby interprets
+<code>+=</code> and <code>!=</code>. This is done quite simply</p>
+
+<pre class="ruby"><span class="ruby-identifier">x</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">y</span> <span class="ruby-comment"># =&gt; x = x + y, will work as long as `#+` is defined</span>
+<span class="ruby-identifier">x</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">y</span> <span class="ruby-comment"># =&gt; !(x == y), will use the `#==` method</span>
+</pre>
+
+<p>So while <code>[]=</code> was a method, <code>+=</code> and <code>!=</code>
+are pure syntactic sugar. Ruby will translate them into code that calls
+<code>+</code> and <code>==</code> respectively.</p>
+
+<h2 id="label-The+or+trick">The or trick<span><a href="#label-The+or+trick">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The Ruby <code>||</code> operation does something called short circuiting:</p>
+
+<pre class="ruby"><span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">this_code_is_not_run</span>
+<span class="ruby-keyword">false</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">this_code_will_be_run</span>
+</pre>
+
+<p>Ruby is sort of lazy; it won&#39;t evaluate the right side if the left side
+of <code>||</code> is already true. That makes sense, because regardless of
+what the right side is, the whole or statement will always be true. Ruby
+understands this, and so as a special rule won&#39;t execute more than it
+needs to.</p>
+
+<p>Ruby will return the first “truthy” value from the or:</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-value">2</span>) <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+(<span class="ruby-keyword">nil</span> <span class="ruby-operator">||</span> <span class="ruby-value">5</span>) <span class="ruby-operator">==</span> <span class="ruby-value">5</span>
+</pre>
+
+<p>There&#39;s an “or trick” that uses <code>||=</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MemoizedFibonacci</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+    <span class="ruby-ivar">@values</span> = {}
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">fib</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-ivar">@values</span>[<span class="ruby-identifier">n</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">calculate_fib</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-comment"># expands to:</span>
+    <span class="ruby-comment">#     @values[n] = @values[n] || calculate_fib(n)</span>
+    <span class="ruby-comment"># if @values[n] is nil (not previously computed), will call</span>
+    <span class="ruby-comment"># `calculate_fib` and store the result for later reference.</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">private</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">calculate_fib</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">n</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+      <span class="ruby-value">0</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+      <span class="ruby-value">1</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">fib</span>(<span class="ruby-identifier">n</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">fib</span>(<span class="ruby-identifier">n</span> <span class="ruby-operator">-</span> <span class="ruby-value">2</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

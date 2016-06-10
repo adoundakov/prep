@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>iteration - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Iteration">Iteration</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-While+loops">While loops</a>
+    <li><a href="#label-Indices+start+at+zero">Indices start at zero</a>
+    <li><a href="#label-While+without+an+index">While without an index</a>
+    <li><a href="#label-Break">Break</a>
+    <li><a href="#label-Iterating+through+arrays+with+each">Iterating through arrays with each</a>
+    <li><a href="#label-each+vs+for"><code>each</code> vs <code>for</code></a>
+    <li><a href="#label-each_with_index"><code>each_with_index</code></a>
+    <li><a href="#label-Iterating+with+times">Iterating with times</a>
+    <li><a href="#label-Range">Range</a>
+    <li><a href="#label-Nesting+loops">Nesting loops</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d2/readings/iteration.md">
+
+<h1 id="label-Iteration">Iteration<span><a href="#label-Iteration">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Know what an index variable is.</p>
+</li><li>
+<p>Know that index variables conventionally start at zero.</p>
+</li><li>
+<p>Know how to write a <code>while</code> loop.</p>
+</li><li>
+<p>Know how to emulate <code>Array#each</code> with a <code>while</code> loop,
+if you had to.</p>
+</li><li>
+<p>Know that <code>Array#each</code> is preferred and why.</p>
+</li><li>
+<p>Know how to break out of a loop.</p>
+</li><li>
+<p>Know when you might want to use <code>Array#each_with_index</code> instead
+of  <code>#each</code>.</p>
+</li><li>
+<p>Know how to use <code>Integer#times</code> to execute a block multiple
+times.</p>
+</li><li>
+<p>Know what a <code>Range</code> is.</p>
+</li><li>
+<p>Know how we can use a <code>Range</code> to iterate through a range of
+index values, without using <code>while</code>.</p>
+</li><li>
+<p>Be comfortable nesting loops when necessary.</p>
+</li><li>
+<p>Know not to nest too deeply.</p>
+</li></ul>
+
+<h2 id="label-While+loops">While loops<span><a href="#label-While+loops">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The most primitive loop is the <code>while</code> loop. It repeats a
+section of code repeatedly as long as a condition is true. For instance,</p>
+
+<pre class="ruby"><span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Infinite loop!&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>will spin round and around repeatedly, forever. Most loops eventually stop,
+however:</p>
+
+<pre class="ruby"><span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">5</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Repeat 5 times!&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;This is time #: #{i}&quot;</span>
+
+  <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Merry Christmas, loop is over!&quot;</span>
+</pre>
+
+<p>This is a very traditional loop. <code>i</code> is called the
+<strong>index</strong>, and it keeps track of how many times we&#39;ve gone
+through the loop.</p>
+
+<p><code>i</code> starts at zero, because we&#39;ve gone through the loop zero
+times. The loop will keep running so long as <code>i &lt; 5</code>; that
+is, we&#39;ll keep looping until we&#39;ve executed the code block (the
+stuff between the <code>while</code> and the <code>end</code> lines) five
+times. Each time around, at the end of the loop block, one is added to
+<code>i</code>. After the first time through the block, <code>i</code> is
+set to one, and the program jumps back to the top of the
+<code>while</code>. Since one is still less than five, the loop repeats.</p>
+
+<p><code>i</code> takes on, or <strong>iterates</strong> through the values
+0,1,2,3,4,5. After the fifth time around the loop, <code>i</code> is set to
+five (not four, not six; convince yourself of this).</p>
+
+<p>The loop finally comes back around for the <em>sixth</em> time to the while
+test. Remember, <code>i</code> has just been set to five. <code>i &lt;
+5</code> is no longer true. So the code block is not executed and the loop
+exits, so that the code following the loop&#39;s <code>end</code> is run.</p>
+
+<p>This is the most basic loop. If all else fails, you can always fall back on
+this. All the other loop forms are just more convenient forms of this basic
+loop style.</p>
+
+<h3 id="label-Indices+start+at+zero">Indices start at zero<span><a href="#label-Indices+start+at+zero">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We could have changed our loop ever so slightly:</p>
+
+<pre class="ruby"><span class="ruby-identifier">i</span> = <span class="ruby-value">1</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">5</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Repeat 5 times!&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;This is time #: #{i}&quot;</span>
+
+  <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This would do the almost the same thing as our previous loop; verify this
+for yourself.</p>
+
+<p>Don&#39;t write loops with indices starting at one; you&#39;ll confuse
+other programmers. Indices have started at zero for a long time, and
+it&#39;s what other programmers are used to. It&#39;s also the range of
+array indices you&#39;d want (the indices into an array of ten items is
+0-9).</p>
+
+<p>This is called an <strong>idiom</strong>; idioms are coding conventions
+that are commonly used. They are a good thing, because conventions
+we&#39;ve seen before are easier to understand when we see them again.</p>
+
+<h3 id="label-While+without+an+index">While without an index<span><a href="#label-While+without+an+index">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>So far we&#39;ve only seen <code>while</code> loops that loop through index
+values. In fact, we&#39;ll see there are better ways to do this, so we
+shouldn&#39;t use a <code>while</code> loop for this purpose. A
+<code>while</code> loop is usually used, however, when we want to keep
+doing something in a loop, keep looping until something happens, but
+don&#39;t know exactly how many times around that may be.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">process_user_input</span>
+  <span class="ruby-identifier">command</span> = <span class="ruby-identifier">get_user_input</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">command</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;quit&quot;</span>
+    <span class="ruby-identifier">perform_command</span>(<span class="ruby-identifier">command</span>)
+
+    <span class="ruby-identifier">command</span> = <span class="ruby-identifier">get_user_input</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Good bye!&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This will loop through as many commands as the user enters, up until he or
+she instructs the program to quit.</p>
+
+<p>Notice that the “update” of <code>command</code> happens at the end of the
+<code>while</code> loop? This is a typical pattern; we check the condition,
+perform the relevant code, then update a loop variable. Wash, rinse,
+repeat…</p>
+
+<h2 id="label-Break">Break<span><a href="#label-Break">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Let&#39;s search an array of numbers for a favorite number.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">contains_favorite_number?</span>(<span class="ruby-identifier">my_favorite_number</span>, <span class="ruby-identifier">numbers_to_search</span>)
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">numbers_to_search</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">current_number</span> = <span class="ruby-identifier">numbers_to_search</span>[<span class="ruby-identifier">i</span>]
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">my_favorite_number</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_number</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;List contains favorite number!&quot;</span>
+      <span class="ruby-keyword">break</span> <span class="ruby-comment"># jump out of the loop</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;If we found the number, you should know by now.&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The <code>break</code> keyword jumps out of the loop. This means that the
+loop will end as soon as we find our favorite number. In this case, we save
+extra cycles going through the loop, and we make sure we print out “Found
+my…” at most once.</p>
+
+<h2 id="label-Iterating+through+arrays+with+each">Iterating through arrays with each<span><a href="#label-Iterating+through+arrays+with+each">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If you have an array, and want to loop through all the items, you could
+write:</p>
+
+<pre class="ruby"><span class="ruby-identifier">musicians</span> = [<span class="ruby-string">&#39;George&#39;</span>, <span class="ruby-string">&#39;Paul&#39;</span>, <span class="ruby-string">&#39;John&#39;</span>, <span class="ruby-string">&#39;Ringo&#39;</span>]
+
+<span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">musicians</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">musicians</span>[<span class="ruby-identifier">i</span>]
+
+  <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Instead, you should write:</p>
+
+<pre class="ruby"><span class="ruby-identifier">musicians</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">musician</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">musician</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The lines between the <code>do</code> and <code>end</code> are a code block
+to repeat for each of the elements of the array. For each element in the
+array, the <code>each</code> method sets the musician variable to the
+current element, then executes the code block.</p>
+
+<p>The biggest advantage of <code>each</code> is that you don&#39;t have to
+keep track of an index variable. This may not seem like a big deal, but
+every line of code you don&#39;t have to write is one less to debug.</p>
+
+<p>In particular, one of the most common programming errors is to forget to
+increment the index variable each time:</p>
+
+<pre class="ruby"><span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">5</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Do this five times&quot;</span>
+
+  <span class="ruby-comment"># forgot: i += 1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h3 id="label-each+vs+for"><code>each</code> vs <code>for</code><span><a href="#label-each+vs+for">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Ruby also has a <code>for</code> loop construct:</p>
+
+<pre class="ruby"><span class="ruby-keyword">for</span> <span class="ruby-identifier">item</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">items</span>
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>For boring reasons, <code>for</code> is not recommended for use. You&#39;ll
+see plenty of Python code use <code>for</code> this way, but in Ruby
+we&#39;ll satisfy ourselves with using <code>#each</code>.</p>
+
+<h2 id="label-each_with_index"><code>each_with_index</code><span><a href="#label-each_with_index">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><code>each</code> is cleaner than <code>while</code>, but sometimes you
+also need the index of each element. In this case, you should use
+<code>each_with_index</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">my_favorite_number</span> = <span class="ruby-value">42</span>
+<span class="ruby-identifier">numbers</span> = [<span class="ruby-value">42</span>, <span class="ruby-value">3</span>, <span class="ruby-value">42</span>, <span class="ruby-value">5</span>]
+
+<span class="ruby-identifier">favorite_indices</span> = []
+<span class="ruby-identifier">numbers</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">number</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">number</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">my_favorite_number</span>
+    <span class="ruby-identifier">favorite_indices</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><code>each_with_index</code> combines the simplicity of <code>each</code>
+with the ability to reference an index.</p>
+
+<h2 id="label-Iterating+with+times">Iterating with times<span><a href="#label-Iterating+with+times">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If all you want to do is repeat some code several times, use Ruby&#39;s
+<code>times</code> method:</p>
+
+<pre class="ruby"><span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;King of the streets; child at play&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Again, you get to avoid an index variable.</p>
+
+<h2 id="label-Range">Range<span><a href="#label-Range">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A range is exactly what it sounds like:</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>)
+</pre>
+
+<p>This represents all the numbers from 1 through 10. A range with two dots
+goes up to and includes the second number. A range with three dots excludes
+the seconds number. For example, (0…10) goes from 0 to 9, and does not
+include 10. We can iterate over ranges just like we iterated over arrays:</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">i</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Note that ranges cannot go from a larger value to a smaller value (i.e.
+<code>10..1</code>).</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>).<span class="ruby-identifier">to_a</span>
+=<span class="ruby-operator">&gt;</span> []
+</pre>
+
+<p>One alternative is to convert the range to an array and reverse it:</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">i</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In this case, it probably makes more sense to use <a
+href="http://ruby-doc.org/core-2.1.2/Integer.html#method-i-downto">Integer#downto</a>.</p>
+
+<h2 id="label-Nesting+loops">Nesting loops<span><a href="#label-Nesting+loops">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Loops can be placed inside each other, or <em>nested</em>. Here are some
+nested loops that print out a times table:</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">multiples</span> = []
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">multiples</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">j</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">multiples</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Note: when you have two indices, <code>i</code> and <code>j</code> are
+conventional names. However, they are often the lazy way out: unclear,
+abstract index names are a major source of confusion and bugs. Here names
+like <code>num1</code> and <code>num2</code> would make things clearer.</p>
+
+<p><em>Avoid deep nesting</em>. Nested code should be split out into methods.
+Two levels deep is usually okay, more is almost always bad. For instance,
+we could change our times table code like this:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">multiples</span>(<span class="ruby-identifier">i</span>)
+  <span class="ruby-identifier">ms</span> = []
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">ms</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">j</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">ms</span>
+<span class="ruby-keyword">end</span>
+
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">multiples</span>(<span class="ruby-identifier">i</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a
+href="http://www.skorks.com/2009/09/a-wealth-of-ruby-loops-and-iterators">Skorks
+on looping</a></p>
+</li><li>
+<p>More examples of loops on <a
+href="http://www.tutorialspoint.com/ruby/ruby_loops.htm">tutorialspoint</a></p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

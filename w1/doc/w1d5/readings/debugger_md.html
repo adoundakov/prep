@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>debugger - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Debugging">Debugging</a>
+    <li><a href="#label-Rule+-231-3A+Read+the+error">Rule #1: Read the error</a>
+    <li><a href="#label-Perform+a+Mental+Stack+Trace">Perform a Mental Stack Trace</a>
+    <li><a href="#label-Write+code+that-27s+testable">Write code that&#39;s testable</a>
+    <li><a href="#label-Pay+technical+debt">Pay technical debt</a>
+    <li><a href="#label-Don-27t+read+the+source">Don&#39;t read the source</a>
+    <li><a href="#label-Use+a+REPL+to+isolate+the+problem">Use a REPL to isolate the problem</a>
+    <li><a href="#label-Use+a+debugger+to+zero+in+on+the+problem">Use a debugger to zero in on the problem</a>
+    <li><a href="#label-Step+through+code">Step through code</a>
+    <li><a href="#label-Reading+stack+traces">Reading stack traces</a>
+    <li><a href="#label-Step+vs+Next">Step vs Next</a>
+    <li><a href="#label-Debugging+and+Testing">Debugging and Testing</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d5/readings/debugger.md">
+
+<h1 id="label-Debugging">Debugging<span><a href="#label-Debugging">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>Any program of sufficient complexity is unlikely to work the first time.
+You will make mistakes. Skilled and unskilled developers write a similar
+number of bugs. The difference is that skilled developers are able to
+quickly identify and fix bugs.</p>
+
+<p>A rule of thumb is that it takes 10x as long to debug code as to write it.
+Master debugging and you master programming.</p>
+
+<h2 id="label-Rule+-231-3A+Read+the+error">Rule #1: Read the error<span><a href="#label-Rule+-231-3A+Read+the+error">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Rule #1 is to <strong>READ THE ERROR</strong>.</p>
+
+<p>Do NOT simply jump back to your program and start fiddling with things to
+see if you can get it to work. Always read the error. Oftentimes it tells
+you everything you need to know.</p>
+
+<p>The error gives you valuable pieces of information. The first three are
+absolutely essential to read and understand whenever an error occurs.</p>
+<ul><li>
+<p>Error type</p>
+</li><li>
+<p>Error message</p>
+</li><li>
+<p>Line number on which the error occurred</p>
+</li><li>
+<p>Chain of methods that were called leading up to it (referred to as the
+<strong>stack trace</strong>)</p>
+</li></ul>
+
+<p>If you encounter an error and you are unclear about what the error type
+and/or message is telling you, stop and ask an instructor to explain it to
+you. Learning to understand errors and error messages is critical to
+developing your abilities as a programmer.</p>
+
+<h2 id="label-Perform+a+Mental+Stack+Trace">Perform a Mental Stack Trace<span><a href="#label-Perform+a+Mental+Stack+Trace">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The stack trace below the error message can be extremely helpful, but it
+usually won&#39;t give you the exact information you need to fix your bug.
+What it does tell you is the path your program took to get to wherever the
+error happened.</p>
+
+<p>Whenever you encounter a bug your ability to track it down will be
+dependent on your ability to trace the logic of your own code.</p>
+
+<p>Interrogate your code actively. Why did the bug happen? What are the values
+of the key variables at key points in your program? What did each line
+evaluate to leading up to the bug?</p>
+
+<p>Do not passively stare at your code or simply assume that what you think
+happened is what actually happened (this is what got you in trouble in the
+first place!). Some strategies include:</p>
+<ul><li>
+<p>Break your code down into more testable chunks and actively run each  of
+those chunks to test if they&#39;re working.</p>
+</li><li>
+<p>Use <code>p</code> statements often; use them to check what the values of 
+variables are, that methods are called as expected, etc.</p>
+</li><li>
+<p>Use the debugger.</p>
+</li></ul>
+
+<p>The key with bugs and errors is to really get into the mind of the machine.
+You must understand what is happening in the code. To do so, you must seek
+out helpful feedback from the program, constantly testing your assumptions
+about what is happening.</p>
+
+<p>You are a programmer. You hunt bugs. Hunt well.</p>
+
+<h2 id="label-Write+code+that-27s+testable">Write code that&#39;s testable<span><a href="#label-Write+code+that-27s+testable">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Let&#39;s consider a Ruby script that is supposed to print the first 100
+primes:</p>
+
+<pre class="ruby"><span class="ruby-comment"># primes.rb</span>
+
+<span class="ruby-identifier">primes</span> = []
+
+<span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">100</span>
+  <span class="ruby-identifier">is_prime</span> = <span class="ruby-keyword">true</span>
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">is_prime</span> = <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">break</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_prime</span>
+    <span class="ruby-identifier">primes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">primes</span>
+</pre>
+
+<p>This program doesn&#39;t work; it doesn&#39;t look like it ever returns.
+Where&#39;s the bug (or bugs)?</p>
+
+<p>The bugs could be anywhere, but we don&#39;t have the ability to isolate
+and test individual parts of the code. When we load up this file, it
+immediately starts running all the code.</p>
+
+<p>Let&#39;s make this more <em>testable</em>: let&#39;s break the code into
+small, bite-sized methods. Small methods are easier to test, because you
+can test each part independently.</p>
+
+<p>General hint: when you write a <em>script</em>, write all your code inside
+of methods. Only a very little bit of code should be written at the top
+level to kick things off.</p>
+
+<pre class="ruby"><span class="ruby-comment"># primes.rb</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">primes</span>(<span class="ruby-identifier">num_primes</span>)
+  <span class="ruby-identifier">ps</span> = []
+  <span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num_primes</span>
+    <span class="ruby-identifier">primes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">if</span> <span class="ruby-keyword">__FILE__</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">$PROGRAM_NAME</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">primes</span>(<span class="ruby-value">100</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This code uses a common trick. We will want to be able to load our code
+without running it immediately. In particular, we&#39;d like to directly
+call the methods and diagnose whether each is working. But before we were
+blocked because the program immediately started executing the script and
+entering an infinite loop.</p>
+
+<p>The solution is the trick <code>if __FILE__ == $PROGRAM_NAME</code>. This
+checks to see if the currently running program (<code>$PROGRAM_NAME</code>)
+is the same as the current file (primes.rb). If so, then this is being
+invoked as a script, so we should kick things off. Otherwise, we&#39;re
+loading it as part of some other program (like irb or Pry), and we
+shouldn&#39;t do more than load the method definitions so that someone else
+may use them.</p>
+
+<p>Great. Now we can test the <code>prime?</code> and <code>primes</code>
+pieces individually. If one works and the other doesn&#39;t, we can focus
+on the single broken method. Even if both are broken, we can fix
+<code>prime?</code> first, and then try to debug <code>primes</code>
+knowing that <code>prime?</code> at least works.</p>
+
+<p>Also, because <code>prime?</code> and <code>primes</code> do one simple
+thing, we know what they&#39;re <em>supposed</em> to do:
+<code>prime?(2)</code> should be true. <code>prime?(4)</code> should be
+false. <code>primes(3)</code> should be <code>[2, 3, 5]</code>.</p>
+
+<p>This is better than a huge, black-box method which does a bunch of
+complicated stuff where it&#39;s hard to even know what the right answer
+should be.</p>
+
+<h3 id="label-Pay+technical+debt">Pay technical debt<span><a href="#label-Pay+technical+debt">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If you encounter buggy code that is poorly decomposed into methods,
+<strong>fix the design immediately</strong>. You&#39;re going to want to
+fix the design eventually anyway; refactoring will probably create new bugs
+to fix, so you might as well deal with this bug at the same time.</p>
+
+<p>More importantly, good code is the gift that keeps on giving. If this code
+is broken today, it&#39;s safe to assume that it will bite you in the ass
+with another bug a few days from now, too. And every time you come back to
+this code, you&#39;ll be fighting its poor design as you try to deal with
+it. Try to fix it now once and for all.</p>
+
+<p>In the rush to complete projects, bad design is sometimes a compromise made
+to finish a project on-time. This is called <em>technical debt</em>.
+It&#39;s okay to take out debt like this, just like it&#39;s okay to take
+out financial debt. But the more debt you take out, the higher the payments
+in the form of your time.</p>
+
+<p>If you find yourself struggling with a tough bug in the midst of some
+poorly written code, admit that your debt has caught up with you, bite the
+bullet and refactor.</p>
+
+<h2 id="label-Don-27t+read+the+source">Don&#39;t read the source<span><a href="#label-Don-27t+read+the+source">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We haven&#39;t found out what&#39;s wrong yet. You might be tempted to
+first look carefully at <code>prime?</code> and <code>primes</code>, try to
+reason through them, and spot the bug. You may be able to do this with my
+simple example.</p>
+
+<p><strong>Do not spend more than 1min doing this in real life</strong>. Yes,
+many silly bugs can be spotted if you stare at the code, but many other
+silly bugs are difficult to spot because our eyes play tricks on us. You
+know how you can still read a paragraph with the spaces taken out? For the
+same reason, it&#39;s hard to spot silly bugs, because you know what the
+code is <em>supposed</em> to do.</p>
+
+<p>Your bug may not be a simple bug. If it&#39;s at all non-trivial, it will
+be <em>very</em> hard to spot. The best way to find a bug like this is to
+take your code step-by-step. We&#39;ll see how to do that soon.</p>
+
+<p>Yes, when debugging you should look at the source to familiarize yourself
+with the code. The bug may jump out at you. If not, don&#39;t worry.
+We&#39;re about to learn better techniques.</p>
+
+<h2 id="label-Use+a+REPL+to+isolate+the+problem">Use a REPL to isolate the problem<span><a href="#label-Use+a+REPL+to+isolate+the+problem">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Now that we&#39;ve broken the code up into testable bits, let&#39;s
+actually test those parts. That lets us quickly isolate the problem to a
+few lines.</p>
+
+<p>Open the <a href="http://www.pryrepl.org">Pry REPL</a>. Make sure you have
+done <code>gem install pry</code> first.</p>
+
+<pre>david ~/Dropbox/TA $
+pry</pre>
+
+<p>Load your file and start testing.</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">2</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+</pre>
+
+<p>Awesome. We&#39;ve already found a <em>regression</em>; an input which
+produces the wrong output. There might also be problems with
+<code>primes</code>, but it would have been a real PITA to try to fix those
+when the underlying <code>prime?</code> method is broken.</p>
+
+<p>Decomposition for the win.</p>
+
+<p>Now we need to take a more fine-grained look at exactly what is wrong with
+our <code>prime?</code> method.</p>
+
+<h2 id="label-Use+a+debugger+to+zero+in+on+the+problem">Use a debugger to zero in on the problem<span><a href="#label-Use+a+debugger+to+zero+in+on+the+problem">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>In Ruby versions 2.0 and greater, we use byebug for debugging:</p>
+
+<p><code>gem install byebug</code></p>
+
+<p>Byebug lets us do many cool things. We can step through our code one line
+at a time, and along the way…</p>
+<ul><li>
+<p>check the value of our variables at any time (no <code>p</code> required!)</p>
+</li><li>
+<p>continuously watch the value of a variable, so that we can see when it
+changes</p>
+</li><li>
+<p>change the value of variables in the middle of program execution</p>
+</li><li>
+<p>set breakpoints so that we can pause whenever we reach a certain line in
+our code</p>
+</li><li>
+<p>examine the call stack to determine exactly which methods brought us to a
+certain line of code</p>
+</li><li>
+<p>execute short snippets of code to test an idea (just like in pry or irb)</p>
+</li></ul>
+
+<p>Note: a minor downside of the byebug gem is that it does not support
+colored syntax highlighting. However, I will apply coloring to the
+following examples so that they are easier to read.</p>
+
+<h2 id="label-Step+through+code">Step through code<span><a href="#label-Step+through+code">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Once you&#39;ve isolated a bug to a small amount of code, the best way to
+uncover the problem is to single-step through the code, checking what the
+program does along the way. This is what a <em>debugger</em> (such as
+byebug) does.</p>
+
+<p>To start, we need to modify our program slightly so that we <em>drop
+into</em> the debugger when <code>prime?</code> is called:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+  <span class="ruby-identifier">debugger</span> <span class="ruby-comment"># drops us into the debugger right after this point</span>
+
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">primes</span>
+  <span class="ruby-comment"># ... etc.</span>
+</pre>
+
+<p><strong>N.B.</strong> Don&#39;t forget to <code>require
+&#39;byebug&#39;</code> at the top of your file.</p>
+
+<p>Let&#39;s load our code into pry and call <code>primes?(2)</code> to start
+testing the <code>primes?</code> method. The <code>debugger</code> at the
+top of <code>prime?</code> will pause our code there. At this point, you
+are basically like [<a href="neo">Neo]</a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">david</span> <span class="ruby-operator">~</span><span class="ruby-regexp">/Dropbox/</span><span class="ruby-constant">TA</span> $
+<span class="ruby-identifier">pry</span>
+[<span class="ruby-value">1</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">2</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">1</span>, <span class="ruby-value">10</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span> <span class="ruby-comment"># drops us into the debugger right after this point</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>We are now inside of the byebug debugger, inside of the pry REPL. (Note
+that the byebug debugger is not built into pry. If we didn&#39;t have
+<code>require &#39;byebug&#39;</code> at the top of our file then pry would
+have raised an error when it came to line 4.) The debugger prompt looks
+like <code>(byebug)</code>. Our position is indicated by the arrow;
+we&#39;re at line 6.</p>
+
+<p>On line 6 we are calling the <code>each</code> method on the range
+<code>(1..num)</code>. <code>step</code> (or <code>s</code>) is the command
+that we use to step into a method call. There is a bug in Ruby 2.1 that
+causes us to get stuck on line 6 the first time we type <code>step</code>,
+so we&#39;ll have to <code>step</code> twice.</p>
+
+<pre class="ruby">(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">step</span>
+
+[<span class="ruby-value">1</span>, <span class="ruby-value">10</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span> <span class="ruby-comment"># drops us into the debugger right after this point</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">step</span>
+
+[<span class="ruby-value">2</span>, <span class="ruby-value">11</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span> <span class="ruby-comment"># drops us into the debugger right after this point</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+   <span class="ruby-value">11</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>You can see how the arrow has advanced. Let&#39;s see what happens at this
+if statement. Since there is no method call on line 7, we advance with
+<code>next</code> (or <code>n</code>).</p>
+
+<pre class="ruby">(<span class="ruby-identifier">byebug</span>) <span class="ruby-keyword">next</span>
+
+[<span class="ruby-value">3</span>, <span class="ruby-value">12</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span> <span class="ruby-comment"># drops us into the debugger right after this point</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+   <span class="ruby-value">11</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">12</span><span class="ruby-operator">:</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>Wait; we entered the <code>if</code>? How? Let&#39;s check the values of
+<code>num</code> and <code>idx</code>:</p>
+
+<pre class="ruby">(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">num</span>
+<span class="ruby-value">1</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">idx</span>
+<span class="ruby-value">1</span>
+</pre>
+
+<p>Hmm… We shouldn&#39;t check for divisibility by one. Upon reflection, we
+shouldn&#39;t start the index at 1 at all; we should start at 2. We can
+quit byebug by typing <code>exit</code>, then <code>y</code> to confirm.</p>
+
+<p>Let&#39;s fix our code:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+  <span class="ruby-identifier">debugger</span>
+
+  (<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Let&#39;s go back into pry and see if <code>prime?</code> works now:</p>
+
+<pre class="ruby"><span class="ruby-identifier">david</span> <span class="ruby-operator">~</span><span class="ruby-regexp">/Dropbox/</span><span class="ruby-constant">TA</span> $
+<span class="ruby-identifier">pry</span>
+[<span class="ruby-value">1</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">2</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">1</span>, <span class="ruby-value">10</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>We still have our <code>debugger</code> on line 4, and so we stop at the
+next line of code (line 6). Right now, though, we don&#39;t want to debug
+step-by-step; we just want to see the result of calling
+<code>prime?(2)</code>. We can type <code>c</code> (for
+<code>continue</code>) to tell the debugger to keep running the code.</p>
+
+<pre class="ruby"><span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">c</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+[<span class="ruby-value">3</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span>
+</pre>
+
+<p>The code never brought us back to the debugger at line 4, so the method
+finished, and spit us back out at the pry prompt. We can see that our
+method returned false, though, so we still have work to do.</p>
+
+<p>The line we really want to focus on is line 8, because that&#39;s where we
+are erroneously returning <code>false</code>. So, let&#39;s add a
+breakpoint to line 8 with the <code>break</code> command. This tells byebug
+to make sure to stop when we hit line 8. I then tell the program to run
+freely until it hits a breakpoint (<code>c</code>, or
+<code>continue</code>), and shortly thereafter we arrive at line 8.</p>
+
+<pre class="ruby">[<span class="ruby-value">3</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">1</span>, <span class="ruby-value">10</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-keyword">break</span> <span class="ruby-value">8</span>
+<span class="ruby-constant">Created</span> <span class="ruby-identifier">breakpoint</span> <span class="ruby-value">1</span> <span class="ruby-identifier">at</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">8</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">c</span>
+<span class="ruby-constant">Stopped</span> <span class="ruby-identifier">by</span> <span class="ruby-identifier">breakpoint</span> <span class="ruby-value">1</span> <span class="ruby-identifier">at</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">8</span>
+
+[<span class="ruby-value">3</span>, <span class="ruby-value">12</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+   <span class="ruby-value">11</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">12</span><span class="ruby-operator">:</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>Now we can have a look at the relevant variables.</p>
+
+<pre class="ruby">(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">num</span>
+<span class="ruby-value">2</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">idx</span>
+<span class="ruby-value">2</span>
+</pre>
+
+<p>Groan. We are testing whether <code>num</code> is divisible by itself.
+That&#39;s because <code>(2..num)</code> includes num; we wanted
+<code>(2...num)</code>. Fix and then reload:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">2</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">1</span>, <span class="ruby-value">10</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+    <span class="ruby-value">4</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">6</span><span class="ruby-operator">:</span>   (<span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">c</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-value">2</span>
+[<span class="ruby-value">3</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span>
+</pre>
+
+<p>Weird, but better; at least this isn&#39;t false. But because we don&#39;t
+return <code>true</code> at the end of <code>prime?</code>, the last
+returned value is used. Note that <code>Enumerable#each</code> returns
+<code>self</code>; in this case the range itself. Let&#39;s finish fixing
+this method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+  (<span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Does it really work? We ought to check with a few values other than 2:</p>
+
+<pre class="ruby">[<span class="ruby-value">5</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">6</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">7</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">3</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">8</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">10</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+[<span class="ruby-value">9</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-value">17</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+</pre>
+
+<p>All looks good. Notice how we can quickly check a number of values in the
+REPL.</p>
+
+<h2 id="label-Reading+stack+traces">Reading stack traces<span><a href="#label-Reading+stack+traces">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Now that <code>prime?</code> appears to be working, it&#39;s time to test
+<code>primes</code>. I&#39;ve put a call to <code>debugger</code> at the
+start of <code>primes</code>. Again, let&#39;s use pry:</p>
+
+<pre class="ruby">[<span class="ruby-value">10</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">11</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">primes</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">11</span>, <span class="ruby-value">20</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+   <span class="ruby-value">11</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">12</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">13</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">primes</span>(<span class="ruby-identifier">num_primes</span>)
+   <span class="ruby-value">14</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+   <span class="ruby-value">15</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-value">16</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">ps</span> = []
+   <span class="ruby-value">17</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+   <span class="ruby-value">18</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">while</span> <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num_primes</span>
+   <span class="ruby-value">19</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">primes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+   <span class="ruby-value">20</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">c</span>
+<span class="ruby-constant">ArgumentError</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wrong</span> <span class="ruby-identifier">number</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">arguments</span> (<span class="ruby-value">0</span> <span class="ruby-keyword">for</span> <span class="ruby-value">1</span>)
+<span class="ruby-identifier">from</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">13</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">&#39;primes&#39;</span>
+</pre>
+
+<p>The method failed. When an exception is thrown and no code catches and
+handles the exception, then the program stops (crashes) and the exception
+and line where it occurred are printed.</p>
+
+<p>The line <code>ArgumentError: wrong number of arguments (0 for 1)</code>
+states the exception type (<code>ArgumentError</code>) and the message.
+This message says that we&#39;re passing the wrong number of arguments to a
+method: zero arguments instead of one argument.</p>
+
+<p>Where did this happen in the code? The subsequent line tells us: <code>from
+primes.rb:13:in &#39;primes&#39;</code>. If we want more detail about just
+how we came to this line of code, we can type <code>wtf</code> to look at
+the <em>stack trace</em>. (You can also add question marks and exclamation
+points to get longer stack traces, like <code>wtf?</code>,
+<code>wtf?!!</code>, etc.)</p>
+
+<pre class="ruby">[<span class="ruby-value">9</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wtf</span>
+<span class="ruby-constant">Exception</span><span class="ruby-operator">:</span> <span class="ruby-constant">ArgumentError</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wrong</span> <span class="ruby-identifier">number</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">arguments</span> (<span class="ruby-value">0</span> <span class="ruby-keyword">for</span> <span class="ruby-value">1</span>)
+<span class="ruby-operator">-</span><span class="ruby-operator">-</span>
+<span class="ruby-value">0</span><span class="ruby-operator">:</span> <span class="ruby-regexp">/home/</span><span class="ruby-identifier">david</span><span class="ruby-operator">/</span><span class="ruby-constant">Dropbox</span><span class="ruby-operator">/</span><span class="ruby-identifier">app</span><span class="ruby-operator">-</span><span class="ruby-identifier">academy</span><span class="ruby-operator">-</span><span class="ruby-constant">TA</span><span class="ruby-operator">/</span><span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">13</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">&#39;primes&#39;</span>
+<span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-regexp">/home/</span><span class="ruby-identifier">david</span><span class="ruby-operator">/</span><span class="ruby-constant">Dropbox</span><span class="ruby-operator">/</span><span class="ruby-identifier">app</span><span class="ruby-operator">-</span><span class="ruby-identifier">academy</span><span class="ruby-operator">-</span><span class="ruby-constant">TA</span><span class="ruby-operator">/</span><span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">19</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">&#39;primes&#39;</span>
+<span class="ruby-value">2</span><span class="ruby-operator">:</span> (<span class="ruby-identifier">pry</span>)<span class="ruby-operator">:</span><span class="ruby-value">21</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">&#39;__pry__&#39;</span>
+<span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-regexp">/home/</span><span class="ruby-identifier">david</span><span class="ruby-operator">/</span>.<span class="ruby-identifier">rbenv</span><span class="ruby-operator">/</span><span class="ruby-identifier">versions</span><span class="ruby-operator">/</span><span class="ruby-value">2.1</span><span class="ruby-value">.2</span><span class="ruby-operator">/</span><span class="ruby-identifier">lib</span><span class="ruby-operator">/</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">/</span><span class="ruby-identifier">gems</span><span class="ruby-operator">/</span><span class="ruby-value">2.1</span><span class="ruby-value">.0</span><span class="ruby-operator">/</span><span class="ruby-identifier">gems</span><span class="ruby-operator">/</span><span class="ruby-identifier">pry</span><span class="ruby-operator">-</span><span class="ruby-value">0.10</span><span class="ruby-value">.1</span><span class="ruby-operator">/</span><span class="ruby-identifier">lib</span><span class="ruby-operator">/</span><span class="ruby-identifier">pry</span><span class="ruby-operator">/</span><span class="ruby-identifier">pry_instance</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">355</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">&#39;eval&#39;</span>
+<span class="ruby-value">4</span><span class="ruby-operator">:</span> <span class="ruby-regexp">/home/</span><span class="ruby-identifier">david</span><span class="ruby-operator">/</span>.<span class="ruby-identifier">rbenv</span><span class="ruby-operator">/</span><span class="ruby-identifier">versions</span><span class="ruby-operator">/</span><span class="ruby-value">2.1</span><span class="ruby-value">.2</span><span class="ruby-operator">/</span><span class="ruby-identifier">lib</span><span class="ruby-operator">/</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">/</span><span class="ruby-identifier">gems</span><span class="ruby-operator">/</span><span class="ruby-value">2.1</span><span class="ruby-value">.0</span><span class="ruby-operator">/</span><span class="ruby-identifier">gems</span><span class="ruby-operator">/</span><span class="ruby-identifier">pry</span><span class="ruby-operator">-</span><span class="ruby-value">0.10</span><span class="ruby-value">.1</span><span class="ruby-operator">/</span><span class="ruby-identifier">lib</span><span class="ruby-operator">/</span><span class="ruby-identifier">pry</span><span class="ruby-operator">/</span><span class="ruby-identifier">pry_instance</span>.<span class="ruby-identifier">rb</span>:<span class="ruby-value">355</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">&#39;evaluate_ruby&#39;</span>
+[<span class="ruby-value">10</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span>
+</pre>
+
+<p>The top line of the stack trace tells us what method (<code>primes</code>)
+and line of code (13) were executing when the error occurred. The next line
+tells us what called <code>primes</code>; it looks like <code>primes</code>
+calls itself, on line 19. The next line starts with &#39;(pry)&#39;; this
+is pry executing the code we gave it.</p>
+
+<p>It&#39;s certainly odd that primes is calling itself. Let&#39;s check this
+out:</p>
+
+<pre class="ruby">[<span class="ruby-value">12</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">primes</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">11</span>, <span class="ruby-value">20</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+   <span class="ruby-value">11</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">12</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">13</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">primes</span>(<span class="ruby-identifier">num_primes</span>)
+   <span class="ruby-value">14</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+   <span class="ruby-value">15</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-value">16</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">ps</span> = []
+   <span class="ruby-value">17</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+   <span class="ruby-value">18</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">while</span> <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num_primes</span>
+   <span class="ruby-value">19</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">primes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+   <span class="ruby-value">20</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>Ah. Line 19 says that if <code>prime?(num)</code>, then <code>primes
+&lt;&lt; num</code>. This tries to call <code>primes</code> again, but what
+we really wanted was to push <code>num</code> into our list, named
+<code>ps</code>. This is confusing because it&#39;s not super clear that
+<code>primes</code> is calling a method (equivalent to
+<code>self.primes</code>).</p>
+
+<p>Fix this and restart <code>pry</code>.</p>
+
+<pre class="ruby">[<span class="ruby-value">13</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">load</span> <span class="ruby-string">&#39;primes.rb&#39;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">14</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">primes</span>(<span class="ruby-value">2</span>)
+
+[<span class="ruby-value">11</span>, <span class="ruby-value">20</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+   <span class="ruby-value">11</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">12</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">13</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">primes</span>(<span class="ruby-identifier">num_primes</span>)
+   <span class="ruby-value">14</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+   <span class="ruby-value">15</span><span class="ruby-operator">:</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-value">16</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">ps</span> = []
+   <span class="ruby-value">17</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+   <span class="ruby-value">18</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">while</span> <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num_primes</span>
+   <span class="ruby-value">19</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+   <span class="ruby-value">20</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">c</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>
+</pre>
+
+<p>Oops. A few more simple bugs. You catch them.</p>
+
+<h2 id="label-Step+vs+Next">Step vs Next<span><a href="#label-Step+vs+Next">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Here, using <code>n</code>, I have line by-line advanced through
+<code>primes</code>:</p>
+
+<pre class="ruby">[<span class="ruby-value">14</span>, <span class="ruby-value">23</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+   <span class="ruby-value">14</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+   <span class="ruby-value">15</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">16</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">ps</span> = []
+   <span class="ruby-value">17</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+   <span class="ruby-value">18</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">while</span> <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num_primes</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-value">19</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+   <span class="ruby-value">20</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+   <span class="ruby-value">21</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">22</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">23</span><span class="ruby-operator">:</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">__FILE__</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">$PROGRAM_NAME</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>I could type <code>n</code> to execute this line and advance (back to line
+19, actually). But what if I wanted to “step into” the call to
+<code>prime?</code>? To do this, I use <code>s</code> or <code>step</code>:</p>
+
+<pre class="ruby">(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">step</span>
+
+[<span class="ruby-value">1</span>, <span class="ruby-value">10</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug&#39;</span>
+    <span class="ruby-value">2</span><span class="ruby-operator">:</span>
+    <span class="ruby-value">3</span><span class="ruby-operator">:</span> <span class="ruby-keyword">def</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+=<span class="ruby-operator">&gt;</span>  <span class="ruby-value">4</span><span class="ruby-operator">:</span>   (<span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-identifier">num</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+    <span class="ruby-value">5</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-value">6</span><span class="ruby-operator">:</span>       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-value">7</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">end</span>
+    <span class="ruby-value">8</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+    <span class="ruby-value">9</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">10</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">true</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<p>This is handy when you want to go down into methods. If I&#39;m no longer
+interested in stepping through all of <code>prime?</code>, I can finish it
+and move up a level by using <code>finish</code>:</p>
+
+<pre class="ruby">(<span class="ruby-identifier">byebug</span>) <span class="ruby-identifier">finish</span>
+
+[<span class="ruby-value">14</span>, <span class="ruby-value">23</span>] <span class="ruby-keyword">in</span> <span class="ruby-identifier">primes</span>.<span class="ruby-identifier">rb</span>
+   <span class="ruby-value">14</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">debugger</span>
+   <span class="ruby-value">15</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">16</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">ps</span> = []
+   <span class="ruby-value">17</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">num</span> = <span class="ruby-value">1</span>
+   <span class="ruby-value">18</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">while</span> <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num_primes</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-value">19</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prime?</span>(<span class="ruby-identifier">num</span>)
+   <span class="ruby-value">20</span><span class="ruby-operator">:</span>   <span class="ruby-keyword">end</span>
+   <span class="ruby-value">21</span><span class="ruby-operator">:</span> <span class="ruby-keyword">end</span>
+   <span class="ruby-value">22</span><span class="ruby-operator">:</span>
+   <span class="ruby-value">23</span><span class="ruby-operator">:</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">__FILE__</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">$PROGRAM_NAME</span>
+(<span class="ruby-identifier">byebug</span>)
+</pre>
+
+<h2 id="label-Debugging+and+Testing">Debugging and Testing<span><a href="#label-Debugging+and+Testing">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We&#39;ve gone to a lot of work testing that these methods work as they
+should. It would be good if we could record these tests so that they can be
+run in the future, to make sure new bugs do not sneak in as we continue to
+develop the software. We&#39;ll talk later about RSpec, a way to write
+tests that can be automatically run by a system called Guard.</p>
+
+<p>When a bug is discovered, good practice is to write a new test that
+verifies we don&#39;t make that mistake again.</p>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="http://www.pryrepl.org">Pry</a> [neo]: <img
+src="http://img1.wikia.nocookie.net/__cb20131002032735/matrix/images/b/b5/Matrix-neo-stops-bullets-wallpaper.jpg"
+/></p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

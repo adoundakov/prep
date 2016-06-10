@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>naming - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Choosing+good+names">Choosing good names</a>
+    <li><a href="#label-General+naming+guidelines">General naming guidelines</a>
+    <li><a href="#label-Array+variable+names">Array variable names</a>
+    <li><a href="#label-Naming+methods">Naming methods</a>
+    <li><a href="#label-Ruby-specific+naming+guidelines-3A">Ruby-specific naming guidelines:</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d5/readings/naming.md">
+
+<h1 id="label-Choosing+good+names">Choosing good names<span><a href="#label-Choosing+good+names">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><strong>In a nutshell: use descriptive, consistent naming.</strong></p>
+
+<p>The better your naming, the easier it will be to refactor, extend and
+maintain your code. Naming may seem more a matter of style than anything,
+but it is in fact a significant determinant of code quality. Good naming is
+often a reflection of good design.</p>
+
+<p>Poor naming also stands out and looks unprofessional. It pays to take a
+moment and think of a good name when you introduce a new variable.</p>
+
+<h2 id="label-General+naming+guidelines">General naming guidelines<span><a href="#label-General+naming+guidelines">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><strong>Use meaningful identifiers.</strong> <code>start_date</code> is
+100x better than <code>sd</code>. Be as descriptive as you can:
+<code>flight_number</code> is better than <code>flight</code>. Short names
+can often be ambiguous and uncommunicative.</p>
+
+<p>Until told otherwise, consider one letter variable names banned :-)</p>
+
+<p><strong>Make names as long as necessary, but as short as possible.</strong>
+It&#39;s hard to give hard numbers; names &gt;20 characters are long, but
+15-20 is totally fine.</p>
+
+<p><strong>Avoid meaningless, vague, or wishy-washy names.</strong> Some names
+have broad meanings, and don&#39;t provide much information. Names such as
+<code>arr</code>, <code>data</code>, <code>input</code> or
+<code>output</code> don&#39;t give much substantive information. If you
+find yourself forced to use a vague name because you can&#39;t think of one
+that encapsulates everything involved, maybe the design is unclear and not
+logically coherent.</p>
+
+<h3 id="label-Array+variable+names"><a href="../../Array.html">Array</a> variable names<span><a href="#label-Array+variable+names">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The only time you may use a one letter variable name is as an index into an
+array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">numbers</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">number</span> = <span class="ruby-identifier">numbers</span>[<span class="ruby-identifier">i</span>]
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>See how the index is <code>i</code>, but the value is <code>number</code>?
+Don&#39;t store the index itself in <code>number</code>; the index is a
+position in the array, not an element of the array.</p>
+
+<p>Of course, you should be using <code>each</code> in this example anyway:</p>
+
+<pre class="ruby"><span class="ruby-identifier">numbers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">number</span><span class="ruby-operator">|</span>
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Naming+methods">Naming methods<span><a href="#label-Naming+methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Steve McConnell&#39;s <a
+href="http://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670/">Code
+Complete</a> gives a few good guidelines that should help with method
+naming:</p>
+
+<p><strong>Describe everything a method does.</strong> And I mean everything.
+If your method name becomes too long, your method does too much.</p>
+
+<p><strong>For methods that have no side-effects and just return a value, try
+using a description of the return value.</strong> For example, method names
+such as <code>cosine</code> and <code>square_root</code> are good names
+that explain exactly what the method returns. Names like
+<code>calculate_cosine</code> and <code>get_square_root</code> are overly
+verbose.</p>
+
+<p><strong>For methods that do have side-effects, try using a verb followed by
+a noun.</strong> Describe what the method is doing, and to/with what. For
+example, <code>print_document</code> or <code>deposit_funds</code>.</p>
+
+<p><strong>Establish conventions for common operations</strong> If there is a
+prevailing convention for a common operation, defer to it. If not, enforce
+consistency in your own code base. For example, don&#39;t have different
+ways of getting an object&#39;s id: <code>supervisor.id</code> and
+<code>employee.get_id</code>. (You shouldn&#39;t use <code>get_id</code>
+anyway, per the guideline for side-effect free methods).</p>
+
+<h2 id="label-Ruby-specific+naming+guidelines-3A">Ruby-specific naming guidelines:<span><a href="#label-Ruby-specific+naming+guidelines-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Use <code>snake_case</code> (not <code>CamelCase</code>) when naming
+methods,  variables, and files.</p>
+</li><li>
+<p>Use <code>CamelCase</code> for classes and modules.</p>
+</li><li>
+<p>Use <code>SCREAMING_SNAKE_CASE</code> for other constants.</p>
+</li><li>
+<p>Methods that return a boolean value (i.e. <code>true</code> or
+<code>false</code>) should  end with a question mark (e.g.,
+<code>Array#empty?</code>).</p>
+</li><li>
+<p>Methods that are potentially &#39;dangerous&#39; (e.g., because they modify
+the calling object or arguments) should end with an exclamation mark 
+(e.g., <code>Array#map!</code> changes the original array).</p>
+</li></ul>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a href="https://github.com/bbatsov/ruby-style-guide#naming">Ruby Style
+Guide: Naming</a></p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

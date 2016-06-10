@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class-ii - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Objects+and+Classes">Objects and Classes</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-Packaging+data+in+Hashes">Packaging data in Hashes</a>
+    <li><a href="#label-Use+classes+to+add+methods">Use classes to add methods</a>
+    <li><a href="#label-Our+first+class">Our first class</a>
+    <li><a href="#label-Class+vs+Instance">Class vs Instance</a>
+    <li><a href="#label-initialize+and+new"><code>initialize</code> and <code>new</code></a>
+    <li><a href="#label-initialize+-21-3D+run"><code>initialize</code> != <code>run</code></a>
+    <li><a href="#label-Instance+Methods">Instance Methods</a>
+    <li><a href="#label-Instance+variables">Instance variables</a>
+    <li><a href="#label-Class+and+Instance+methods">Class and Instance methods</a>
+    <li><a href="#label-self">self</a>
+    <li><a href="#label-Defining+class+methods">Defining class methods</a>
+    <li><a href="#label-Calling+class+methods+from+class+methods">Calling class methods from class methods</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d4/readings/class-ii.md">
+
+<h1 id="label-Objects+and+Classes">Objects and Classes<span><a href="#label-Objects+and+Classes">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Know when to stop using a <code>Hash</code> and when to switch to a class.</p>
+</li><li>
+<p>Hint: it&#39;s when you want methods.</p>
+</li><li>
+<p>Know the difference between a class and an instance.</p>
+</li><li>
+<p>Know how to use <code>::new</code> to create new instances.</p>
+</li><li>
+<p>Know when the <code>initialize</code> method is called.</p>
+</li><li>
+<p>Know that the instance should be fully setup by the end of
+<code>initialize</code>.</p>
+</li><li>
+<p>Know how we store data in an object.</p>
+</li><li>
+<p>Know when we can/can&#39;t access instance variables directly.</p>
+</li><li>
+<p>Know how to automatically create getters/setters.</p>
+</li></ul>
+
+<h2 id="label-Packaging+data+in+Hashes">Packaging data in Hashes<span><a href="#label-Packaging+data+in+Hashes">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It&#39;s common to have sets of related data. For instance, a cat has a
+name, age, and home city. We could store these three values in three
+different variables:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cat_name</span> = <span class="ruby-string">&quot;Breakfast&quot;</span>
+<span class="ruby-identifier">cat_age</span> = <span class="ruby-value">8</span>
+<span class="ruby-identifier">cat_home_city</span> = <span class="ruby-string">&quot;San Francisco&quot;</span>
+</pre>
+
+<p>What if we want to work with two cats? Clearly it would get messy to have
+six variables: <code>cat1_name</code>, <code>cat2_name</code>,
+<code>cat1_age</code>, …</p>
+
+<p>One solution is to use aligned arrays:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cat_names</span> = [<span class="ruby-string">&quot;Breakfast&quot;</span>, <span class="ruby-string">&quot;Earl&quot;</span>]
+<span class="ruby-identifier">cat_ages</span> = [<span class="ruby-value">8</span>, <span class="ruby-value">2</span>]
+<span class="ruby-identifier">cat_home_cities</span> = [<span class="ruby-string">&quot;San Francisco&quot;</span>, <span class="ruby-string">&quot;San Francisco&quot;</span>]
+</pre>
+
+<p>Here all the values at position 0 correspond to one cat, all the values at
+position 1 correspond to the second cat.</p>
+
+<p>This is a tedious and unpleasant solution; we have to be careful that we
+don&#39;t mix up the different positions in the array. And what if we want
+to pass just one cat to a method? We have to pull all the data for one cat
+out of the three arrays, then pass it to the method in three variables.</p>
+
+<p><em>Avoid aligned arrays</em>; you will rarely want to do this. Instead,
+collect data in hashes:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cat</span> = {
+  <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Breakfast&quot;</span>,
+  <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>,
+  <span class="ruby-identifier">home_city</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;San Francisco&quot;</span>
+}
+</pre>
+
+<p>All the related values for a single cat are stored in one object, which is
+itself saved to a single variable. One hash represents one cat. You can
+easily pass around the hashes.</p>
+
+<p>When you have multiple objects – say multiple cats – store them in an
+array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cats</span> = [{
+  <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Breakfast&quot;</span>,
+  <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>,
+  <span class="ruby-identifier">home_city</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;San Francisco&quot;</span>
+}, {
+  <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Earl&quot;</span>,
+  <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,
+  <span class="ruby-identifier">home_city</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;San Francisco&quot;</span>
+}]
+</pre>
+
+<p>Now each object in the array is a hash representing a cat.</p>
+
+<p>Protip: don&#39;t proliferate variables. Having more variables means more
+things to keep track of and in sync: more possibility for errors. Example:
+in the aligned array example, we had three arrays stored in three
+variables. To delete a cat we need to remember to delete the field from
+each array. And if we forget to do so, the arrays will become misaligned.</p>
+
+<p>With the one array, we just delete the one hash from the array.</p>
+
+<p><em>Use a hash to collect variables that go together.</em></p>
+
+<h2 id="label-Use+classes+to+add+methods">Use classes to add methods<span><a href="#label-Use+classes+to+add+methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>As we&#39;ve seen, we can use a <a href="../../Hash.html">Hash</a> to
+represent data. To actually do things with that data, we need a method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">age_one_year</span>(<span class="ruby-identifier">cat</span>)
+  <span class="ruby-identifier">cat</span>[:<span class="ruby-identifier">age</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This will work, at least until we have two things that can age:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">age_one_year</span>(<span class="ruby-identifier">house</span>)
+  <span class="ruby-identifier">house</span>[:<span class="ruby-identifier">age</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">house</span>[:<span class="ruby-identifier">value</span>] = <span class="ruby-value">1.07</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">house</span>[:<span class="ruby-identifier">value</span>] <span class="ruby-comment"># house appreciates in value</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Uh-oh, two different types of things can <code>age_one_year</code>; we want
+two different methods, but they&#39;d have the same name. We could solve
+this by creating two different methods:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">age_cat_one_year</span>(<span class="ruby-identifier">cat</span>)
+  <span class="ruby-comment">#...</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">age_house_one_year</span>(<span class="ruby-identifier">house</span>)
+  <span class="ruby-comment">#...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Ugh; too verbose. Instead, we can define a <em>class</em>, which is a way
+to represent both data, and methods to modify that data. In technical
+jargon, we would say that classes combine <em>state</em> (data, fields) and
+<em>behavior</em> (methods).</p>
+
+<h2 id="label-Our+first+class">Our first class<span><a href="#label-Our+first+class">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Class+vs+Instance">Class vs Instance<span><a href="#label-Class+vs+Instance">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Let&#39;s define a class to represent our cat. Ruby predefines many
+built-in classes (<code>String</code>, <code>Array</code>,
+<code>Hash</code>); by defining a class ourselves, we add a new object type
+which will represent a cat. <em>Instances</em> (an occurrence of an object)
+of this <code>Cat</code> class represent individual cats. Two
+<code>Cat</code> instances will share the same set of attributes (state)
+and methods; they may contain different attribute values, however.</p>
+
+<pre class="ruby"><span class="ruby-comment"># Cat is our class; the type of thing we are creating</span>
+<span class="ruby-comment"># cat1 holds an instance of Cat representing a cat named Breakfast</span>
+<span class="ruby-identifier">cat1</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Breakfast&quot;</span>, <span class="ruby-value">8</span>, <span class="ruby-string">&quot;San Francisco&quot;</span>)
+<span class="ruby-comment"># cat2 holds another instance of Cat representing a cat named Earl</span>
+<span class="ruby-identifier">cat2</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Earl&quot;</span>, <span class="ruby-value">2</span>, <span class="ruby-string">&quot;San Francisco&quot;</span>)
+</pre>
+
+<h3 id="label-initialize+and+new"><code>initialize</code> and <code>new</code><span><a href="#label-initialize+and+new">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Here&#39;s the start of our <code>Cat</code> class:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span>, <span class="ruby-identifier">location</span>)
+    <span class="ruby-comment"># save variables...</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># more methods here...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>To begin defining the class <code>Cat</code>, we start with the keyword
+class and then the class name. Note that class names are always capitalized
+and CamelCase.</p>
+
+<p>Between the class name and the <code>end</code>, all methods defined in
+this block of code will be <code>Cat</code> methods.</p>
+
+<p>The <code>initialize</code> method is special. It is called when an object
+is first created. To create a <code>Cat</code> object, we write:</p>
+
+<pre class="ruby"><span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Breakfast&quot;</span>, <span class="ruby-value">8</span>, <span class="ruby-string">&quot;San Francisco&quot;</span>)
+</pre>
+
+<p>Every class has a <code>new</code> <em>class method</em> (a method called
+on a class, instead of an object); the <code>new</code> method creates a
+new object and then calls the <code>initialize</code> method, passing the
+arguments given to <code>new</code> on to <code>initialize</code>.</p>
+
+<p>The <code>initialize</code> method is responsible for setting up the
+object. For <code>Cat</code>, we store the vital cat data. The
+<code>initialize</code> method should take enough arguments so that it can
+fully set up the initial state of the <code>Cat</code> so that the
+<code>Cat</code> object we get back is fully functional and ready-to-go.
+Don&#39;t write code like this:</p>
+
+<pre class="ruby"><span class="ruby-comment"># ugly; too many lines; have to write 3 lines every time we want</span>
+<span class="ruby-comment"># to create a new cat; what if I forget some fields?</span>
+<span class="ruby-identifier">cat1</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">cat1</span>.<span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;Breakfast&quot;</span>
+<span class="ruby-identifier">cat1</span>.<span class="ruby-identifier">age</span> = <span class="ruby-value">8</span>
+<span class="ruby-identifier">cat1</span>.<span class="ruby-identifier">home_city</span> = <span class="ruby-string">&quot;San Francisco&quot;</span>
+</pre>
+
+<p>In short, after you call <code>Cat.new</code>, your <code>Cat</code> should
+be fully set up and ready to go.</p>
+
+<h3 id="label-initialize+-21-3D+run"><code>initialize</code> != <code>run</code><span><a href="#label-initialize+-21-3D+run">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Your <code>initialize</code> method should not do too much; it should
+merely set up the object so that it is ready to be used.</p>
+
+<p>In particular, students sometimes have their <code>initialize</code> method
+run an interactive program. For example, their <code>Game#initialize</code>
+method may not only initialize the game state, it may also start actually
+playing the game.</p>
+
+<p>That is too much to do inside the <code>initialize</code> method, and sort
+of abuses it. You may want to be able to create your <code>Game</code>
+object and test its initial configuration without running it yet. Instead,
+put logic like this in a method called <code>run</code> (or something
+similar).</p>
+
+<h3 id="label-Instance+Methods">Instance Methods<span><a href="#label-Instance+Methods">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Instance methods define what an instance of the class can do. We can call
+an instance method on any instance of the class:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-comment"># ...</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">speak</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Meow!&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">cat1</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Breakfast&quot;</span>, <span class="ruby-value">8</span>, <span class="ruby-string">&quot;San Francisco&quot;</span>)
+<span class="ruby-identifier">cat2</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Earl&quot;</span>, <span class="ruby-value">2</span>, <span class="ruby-string">&quot;San Francisco&quot;</span>)
+<span class="ruby-identifier">cat1</span>.<span class="ruby-identifier">speak</span> <span class="ruby-comment"># Breakfast speaks</span>
+<span class="ruby-identifier">cat2</span>.<span class="ruby-identifier">speak</span> <span class="ruby-comment"># Earl speaks</span>
+</pre>
+
+<p>Notice that to call a method, we first give the instance, then a
+&#39;.&#39;, then the name of the method.</p>
+
+<p>An instance method can interact with the instance&#39;s state, which means
+that calling the same method on different instances can end up doing
+different things. To see how this works, we&#39;re going to need to learn
+about storing object state in instance variables first.</p>
+
+<h3 id="label-Instance+variables">Instance variables<span><a href="#label-Instance+variables">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="../../Object.html">Object</a> state is stored in <em>instance
+variables</em>. Instance variable names are prefixed with an at-symbol
+(<code>@</code>). Each object instance has its own separate copies of the
+instance variables. The variables are stored for the life of the object.
+Just like we store information in a <a href="../../Hash.html">Hash</a>
+under a key, we can set and look up data with an instance variable name.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span>, <span class="ruby-identifier">location</span>)
+    <span class="ruby-comment"># save the passed in values to instance variables so that we</span>
+    <span class="ruby-comment"># can use them later.</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@age</span> = <span class="ruby-identifier">age</span>
+    <span class="ruby-ivar">@location</span> = <span class="ruby-identifier">location</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Instance variables are only directly accessible from inside the object.
+This protects them from being exposed to the outside world. If we do want
+to share them with other objects, we need to define <em>setter</em> and
+<em>getter</em> methods:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-comment"># ...</span>
+
+  <span class="ruby-comment"># a *getter* method that pulls out the cat&#39;s name stored in the</span>
+  <span class="ruby-comment"># @name instance variable. `name` is the method; `@name` is the</span>
+  <span class="ruby-comment"># instance variable</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@name</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># a *setter* method; method names that end with an &#39;=&#39; can be</span>
+  <span class="ruby-comment"># used like this: `cat.name = &quot;Fluffy II&quot;`</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">name=</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>These simple methods manipulate the instance variables. Note the difference
+between <code>@name</code> and <code>name</code>: the first directly
+accesses the instance variable, while the second calls a method that will
+then access that variable for us. Different ways to accomplish the same
+thing; but only the <code>name</code> method can be used outside the class.</p>
+
+<p>Because setter and getter methods are so common and tedious, Ruby gives us
+an easy way to define these:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-comment"># attr_accessor is a class method that adds getters and setters</span>
+  <span class="ruby-comment"># for the age and location variables. See more here:</span>
+  <span class="ruby-comment">#    http://stackoverflow.com/questions/5046831/why-use-rubys-attr-accessor-attr-reader-and-attr-writer</span>
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">age</span>, :<span class="ruby-identifier">location</span>
+
+  <span class="ruby-comment"># attr_reader adds just a getter; looks like a cat shouldn&#39;t be</span>
+  <span class="ruby-comment"># renamed</span>
+  <span class="ruby-identifier">attr_reader</span> :<span class="ruby-identifier">name</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span>, <span class="ruby-identifier">location</span>)
+    <span class="ruby-comment"># ...</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Beware a common mistake:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">age</span>, :<span class="ruby-identifier">location</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">age_on_year</span>
+    <span class="ruby-comment"># works</span>
+    <span class="ruby-ivar">@age</span> = <span class="ruby-identifier">age</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-comment"># won&#39;t change age</span>
+    <span class="ruby-identifier">age</span> = <span class="ruby-identifier">age</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-comment"># works again</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span> = <span class="ruby-identifier">age</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Each example first calls the <code>age</code> getter method and adds one.
+The first then sets the instance variable <code>@age</code> to this new
+value. The third calls the <code>age=</code> setter method, passing it the
+new age; the method then sets the instance variable for us.</p>
+
+<p>The second doesn&#39;t work. It creates a new <em>local</em> variable named
+<code>age</code>, and assigns it the new value. It doesn&#39;t modify the
+instance variable at all.</p>
+
+<p>In the second example, Ruby assumes that you want to create a variable
+named <code>age</code> when you use <code>=</code>; that is its default
+assumption. Only if you say <code>self.age</code> does it realize that you
+really want to call a method. So beware of this common mistake.</p>
+
+<h2 id="label-Class+and+Instance+methods">Class and Instance methods<span><a href="#label-Class+and+Instance+methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We&#39;ve mostly talked about instance methods; instance methods are
+defined at the class level, but they are called on an instance of a class.
+Depending on the instance&#39;s state (its instance variables), the same
+instance method may do different things when called on different instances.</p>
+
+<p>Class methods are not called on instances of the class; they are called on
+the class itself. The most prominent example we have seen is the
+<code>new</code> method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cat</span> = <span class="ruby-constant">Cat</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment"># call Cat&#39;s class method `new`</span>
+<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">speak</span> <span class="ruby-comment"># call Cat&#39;s instance method `speak` on cat</span>
+</pre>
+
+<p>Since class methods are not called on an object, they are not specific to
+any one object. For that reason, they cannot access instance variables;
+there is no object to get the instance variables from.</p>
+
+<p>A common use of class methods is to create new objects (this is what
+<code>new</code> does); methods that create new objects are called
+<strong>factory methods</strong>. Here&#39;s an example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Asteroid</span>
+  <span class="ruby-comment"># initialize a new asteroid</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">x_coord</span>, <span class="ruby-identifier">y_coord</span>, <span class="ruby-identifier">velocity</span>)
+    <span class="ruby-comment"># ...</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># helper class method; doesn&#39;t need to be called on an Asteroid</span>
+  <span class="ruby-comment"># object</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_velocity</span>(<span class="ruby-identifier">max_speed</span>)
+    <span class="ruby-identifier">speed</span> = <span class="ruby-identifier">max_speed</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">rand</span>
+    <span class="ruby-identifier">x_dir</span>, <span class="ruby-identifier">y_dir</span> = <span class="ruby-identifier">rand</span> <span class="ruby-operator">*</span> [<span class="ruby-value">1</span>, <span class="ruby-value">-1</span>].<span class="ruby-identifier">sample</span>, <span class="ruby-identifier">rand</span> <span class="ruby-operator">*</span> [<span class="ruby-value">1</span>, <span class="ruby-value">-1</span>].<span class="ruby-identifier">sample</span>
+
+    [<span class="ruby-identifier">x_dir</span> <span class="ruby-operator">*</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-identifier">speed</span>), <span class="ruby-identifier">y_dir</span> <span class="ruby-operator">*</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-identifier">speed</span>)]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># factory method</span>
+  <span class="ruby-comment"># create and return an asteroid with random location and direction</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_asteroid</span>(<span class="ruby-identifier">max_x</span>, <span class="ruby-identifier">max_y</span>, <span class="ruby-identifier">max_speed</span>)
+    <span class="ruby-comment"># using unnecessary `return` for emphasis</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">Asteroid</span>.<span class="ruby-identifier">new</span>(
+      <span class="ruby-identifier">max_x</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">rand</span>,
+      <span class="ruby-identifier">max_y</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">rand</span>,
+      <span class="ruby-identifier">random_velocity</span>(<span class="ruby-identifier">max_speed</span>) <span class="ruby-comment"># implicit `self` refers to the Asteroid class here</span>
+    )
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">crash_into_planet</span>(<span class="ruby-identifier">planet</span>)
+    <span class="ruby-comment"># should have hired Bruce Willis</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In this example, <code>Asteroid::random_asteroid</code> is an example of a
+factory method. It is a class method that creates an <code>Asteroid</code>.
+Note that it is not called on an existing <code>Asteroid</code> instance.
+That makes sense since its purpose is to <em>construct</em> a new
+<code>Asteroid</code>; it is not an <em>action</em> of an asteroid (like
+crashing into a planet is an action of an asteroid).</p>
+
+<p>The <code>Asteroid::random_velocity</code> method is not a factory method
+(at least not an <code>Asteroid</code> factory), but it is a class method.</p>
+
+<p>When we want to be clear whether a method <code>crash_into_planet</code> or
+<code>random_asteroid</code> is an instance or class method of
+<code>Asteroid</code>, we write <code>Asteroid#crash_into_planet</code> and
+<code>Asteroid::random_asteroid</code> respectively.</p>
+
+<h2 id="label-self">self<span><a href="#label-self">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Methods may call other methods:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Cat</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">meow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Meow&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">hiss</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hiss&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">throw_fit</span>
+    <span class="ruby-comment"># meow and hiss a lot</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">meow</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hiss</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">meow</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Notice that <code>throw_fit</code> calls <code>self.meow</code> and
+<code>self.hiss</code>. Here, <code>self</code> is a special variable that
+refers to the object the method is called on. Using the special variable
+<code>self</code>, we can call methods with the usual dot notation.</p>
+
+<p>Ruby lets the user drop (or <em>elide</em>) the <code>self.</code> part
+when calling a method. By default, the method will be called on
+<code>self</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">throw_fit</span>
+  <span class="ruby-comment"># meow and hiss a lot</span>
+  <span class="ruby-identifier">meow</span>
+  <span class="ruby-identifier">hiss</span>
+  <span class="ruby-identifier">meow</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This is the preferred way to do things in Ruby. It can be confusing because
+it is not always clear that we want to call a method (instead of using a
+variable), but the advantage is concision.</p>
+
+<p>Recall that when using a setter method, the <code>self.</code> is not
+optional; Ruby will not understand you want to call a method instead of
+define a new local variable.</p>
+
+<h2 id="label-Defining+class+methods">Defining class methods<span><a href="#label-Defining+class+methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Let&#39;s see how to define a class method. There are in fact a few ways,
+but this is the most commonly used:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Dog</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dog_years_to_human_years</span>(<span class="ruby-identifier">age</span>)
+    <span class="ruby-identifier">age</span> <span class="ruby-operator">/</span> <span class="ruby-value">7.0</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Though this is the preferred way, you may also see:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Dog</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">dog_years_to_human_years</span>(<span class="ruby-identifier">age</span>)
+      <span class="ruby-identifier">age</span> <span class="ruby-operator">/</span> <span class="ruby-value">7.0</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">human_years_to_dog_years</span>(<span class="ruby-identifier">age</span>)
+      <span class="ruby-identifier">age</span> <span class="ruby-operator">*</span> <span class="ruby-value">7.0</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You may see this particularly when defining multiple class methods
+together. I find this syntax very odd and do not use it, myself.</p>
+
+<h2 id="label-Calling+class+methods+from+class+methods">Calling class methods from class methods<span><a href="#label-Calling+class+methods+from+class+methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We&#39;ve seen that we can call instance methods from other instance
+methods. We can do the same for classes:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Dog</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dog_years_to_human_years</span>(<span class="ruby-identifier">age</span>)
+    <span class="ruby-identifier">age</span> <span class="ruby-operator">/</span> <span class="ruby-value">7.0</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">human_years_to_dog_years</span>(<span class="ruby-identifier">age</span>)
+    <span class="ruby-identifier">age</span> <span class="ruby-operator">*</span> <span class="ruby-value">7.0</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">human_to_dog_ratios</span>
+    <span class="ruby-comment"># get the equivalent of one dog or human year in terms of the</span>
+    <span class="ruby-comment"># other</span>
+    <span class="ruby-identifier">dog_to_human_ratio</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dog_years_to_human_years</span>(<span class="ruby-value">1</span>)
+    <span class="ruby-identifier">human_to_dog_ratio</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">human_years_to_dog_years</span>(<span class="ruby-value">1</span>)
+
+    { :<span class="ruby-identifier">dog_ratio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">dog_to_human_ratio</span>,
+      :<span class="ruby-identifier">human_ratio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">human_to_dog_ratio</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Notice the use of <code>self</code>. Because
+<code>human_to_dog_ratios</code> is called on the <code>Dog</code> class,
+<code>self</code> returns the <code>Dog</code> class itself, the methods
+<code>dog_years_to_human_years</code> and
+<code>human_years_to_dog_years</code> are then called on the
+<code>Dog</code> class.</p>
+
+<p><code>self</code> always returns the object that the method is called on.
+But isn&#39;t <code>Dog</code> a class and not an object? It&#39;s both!
+Everything in Ruby is an object, even classes. Just like <code>Dog</code>
+objects are instances of the <code>Dog</code> class, the <code>Dog</code>
+class is an instance of Ruby&#39;s <code>Class</code> class.</p>
+
+<p>For clarity I&#39;ve used <code>self</code> explicitly within
+<code>human_to_dog_ratios</code>; as mentioned before, you would normally
+omit this.</p>
+
+<p>As mentioned, we can get a class object by using the <code>.class</code>
+method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">dog</span> = <span class="ruby-constant">Dog</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;August&quot;</span>, <span class="ruby-value">6</span>, <span class="ruby-string">&quot;Chicago&quot;</span>)
+<span class="ruby-identifier">dog</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; Dog</span>
+<span class="ruby-identifier">dog</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment">#=&gt; Class</span>
+</pre>
+
+<p>Finally, note that class methods are just a special kind of instance
+method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">dog</span>.<span class="ruby-identifier">bark</span> <span class="ruby-comment"># =&gt; calls `bark` method on a Dog instance: `dog`</span>
+<span class="ruby-constant">Dog</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment"># =&gt; calls `new` method on a Class instance: `Dog`</span>
+</pre>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

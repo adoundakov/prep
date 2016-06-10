@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>rspec - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d1/readings/rspec.md">
+
+<h1 id="label-How+to+Run+RSpec+Tests">How to Run RSpec Tests<span><a href="#label-How+to+Run+RSpec+Tests">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>When you download each day&#39;s exercises, you&#39;ll find that they come
+packaged in a particular folder structure. In your file system, it should
+look something like this:</p>
+
+<pre>w1d1/
+ |- lib/
+ |- spec/
+ |- Gemfile
+ |- Gemfile.lock</pre>
+
+<p>The files are structured in this way to make it easy to run the automated
+test suite for the day&#39;s work. Before we run the tests, we&#39;ll have
+to make sure we have the right gems installed.</p>
+
+<pre>~$ cd w1d1
+~$ gem install bundler
+~$ bundle install</pre>
+
+<p>Here&#39;s what&#39;s happening: 1. <code>cd w1d1</code> will navigate us
+to the exercises directory.</p>
+<ol><li>
+<p><code>gem install bundler</code> will do what it says: install the Bundler
+gem.  Bundler is useful for managing the development environment for a 
+project; essentially, it “locks” you into using a particular version  of
+each gem in the <a href="../exercises/Gemfile.html">Gemfile</a>. This makes
+it easy for someone to  download our project and get exactly the same
+results when running  it.</p>
+</li><li>
+<p><code>bundle install</code> will download and install the gems from the <a
+href="../exercises/Gemfile.html">Gemfile</a>.  After this step, we&#39;re
+ready to run the tests locally.</p>
+</li></ol>
+
+<p>After you&#39;ve gone through this setup process, you&#39;re ready to run
+the specs. Here are a couple ways to do so:</p>
+
+<p>To run all the specs for a day:</p>
+
+<pre>~$ bundle exec rspec</pre>
+
+<p>To run just one spec file, you can pass an [optional] filename argument:</p>
+
+<pre>~$ bundle exec rspec spec/00_hello_spec.rb</pre>
+
+<p>To run a single test (or a set of tests), you can append the line number to
+the filename argument:</p>
+
+<pre>~$ bundle exec rspec spec/00_hello_spec.rb:7</pre>
+
+<p>And that&#39;s all there is to it. Armed with this knowledge, go forth and
+complete the exercises!</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

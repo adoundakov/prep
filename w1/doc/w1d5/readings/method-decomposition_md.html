@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>method-decomposition - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Method+Decomposition+-26+Design">Method Decomposition &amp; Design</a>
+    <li><a href="#label-Methods+should+be+atomic">Methods should be atomic</a>
+    <li><a href="#label-Do+not+use+global+state">Do not use global state</a>
+    <li><a href="#label-Don-27t+modify+arguments">Don&#39;t modify arguments</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d5/readings/method-decomposition.md">
+
+<h1 id="label-Method+Decomposition+-26+Design">Method Decomposition &amp; Design<span><a href="#label-Method+Decomposition+-26+Design">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Methods+should+be+atomic">Methods should be atomic<span><a href="#label-Methods+should+be+atomic">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><strong>Each method should do one thing.</strong> A method should do a
+single, atomic thing (this is sometimes called the <em>Single
+Responsibility Principle</em>). This may be one line of code, or three, but
+rarely more than ten. <strong>Methods should be short.</strong> Let&#39;s
+take a look at an example of refactoring one long method into short, atomic
+methods, <strong>NB</strong> this is sometimes called “iterative
+stiffening”. We&#39;ll use an implementation of the Towers of Hanoi
+exercise we worked on in the array section.</p>
+
+<p>Here&#39;s the problem description in case you don&#39;t remember it:</p>
+
+<pre>Write a Towers of Hanoi game.
+
+Keep three arrays, which represents the piles of discs. Pick a representation 
+of the discs to store in the arrays; maybe just a number representing their size.
+
+In a loop, prompt the user (using gets) and ask what pile to select a disc 
+from, and where to put it.
+
+After each move, check to see if they have succeeded in moving all the discs, 
+to the final pile. If so, they win!</pre>
+
+<p>Here&#39;s an example of a one-method solution:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-identifier">disks</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">reverse</span>
+  <span class="ruby-identifier">stacks</span> = [<span class="ruby-identifier">disks</span>, [], []]
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">stacks</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">stacks</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>].<span class="ruby-identifier">any?</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">empty?</span>)
+    <span class="ruby-identifier">max_height</span> = <span class="ruby-identifier">stacks</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">count</span>).<span class="ruby-identifier">max</span>
+    <span class="ruby-identifier">render_string</span> = (<span class="ruby-identifier">max_height</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">height</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">stacks</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stack</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">stack</span>[<span class="ruby-identifier">height</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot; &quot;</span>
+      <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\t&quot;</span>)
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">render_string</span>
+    <span class="ruby-identifier">move_hash</span> = { <span class="ruby-string">&quot;a&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-string">&quot;b&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-string">&quot;c&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> }
+    <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;Move From: &quot;</span>
+      <span class="ruby-identifier">from_stack_num</span> = <span class="ruby-identifier">move_hash</span>[<span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>]
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">from_stack_num</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid move!&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;Move To: &quot;</span>
+      <span class="ruby-identifier">to_stack_num</span> = <span class="ruby-identifier">move_hash</span>[<span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>]
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">to_stack_num</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid move!&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">from_stack</span>, <span class="ruby-identifier">to_stack</span> = <span class="ruby-identifier">stacks</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-identifier">from_stack_num</span>, <span class="ruby-identifier">to_stack_num</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;cannot move from empty stack&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">last</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;cannot move onto smaller disk&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">pop</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;You did it!&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Let&#39;s start breaking this method into smaller methods. What are the
+steps that we take in this one fairly long method?</p>
+<ol><li>
+<p>Set up a stack of disks</p>
+</li><li>
+<p>Set up a set of 3 stacks</p>
+</li><li>
+<p>Loop until its over</p>
+</li><li>
+<p>Display the stacks</p>
+</li><li>
+<p>Get move to position</p>
+</li><li>
+<p>Get move from position</p>
+</li><li>
+<p>Move the disk while checking to see if move is valid</p>
+</li></ol>
+
+<p>Now that we&#39;ve listed the atomic steps, it will be easy to split the
+method into smaller methods. Let&#39;s go step by step, and start by
+extracting the <code>disks</code> method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">disks</span>
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">reverse</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-identifier">stacks</span> = [<span class="ruby-identifier">disks</span>, [], []]
+  <span class="ruby-comment"># ...</span>
+</pre>
+
+<p>Notice that the <code>disks</code> method has <em>one</em> job of returning
+a stack of disks.</p>
+
+<p>Lets extract stacks into a method that builds the stacks using disks.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">disks</span>
+  (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">reverse</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stacks</span>
+  [<span class="ruby-identifier">disks</span>, [], []]
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">stacks</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">stacks</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>].<span class="ruby-identifier">any?</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">empty?</span>)
+  <span class="ruby-comment"># ...</span>
+</pre>
+
+<p>Notice that stacks has one job of building the stacks from the disks.</p>
+
+<p>Now we&#39;re looping until the game is over, but it looks like this over
+condition is starting to get a bit complex. Lets break out over into its
+own method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">over?</span>
+  <span class="ruby-identifier">stacks</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">stacks</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>].<span class="ruby-identifier">any?</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">empty?</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">over?</span>
+  <span class="ruby-comment"># ...</span>
+</pre>
+
+<p>While we&#39;re taking turns moving disks we&#39;ll probably want to
+display the current state of the board each time. Extracting that block of
+code might look like this:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">display</span>
+  <span class="ruby-identifier">max_height</span> = <span class="ruby-identifier">stacks</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">count</span>).<span class="ruby-identifier">max</span>
+  <span class="ruby-identifier">render_string</span> = (<span class="ruby-identifier">max_height</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">height</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">stacks</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stack</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">stack</span>[<span class="ruby-identifier">height</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot; &quot;</span>
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\t&quot;</span>)
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">over?</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">display</span>
+    <span class="ruby-comment"># ...</span>
+</pre>
+
+<p>The next step is to get the from and to stacks. This logic for getting a
+stack is mostly the same, less the prompt. We can write a method that takes
+a prompt as an argument.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">get_stack</span>(<span class="ruby-identifier">prompt</span>)
+  <span class="ruby-identifier">move_hash</span> = { <span class="ruby-string">&quot;a&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-string">&quot;b&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-string">&quot;c&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> }
+  <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">print</span> <span class="ruby-identifier">prompt</span>
+    <span class="ruby-identifier">stack_num</span> = <span class="ruby-identifier">move_hash</span>[<span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>]
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">stack_num</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stack_num</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid move!&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">over?</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">display</span>
+    <span class="ruby-identifier">from_stack_num</span> = <span class="ruby-identifier">get_stack</span>(<span class="ruby-string">&quot;Move from: &quot;</span>)
+    <span class="ruby-identifier">to_stack_num</span> = <span class="ruby-identifier">get_stack</span>(<span class="ruby-string">&quot;Move to: &quot;</span>)
+    <span class="ruby-identifier">from_stack</span>, <span class="ruby-identifier">to_stack</span> = <span class="ruby-ivar">@stacks</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-identifier">from_stack_num</span>, <span class="ruby-identifier">to_stack_num</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;cannot move from empty stack&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">last</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;cannot move onto smaller disk&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">pop</span>)
+  <span class="ruby-comment"># ...</span>
+</pre>
+
+<p>Our methods are starting to look leaner :). The next step is to extract the
+work of moving the disk into its own <code>move_disk</code> method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">move_disk</span>(<span class="ruby-identifier">from_stack</span>, <span class="ruby-identifier">to_stack</span>)
+  <span class="ruby-identifier">from_stack</span>, <span class="ruby-identifier">to_stack</span> = <span class="ruby-ivar">@stacks</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-identifier">from_stack_num</span>, <span class="ruby-identifier">to_stack_num</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;cannot move from empty stack&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">last</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;cannot move onto smaller disk&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">to_stack</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">from_stack</span>.<span class="ruby-identifier">pop</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hanoi</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">over?</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">display</span>
+    <span class="ruby-identifier">from_stack</span> = <span class="ruby-identifier">get_stack</span>(<span class="ruby-string">&quot;Move from: &quot;</span>)
+    <span class="ruby-identifier">to_stack</span> = <span class="ruby-identifier">get_stack</span>(<span class="ruby-string">&quot;Move to: &quot;</span>)
+    <span class="ruby-identifier">move_disk</span>(<span class="ruby-identifier">from_stack</span>, <span class="ruby-identifier">to_stack</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><strong>It reads like plain English.</strong> Hiding away our
+implementation details in well-named helper methods both reduced the length
+of <code>hanoi</code> and made its structure more transparent. If somebody
+looks at this code, they will immediately understand what is going on, even
+without reading the definitions of <code>get_stack</code> and
+<code>move_disk</code>. This makes it a lot easier to understand code.</p>
+
+<p>If they are interested in the implementation of a <em>specific action</em>,
+they know where to find it: localized to an atomic, helper method.</p>
+
+<h2 id="label-Do+not+use+global+state">Do not use global state<span><a href="#label-Do+not+use+global+state">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A good general goal is that your methods should be like a mathematical
+function: it should take something in and return something. It should not
+rely on anything besides what is explicitly passed in, and it should not
+have side-effects; it should communicate its result through the return
+value.</p>
+
+<p>Some languages are stricter than Ruby: they don&#39;t allow you to use any
+data except what is passed in as an argument, and they don&#39;t let you
+change any outside (“global”) variables variables, or communicate outside
+except through the return value. Ruby is more flexible, but the majority of
+methods should be written in this style.</p>
+
+<p>Simply put: <strong>the only way in should be the arguments, the only way
+out should be the return value</strong>.</p>
+
+<p>Here&#39;s an example of something super terrible:</p>
+
+<pre class="ruby"><span class="ruby-comment"># create a global i variable</span>
+<span class="ruby-identifier">$i</span> = <span class="ruby-keyword">nil</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">square_then_add_two</span>(<span class="ruby-identifier">num</span>)
+  <span class="ruby-identifier">$i</span> = <span class="ruby-identifier">num</span>
+  <span class="ruby-identifier">square</span>
+
+  <span class="ruby-identifier">$i</span> = <span class="ruby-identifier">$i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">square</span>
+  <span class="ruby-comment"># get global variable, square it, and reset</span>
+  <span class="ruby-identifier">$i</span> = <span class="ruby-identifier">$i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">$i</span>
+
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>First, <code>square</code> relies on a <em>global</em> variable. This
+should have been passed in directly. Everything that a method needs should
+be declared up-front as a parameter to the method. This makes it easier to
+know how to call the method: just pass in the listed arguments.</p>
+
+<p>Second, <code>square</code> doesn&#39;t return anything useful; instead, it
+communicates by setting a global variable. That is unnecessarily
+convoluted; just give the answer back directly.</p>
+
+<p>A general guideline, avoid global state. Don&#39;t use global variables to
+get around passing in arguments or return values. I basically never use
+<code>$</code> variables.</p>
+
+<h2 id="label-Don-27t+modify+arguments">Don&#39;t modify arguments<span><a href="#label-Don-27t+modify+arguments">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Callers do not typically expect you to modify an argument. For instance:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">combine_ingredients</span>(<span class="ruby-identifier">alcohols</span>, <span class="ruby-identifier">mixers</span>)
+  <span class="ruby-identifier">drinks</span> = []
+
+  <span class="ruby-identifier">alcohols</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">drinks</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">alcohols</span>.<span class="ruby-identifier">pop</span>, <span class="ruby-identifier">mixers</span>.<span class="ruby-identifier">pop</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">drinks</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This destroys the caller&#39;s arrays. Did they expect this? If
+modification of the argument is essential to what you&#39;re doing, fine,
+but otherwise don&#39;t do something potentially unexpected and dangerous
+like this.</p>
+
+<p>Instead do something like:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">combine_ingredients</span>(<span class="ruby-identifier">alcohols</span>, <span class="ruby-identifier">mixers</span>)
+  <span class="ruby-identifier">drinks</span> = []
+
+  <span class="ruby-identifier">alcohols</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">drinks</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">alcohols</span>[<span class="ruby-identifier">i</span>], <span class="ruby-identifier">mixers</span>[<span class="ruby-identifier">i</span>]]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">drinks</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a
+href="http://en.wikipedia.org/wiki/Side_effect_(computer_science)">Wikipedia:
+Side effect</a></p>
+</li><li>
+<p><a
+href="http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html">Destructuring
+with Ruby</a></p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

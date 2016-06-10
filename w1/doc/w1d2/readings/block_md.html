@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>block - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Blocks+and+Procs">Blocks and Procs</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-Blocks-21+Blocks-21+Blocks-21">Blocks! Blocks! Blocks!</a>
+    <li><a href="#label-Block+syntax">Block syntax</a>
+    <li><a href="#label-Writing+a+method+that+takes+a+block">Writing a method that takes a block</a>
+    <li><a href="#label-yield">yield</a>
+    <li><a href="#label-Avoid+return+inside+a+block">Avoid return inside a block</a>
+    <li><a href="#label-Symbols+and+blocks">Symbols and blocks</a>
+    <li><a href="#label-The+different+uses+of+-26">The different uses of <code>&amp;</code></a>
+    <li><a href="#label-Required+video">Required video</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d2/readings/block.md">
+
+<h1 id="label-Blocks+and+Procs">Blocks and Procs<span><a href="#label-Blocks+and+Procs">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Know how to define a block, especially one that takes arguments.</p>
+</li><li>
+<p>Know how to write a method that takes a block.</p>
+</li><li>
+<p>Know the difference between blocks and
+{Proc}[http://ruby-doc.org/core-2.1.2/Proc.html]s.</p>
+</li><li>
+<p>Know the difference between <code>break</code> and <code>return</code>.</p>
+</li><li>
+<p>Know what <code>#to_proc</code> and <code>&amp;</code> are used for.</p>
+</li></ul>
+
+<h2 id="label-Blocks-21+Blocks-21+Blocks-21">Blocks! Blocks! Blocks!<span><a href="#label-Blocks-21+Blocks-21+Blocks-21">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Blocks, more than anything, are what makes Ruby unique. Blocks are chunks
+of code that get passed into methods. Methods then <strong>call</strong>
+the block to customize their own behavior.</p>
+
+<p>For instance, take <code>Enumerable#map</code>:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> } <span class="ruby-comment"># =&gt; [2, 3, 4]</span>
+</pre>
+
+<p><code>map</code> applies a block to each element of the array. What it does
+with each element depends on the block. For instance, instead of adding one
+to each element, we could square them:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">num</span> } <span class="ruby-comment"># =&gt; [1, 4, 9]</span>
+</pre>
+
+<p>Fundamentally, methods often take blocks to allow the user to customize
+what the method will do.</p>
+
+<h2 id="label-Block+syntax">Block syntax<span><a href="#label-Block+syntax">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Blocks are either wrapped in curly braces, or with a “do” and “end”. We
+could write the previous example as:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">num</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">num</span>
+<span class="ruby-keyword">end</span> <span class="ruby-comment"># =&gt; [1, 4, 9]</span>
+</pre>
+
+<p>Use braces for single-line blocks. <em>Always use do-end for longer
+blocks</em>.</p>
+
+<p>Blocks are passed to a method, but they do not appear in the list of
+arguments. They come after the closing parentheses, if there are any:</p>
+
+<pre class="ruby"><span class="ruby-value">3</span>.<span class="ruby-identifier">times</span> { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hey, friend!&quot;</span> } <span class="ruby-comment"># don&#39;t need parens when there are no args</span>
+<span class="ruby-value">3</span>.<span class="ruby-identifier">times</span>() { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hey, friend!&quot;</span> } <span class="ruby-comment"># block is given outside parens, if they are used</span>
+</pre>
+
+<p>Blocks may take arguments, just like methods do. The argument names are
+wrapped in <code>|</code> (<em>pipes</em>).</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">num</span> }
+</pre>
+
+<p>Here <code>map</code> is going to call the block repeatedly; it will pass
+in each of the elements. Each time, the element (1, 2, or 3) will be
+<em>bound</em> to the <code>num</code> argument declared between the pipes.</p>
+
+<h2 id="label-Writing+a+method+that+takes+a+block">Writing a method that takes a block<span><a href="#label-Writing+a+method+that+takes+a+block">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Blocks are passed to methods mostly like other arguments. Let&#39;s write a
+method, <code>maybe</code> that will call a block only if its argument is
+true. It should work like this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">maybe</span>(<span class="ruby-keyword">true</span>) { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hello!&quot;</span> } <span class="ruby-comment"># runs block, since passed true</span>
+<span class="ruby-identifier">maybe</span>(<span class="ruby-keyword">false</span>) { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Goodbye!&quot;</span> } <span class="ruby-comment"># doesn&#39;t run block</span>
+</pre>
+
+<p>Here&#39;s how we could define <code>maybe</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">maybe</span>(<span class="ruby-identifier">flag</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">prc</span>)
+  <span class="ruby-identifier">prc</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">flag</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Notice the <code>&amp;prc</code> argument? The ampersand is a special
+symbol that signifies that <code>prc</code> should hold a
+<code>Proc</code>. The block, if provided, gets turned into a
+<code>Proc</code> object, which is then stored in the <code>prc</code>
+variable; if no block is provided, <code>prc</code> is set to
+<code>nil</code>. We need to mark the variable with a <code>&amp;</code>
+because procs are not passed like normal arguments; they don&#39;t appear
+inside the parens in the list of values to pass in.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">amp_makes_block_a_proc</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">prc</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">prc</span>.<span class="ruby-identifier">class</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">amp_makes_block_a_proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>}
+<span class="ruby-comment">#=&gt; Proc</span>
+</pre>
+
+<p>What&#39;s the difference between a block and a <code>Proc</code>? A block
+is the Ruby code you write; it is not a real Ruby object.</p>
+
+<p>Ruby will create an object that will store your block so that you can call
+it later, a <code>Proc</code>. You can create a <code>Proc</code> object
+yourself:</p>
+
+<pre class="ruby"><span class="ruby-identifier">my_proc</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-string">&quot;Hey, friend!&quot;</span> }
+<span class="ruby-identifier">my_proc</span>.<span class="ruby-identifier">call</span> <span class="ruby-comment"># calls the block, which returns: &quot;Hey, friend!&quot;</span>
+<span class="ruby-identifier">my_proc</span>.<span class="ruby-identifier">call</span> <span class="ruby-comment"># calls it again</span>
+</pre>
+
+<p><code>Proc#call</code> calls the block. Any arguments you pass to
+<code>call</code> will be passed on to the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">my_new_proc</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Hello #{name}&quot;</span> }
+<span class="ruby-identifier">my_new_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">&quot;Zimmy&quot;</span>) <span class="ruby-comment"># prints &quot;Hello Zimmy&quot;</span>
+</pre>
+
+<p>The <code>&amp;</code> way only allows you to pass a single block/proc to a
+method. If you want to pass multiple procs, you must pass them as normal
+arguments:</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc_add_1</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>}
+<span class="ruby-identifier">proc_add_2</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>}
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">chain_blocks</span>(<span class="ruby-identifier">start_val</span>, <span class="ruby-identifier">proc1</span>, <span class="ruby-identifier">proc2</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc3</span>)
+  <span class="ruby-identifier">val1</span> = <span class="ruby-identifier">proc1</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">start_val</span>)
+  <span class="ruby-identifier">val2</span> = <span class="ruby-identifier">proc2</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">val1</span>)
+  <span class="ruby-identifier">val3</span> = <span class="ruby-identifier">proc3</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">val2</span>)
+
+  <span class="ruby-identifier">val3</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">chain_blocks</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">proc_add_1</span>, <span class="ruby-identifier">proc_add_2</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-value">3</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This passes in three procs; <code>proc_add_1</code>,
+<code>proc_add_2</code>, and then the third block after it has been
+procified.</p>
+
+<h2 id="label-yield">yield<span><a href="#label-yield">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Ruby has a special syntax which simplifies passing blocks. You may use the
+keyword <code>yield</code> to call the passed block without using a block
+variable. Let&#39;s rewrite <code>maybe</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">maybe</span>(<span class="ruby-identifier">flag</span>)
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">flag</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>My preference is to list the block in the argument list (<code>&amp;</code>
+style) and call the proc explicitly with <code>call</code>. This makes it
+clearer to a reader what arguments the method can take.</p>
+
+<p>If you want to check if a block is given, I usually use
+<code>prc.nil?</code>. Similar to <code>yield</code>, you can use the
+special method <code>block_given?</code> if you don&#39;t want to list the
+block in the argument list.</p>
+
+<h2 id="label-Avoid+return+inside+a+block">Avoid return inside a block<span><a href="#label-Avoid+return+inside+a+block">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Blocks implicitly return values like Ruby methods; the last value is
+implicitly returned from the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">add_one</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> } <span class="ruby-comment"># num + 1 will be returned</span>
+<span class="ruby-identifier">two</span> = <span class="ruby-identifier">add_one</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)
+</pre>
+
+<p>This is how <code>Enumerable#map</code> works: it calls the block on each
+element, using the returned value in the new collection.</p>
+
+<p>Do not explicitly <code>return</code> from a block:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> } <span class="ruby-comment"># surprise!</span>
+</pre>
+
+<p>This will not merely return from the block, it will return from the context
+where the block was defined. Huh? What does that mean?</p>
+
+<p>The reason is not vital for you to know right now (so long as you know not
+to use return in blocks!). You can skip the following if you like; if you
+are curious, you read on.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">wrap_block</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">prc</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Started at #{Time.now}.&quot;</span>
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">prc</span>.<span class="ruby-identifier">call</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Ended at #{Time.now}.&quot;</span>
+
+  <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># example 1</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test1</span>
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">wrap_block</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;All done! Got value: #{value}.&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># example 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test2</span>
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">wrap_block</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-comment"># this is going to return immediately *from test2*</span>
+    <span class="ruby-comment"># will not wait for printing end time, or &quot;Never called!&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Never called!&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># example 3</span>
+<span class="ruby-identifier">wrap_block</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-comment"># Throws exception:</span>
+  <span class="ruby-comment">#     &quot;LocalJumpError: unexpected return&quot;</span>
+  <span class="ruby-comment"># Does this because it wouldn&#39;t otherwise be legal to call return at</span>
+  <span class="ruby-comment"># the top level of our Ruby code (outside a method).</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Tricky, tricky, tricky. We might have thought we could return from the
+block as if we were in a new, anonymous method. Under this theory, return
+would return just from the block.</p>
+
+<p>This is not what a block does, though; as said, it will return from the
+context where it was first defined. In example two, this results in the
+unexpected behavior. In the third example, the block is defined at the top
+level, where it is illegal to return. So this causes an exception to be
+thrown.</p>
+
+<p>When I learned Ruby, I was surprised by this behavior. I was used to other
+languages (like Lisp and JavaScript) which led me to believe return would
+only return from the block. Ruby does have a way to do this (lambdas), but
+they are not as commonly used as blocks.</p>
+
+<p>As you grow wise with age, you may learn to recognize times where it might
+be convenient to return from a block and take advantage of this feature.
+For myself, I don&#39;t do this, since it is somewhat unexpected (by me,
+anyway). So even when it might be otherwise convenient, I want to be sure
+not to confuse another reader (or myself!) when someone comes back to my
+code.</p>
+
+<h2 id="label-Symbols+and+blocks">Symbols and blocks<span><a href="#label-Symbols+and+blocks">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Methods that take a block typically don&#39;t want to accept an explicit
+<code>Proc</code> object:</p>
+
+<pre class="ruby"><span class="ruby-identifier">add_one</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>}
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span>(<span class="ruby-identifier">add_one</span>) <span class="ruby-comment"># wrong number of arguments (1 for 0)</span>
+</pre>
+
+<p>We have to make sure that Ruby understands we want to pass the proc in as
+the block/proc argument, not a normal argument. To do this, we use the
+<code>&amp;</code> symbol again:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">add_one</span>) <span class="ruby-comment"># =&gt; [2, 3, 4]</span>
+</pre>
+
+<p>Notice how this is kind of the flip-side of using <code>&amp;</code> in the
+definition of a method.</p>
+
+<p>Of course, we get yelled at if we try to pass both a <code>Proc</code> this
+way in addition to a typical block:</p>
+
+<pre class="ruby">[<span class="ruby-value">6</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">add_one</span>) { <span class="ruby-string">&quot;an actual block!&quot;</span> }
+<span class="ruby-constant">SyntaxError</span><span class="ruby-operator">:</span> (<span class="ruby-identifier">eval</span>)<span class="ruby-operator">:</span><span class="ruby-value">2</span><span class="ruby-operator">:</span> <span class="ruby-identifier">both</span> <span class="ruby-identifier">block</span> <span class="ruby-identifier">arg</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">actual</span> <span class="ruby-identifier">block</span> <span class="ruby-identifier">given</span>
+</pre>
+
+<p>It&#39;s very, very common to have blocks that take an argument and call a
+single method:</p>
+
+<pre class="ruby">[<span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-string">&quot;b&quot;</span>, <span class="ruby-string">&quot;c&quot;</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">str</span><span class="ruby-operator">|</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">upcase</span> } <span class="ruby-comment"># upcase all strings</span>
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">5</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span>.<span class="ruby-identifier">odd?</span> }
+</pre>
+
+<p>In this case, Ruby gives us a shortcut:</p>
+
+<pre class="ruby">[<span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-string">&quot;b&quot;</span>, <span class="ruby-string">&quot;c&quot;</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">upcase</span>)
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">5</span>].<span class="ruby-identifier">select</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">odd?</span>)
+</pre>
+
+<p>What&#39;s happening here? Using the <code>&amp;</code> symbol calls
+<code>#to_proc</code> on the item following the ampersand. For example, in
+the above code, <a
+href="http://ruby-doc.org/core-2.1.2/Symbol.html#method-i-to_proc">#to_proc</a>
+is called on the symbols <code>:upcase</code> and <code>:odd</code>.</p>
+
+<p>When <code>#to_proc</code> is called on a symbol, we get back a
+<code>Proc</code> object that just calls a method with the same name as the
+symbol on its argument. Here&#39;s what the above is “actually doing”.</p>
+
+<pre class="ruby">[<span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-string">&quot;b&quot;</span>, <span class="ruby-string">&quot;c&quot;</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">upcase</span> }
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">5</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">odd?</span> }
+</pre>
+
+<p>Here&#39;s an example of converting a <code>Symbol</code> into a
+<code>Proc</code>. Notice that we can call <em>the same Proc</em> on
+different data structures:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Array</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">first_and_last</span>
+    [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">first</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">last</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">String</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">first_and_last</span>
+    [<span class="ruby-keyword">self</span>[<span class="ruby-value">0</span>], <span class="ruby-keyword">self</span>[<span class="ruby-value">-1</span>]]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">symbolic_proc</span> = :<span class="ruby-identifier">first_and_last</span>.<span class="ruby-identifier">to_proc</span> <span class="ruby-comment">#=&gt; #&lt;Proc:0x007feb749b0070&gt;</span>
+<span class="ruby-identifier">symbolic_proc</span>.<span class="ruby-identifier">call</span>([<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>]) <span class="ruby-comment">#=&gt; [1, 3]</span>
+<span class="ruby-identifier">symbolic_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">&quot;ABCD&quot;</span>) <span class="ruby-comment">#=&gt; [&quot;A&quot;, &quot;D&quot;]</span>
+[<span class="ruby-string">&quot;Hello&quot;</span>, <span class="ruby-string">&quot;Goodbye&quot;</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">first_and_last</span>) <span class="ruby-comment"># =&gt; [[&quot;H&quot;, &quot;o&quot;], [&quot;G&quot;, &quot;e&quot;]]</span>
+</pre>
+
+<p>Note: In order to convert a symbol to a string you can use
+<code>#to_s</code> or <code>#to_sym</code> to go from string to symbol</p>
+
+<h2 id="label-The+different+uses+of+-26">The different uses of <code>&amp;</code><span><a href="#label-The+different+uses+of+-26">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You may have noticed that the <code>&amp;</code> appears in many places in
+the examples above. The <code>&amp;</code> can be tricky because it does
+several things:</p>
+<ul><li>
+<p>Converts blocks to procs</p>
+</li><li>
+<p>Converts method names (passed as symbols) to procs</p>
+</li><li>
+<p>Converts procs to blocks</p>
+</li></ul>
+
+<p>We have mostly seen the first two uses, but you should be aware of the
+third. For example, assume we have a method <code>my_sort!</code> that
+takes a block argument, like this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">animals</span> = [<span class="ruby-string">&#39;cats&#39;</span>, <span class="ruby-string">&#39;dog&#39;</span>, <span class="ruby-string">&#39;badgers&#39;</span>]
+<span class="ruby-identifier">animals</span>.<span class="ruby-identifier">my_sort!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">animal1</span>, <span class="ruby-identifier">animal2</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">animal1</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">animal2</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">animals</span> <span class="ruby-comment"># =&gt; [&#39;dog&#39;, &#39;cats&#39;, &#39;badgers&#39;]</span>
+</pre>
+
+<p>We can easily define a non-bang version of this method like so:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Array</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_sort</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">prc</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">my_sort!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">prc</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The two uses of <code>&amp;</code> in the above example do different
+things: the first one calls <code>#to_proc</code> on a block argument,
+creating a first-class proc object that we can refer to with
+<code>prc</code>. But <code>#my_sort!</code> expects a block argument, not
+a proc, so we can&#39;t simply pass it <code>prc</code>. Instead, when we
+call <code>#my_sort!</code>, we use <code>&amp;</code> again, but this time
+<code>&amp;</code> means <em>the opposite</em> of what it meant in the
+previous line; now <code>&amp;</code> is changing the proc back into a
+block.</p>
+
+<h2 id="label-Required+video">Required video<span><a href="#label-Required+video">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Watch Peter&#39;s <a
+href="http://www.youtube.com/watch?v=VBC-G6hahWA">Procs, Blocks and
+Lambdas</a>.</p>
+</li></ul>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a
+href="http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/">Robert
+Sosinski on Blocks</a></p>
+</li><li>
+<p><a
+href="http://www.skorks.com/2010/05/ruby-procs-and-lambdas-and-the-difference-between-them/">Skorks
+on Procs and Lambdas</a></p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class-i - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Classes">Classes</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-What+is+a+class-3F">What is a class?</a>
+    <li><a href="#label-Extending+a+class">Extending a class</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d3/readings/class-i.md">
+
+<h1 id="label-Classes">Classes<span><a href="#label-Classes">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Know that a class is a blueprint for an object.</p>
+</li><li>
+<p>Know how to extend a class.</p>
+</li></ul>
+
+<h2 id="label-What+is+a+class-3F">What is a class?<span><a href="#label-What+is+a+class-3F">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A class is simply a blueprint for an object. It provides the definitions
+for all of the object&#39;s methods, as well as a set of instructions for
+how the object is constructed and how it stores information. As we&#39;ve
+said before, everything in Ruby is an object, and classes are no exception.
+Interestingly, <code>Class</code> is itself an instance of
+<code>Class</code>. Wow, meta!</p>
+
+<pre class="ruby">[<span class="ruby-value">2</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Class</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Object</span>)
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+[<span class="ruby-value">3</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Class</span>.<span class="ruby-identifier">class</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Class</span>
+</pre>
+
+<h2 id="label-Extending+a+class">Extending a class<span><a href="#label-Extending+a+class">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It is possible to add functionality to a class by
+<strong>extending</strong> (or <strong>monkey-patching</strong>) it. We can
+accomplish this by opening up the class definition and writing our new
+method definitions inside of it, like so:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">String</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">palindrome?</span>
+    <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reverse</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Luckily, opening up the <code>String</code> class definition doesn&#39;t
+overwrite the existing version of the class; all the built-in
+<code>String</code> functionality remains intact. All we&#39;ve done here
+is add a new method, <code>palindrome?</code>, to what was already there.
+Note that this isn&#39;t like defining a method on its own at the root
+level (global scope): the <code>palindrome?</code> method can only be
+called on an instance of the <code>String</code> class. You&#39;ll notice
+that we use a special variable called <code>self</code> inside of the
+method definition. <code>self</code> refers to the object on which the
+current method is being called. Say we run the following code:</p>
+
+<pre class="ruby">[<span class="ruby-value">6</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;foo&quot;</span>.<span class="ruby-identifier">palindrome?</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+</pre>
+
+<p>When the <code>palindrome?</code> method gets called on
+<code>&quot;foo&quot;</code>, we enter the method body. Since
+<code>palindrome?</code> was called on <code>&quot;foo&quot;</code>,
+<code>&quot;foo&quot;</code> is the <strong>receiver</strong> of the method
+call. Therefore, at this point in the program, <code>self</code> points to
+<code>&quot;foo&quot;</code>. Since <code>&quot;foo&quot;</code> is not
+equal to <code>&quot;foo&quot;.reverse</code>, the method returns false.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

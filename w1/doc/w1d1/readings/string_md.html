@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>string - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Strings">Strings</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-Quotes">Quotes</a>
+    <li><a href="#label-Multiline+and+Complex+Quotes">Multiline and Complex Quotes</a>
+    <li><a href="#label-Interpolation">Interpolation</a>
+    <li><a href="#label-Concatenating+and+appending+to+strings">Concatenating and appending to strings</a>
+    <li><a href="#label-Accessing+a+substring">Accessing a substring</a>
+    <li><a href="#label-Length">Length</a>
+    <li><a href="#label-Split+a+string+into+parts">Split a string into parts</a>
+    <li><a href="#label-Nil+converts+to+empty+string">Nil converts to empty string</a>
+    <li><a href="#label-Other+Killer+String+Methods">Other Killer <code>String</code> Methods</a>
+    <li><a href="#label-Resources">Resources</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d1/readings/string.md">
+
+<h1 id="label-Strings">Strings<span><a href="#label-Strings">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Familiarize yourself with the selected, important methods here.</p>
+</li><li>
+<p>Know how to use string interpolation and to prefer it to  concatenation.</p>
+</li></ul>
+
+<h2 id="label-Quotes">Quotes<span><a href="#label-Quotes">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Strings are how we represent text in Ruby. We need to protect the text from
+the Ruby interpreter so it doesn&#39;t think our text is actually code:</p>
+
+<pre class="ruby"><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">these</span> <span class="ruby-identifier">are</span> <span class="ruby-identifier">some</span> <span class="ruby-identifier">words</span>
+<span class="ruby-constant">NameError</span><span class="ruby-operator">:</span> <span class="ruby-identifier">undefined</span> <span class="ruby-identifier">local</span> <span class="ruby-identifier">variable</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">method</span> <span class="ruby-value">%x`words&#39; for main:Object
+        from (irb):6
+        from /Users/ruggeri/.rvm/rubies/ruby-1.9.3-p194/bin/irb:16:in `</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">main</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;
+</span></pre>
+
+<p>Uh oh.</p>
+
+<pre class="ruby"><span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;these are some words&quot;</span>
+ =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;these are some words&quot;</span>
+</pre>
+
+<p>Better. We protect text with quotes. You may use either single or double
+quotes:</p>
+
+<pre class="ruby"><span class="ruby-string">&#39;letters&#39;</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;letters&quot;</span> <span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p>When to use which? If your text includes a quotation mark, you may want to
+use the opposite form of quotes:</p>
+
+<pre class="ruby"><span class="ruby-string">&#39;&quot;Yesterday&quot; has been covered &gt;2,200 times&#39;</span>
+<span class="ruby-string">&quot;I didn&#39;t know that!&quot;</span>
+</pre>
+
+<h2 id="label-Multiline+and+Complex+Quotes">Multiline and Complex Quotes<span><a href="#label-Multiline+and+Complex+Quotes">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>One of the issues with quotes (both of the single and double variety) is
+that they can make for some unwieldy code for other programmers to read and
+maintain.</p>
+
+<p>Two problems usually come hand in hand for complex blocks of text: * They
+may be large, spanning multiple lines * They may contain specific spacing,
+inner quotes, and escape  characters</p>
+
+<pre class="ruby"><span class="ruby-identifier">stomach_contents</span> = <span class="ruby-string">&quot;Bacon &#39;ipsum dolor&#39; sit amet venison\n fatback pig, prosciutto/pork belly jowl.\n
+Beef kielbasa leberkas, shank t-bone doner strip &quot;</span><span class="ruby-identifier">steak</span><span class="ruby-string">&quot; pork loin. Doner hamburger&quot;</span>
+</pre>
+
+<p>Yikes! The example above won&#39;t compute properly.</p>
+
+<p>We&#39;ve placed double quotes around steak and double quotes around the
+entire string. Ruby interprets this as two strings separated by an
+undefined variable, steak.</p>
+
+<p>Let&#39;s say we try single quotes to get the “steak” back in there.</p>
+
+<pre class="ruby"><span class="ruby-identifier">stomach_contents</span> = <span class="ruby-string">&#39;Bacon &#39;</span><span class="ruby-identifier">ipsum</span> <span class="ruby-identifier">dolor</span><span class="ruby-string">&#39; sit amet venison\n fatback pig, prosciutto pork belly jowl.\n
+Beef kielbasa leberkas, shank t-bone doner strip &quot;steak&quot; pork loin. Doner hamburger&#39;</span>
+</pre>
+
+<p>Now we&#39;re getting bit by &#39;ipsum dolor&#39;. Notice also, that,
+having enclosed the string in single quotes, we can no longer access escape
+characters. The <code>\n</code> will be interpreted as just that, and not a
+newline as we intend.</p>
+
+<p>These are common problems with complex strings! Not to fret; there are
+several solutions.</p>
+
+<p>One classic way to handle <code>&quot;</code> and <code>&#39;</code> and
+<code>&lt;/code&gt; within strings is to make a double quoted string and
+use &lt;code&gt;&lt;/code&gt; as an escape character. Ex:
+&lt;code&gt;&quot;\&quot;Pigs\&quot; is double quoted, and this is a
+backslash \&quot;</code> will print:</p>
+
+<pre>&quot;Pigs&quot; is double quoted, and this is a backslash \</pre>
+
+<h2 id="label-Interpolation">Interpolation<span><a href="#label-Interpolation">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It is very common to build up strings from other strings.</p>
+
+<pre class="ruby"><span class="ruby-identifier">worst_day</span> = <span class="ruby-string">&quot;Monday&quot;</span>
+<span class="ruby-node">&quot;#{worst_day}s are the hardest.&quot;</span>
+<span class="ruby-comment"># =&gt; &quot;Mondays are the hardest.&quot;</span>
+</pre>
+
+<p>This technique is called <em>string interpolation</em>. Inside the
+<code>#{}</code>, you place Ruby code; the code is executed,
+<code>#to_s</code> is called on the result to turn it into the string, and
+the stringified result is inserted into the containing string.</p>
+
+<p>The code inside the <code>#{}</code> should be very short; just one
+variable plus maybe a single method call; that keeps things easy to read
+and understand. Otherwise, first save the result in a temporary variable,
+then interpolate that:</p>
+
+<pre class="ruby"><span class="ruby-identifier">murder</span> = <span class="ruby-string">&quot;redrum&quot;</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">upcase</span>
+<span class="ruby-node">&quot;#{murder}! #{murder}!&quot;</span>
+</pre>
+
+<p><a href="../../String.html">String</a> interpolation can only be done with
+double quotes (“”), and doesn&#39;t work with single quotes (&#39;&#39;).
+For this reason, as well as because single quotes don&#39;t support as many
+<a
+href="http://en.wikibooks.org/wiki/Ruby_Programming/Strings#Escape_sequences">escape
+sequences</a>, double quotes are the preferred default.</p>
+
+<h2 id="label-Concatenating+and+appending+to+strings">Concatenating and appending to strings<span><a href="#label-Concatenating+and+appending+to+strings">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Interpolation is usually the idiomatic, clean way to build up strings.
+Sometimes you&#39;ll want more power. Strings have methods that correspond
+to array&#39;s <code>&lt;&lt;</code> and <code>+</code> methods: For
+example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">likes</span> = <span class="ruby-string">&quot;race cars, lasers, aeroplanes&quot;</span>
+<span class="ruby-identifier">dislikes</span> = <span class="ruby-string">&quot;harmonicas&quot;</span>
+
+<span class="ruby-string">&quot;I like &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">likes</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;. I don&#39;t like &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dislikes</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.&quot;</span>
+<span class="ruby-comment"># =&gt; &quot;I like race cars, lasers, aeroplanes. I don&#39;t like harmonicas.&quot;</span>
+</pre>
+
+<p>You&#39;d probably prefer string interpolation here, but concatenation is
+an option. And not true: harmonicas are cool.</p>
+
+<p>As with arrays, it&#39;s common to want to grow strings by appending to
+them. You could do this like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">count_in</span> = <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-identifier">count_in</span> = <span class="ruby-identifier">count_in</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;One, &quot;</span>
+<span class="ruby-identifier">count_in</span> = <span class="ruby-identifier">count_in</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;two, &quot;</span>
+<span class="ruby-comment"># ...</span>
+</pre>
+
+<p>It is preferred to use the shovel (<code>&lt;&lt;</code>) operator for
+this. This will avoid the creating new strings and instead will modify the
+original.</p>
+
+<pre class="ruby"><span class="ruby-identifier">count_in</span> = <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-identifier">count_in</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;One, &quot;</span>
+<span class="ruby-identifier">count_in</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;two, &quot;</span>
+<span class="ruby-comment"># ...</span>
+</pre>
+
+<h2 id="label-Accessing+a+substring">Accessing a substring<span><a href="#label-Accessing+a+substring">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You can access substrings of a string much like you can access subarrays of
+an array.</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;this is my sentence&quot;</span>[<span class="ruby-value">5</span>, <span class="ruby-value">2</span>]
+<span class="ruby-comment"># =&gt; &quot;is&quot;</span>
+</pre>
+
+<p>Here five is the starting position of the substring, and two is the
+substring&#39;s length. As with arrays, you may also pass a range of
+indexes.</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;this is my sentence&quot;</span>[<span class="ruby-value">5</span><span class="ruby-operator">..</span><span class="ruby-value">6</span>]
+<span class="ruby-comment"># =&gt; &quot;is&quot;</span>
+</pre>
+
+<h2 id="label-Length">Length<span><a href="#label-Length">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To count the number of characters in a string, use the <code>length</code>
+method:</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;words words words&quot;</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-comment"># =&gt; 17</span>
+</pre>
+
+<h2 id="label-Split+a+string+into+parts">Split a string into parts<span><a href="#label-Split+a+string+into+parts">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It is common to want to split a string into an array of parts. For
+instance:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ice_creams</span> = <span class="ruby-string">&quot;Bi-Rite, Humphrey Slocum, Mitchell&#39;s&quot;</span>
+<span class="ruby-identifier">ice_creams</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;, &quot;</span>)
+<span class="ruby-comment">#=&gt; [&quot;Bi-Rite&quot;, &quot;Humphrey Slocum&quot;, &quot;Mitchell&#39;s&quot;]</span>
+
+[<span class="ruby-value">1</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">motto</span> = <span class="ruby-string">&quot;We all scream for ice cream!&quot;</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;We all scream for ice cream!&quot;</span>
+[<span class="ruby-value">2</span>] <span class="ruby-identifier">pry</span>(<span class="ruby-identifier">main</span>)<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">motto</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
+=<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;We&quot;</span>, <span class="ruby-string">&quot;all&quot;</span>, <span class="ruby-string">&quot;scream&quot;</span>, <span class="ruby-string">&quot;for&quot;</span>, <span class="ruby-string">&quot;ice&quot;</span>, <span class="ruby-string">&quot;cream!&quot;</span>]
+</pre>
+
+<h2 id="label-Nil+converts+to+empty+string">Nil converts to empty string<span><a href="#label-Nil+converts+to+empty+string">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-keyword">nil</span>.<span class="ruby-identifier">to_s</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>
+</pre>
+
+<h2 id="label-Other+Killer+String+Methods">Other Killer <code>String</code> Methods<span><a href="#label-Other+Killer+String+Methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Read up on &#39;em all:</p>
+<ul><li>
+<p><a
+href="http://www.ruby-doc.org/core-2.1.2/String.html#method-i-strip">#chomp}[http://www.ruby-doc.org/core-2.1.2/String.html#method-i-chomp]/{#strip</a></p>
+</li><li>
+<p><a
+href="http://www.ruby-doc.org/core-2.1.2/String.html#method-i-gsub">#gsub</a></p>
+</li><li>
+<p><a
+href="http://www.ruby-doc.org/core-2.1.2/String.html#method-i-upcase">#downcase}[http://www.ruby-doc.org/core-2.1.2/String.html#method-i-downcase]/{#upcase</a></p>
+</li><li>
+<p><a
+href="http://www.ruby-doc.org/core-2.1.2/String.html#method-i-to_i">#to_i</a></p>
+</li><li>
+<p><a
+href="http://www.ruby-doc.org/core-2.1.2/String.html#method-i-to_sym">#to_sym</a></p>
+</li><li>
+<p><a href="http://www.ruby-doc.org/core-2.1.2/String.html#method-i-2A">#*</a></p>
+</li></ul>
+
+<h2 id="label-Resources">Resources<span><a href="#label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a
+href="http://www.ruby-doc.org/core-2.1.2/String.html">www.ruby-doc.org/core-2.1.2/String.html</a></p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>coding-style - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Coding+style">Coding style</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-Style+matters">Style matters</a>
+    <li><a href="#label-Indentation">Indentation</a>
+    <li><a href="#label-Keep+Lines+Short">Keep Lines Short</a>
+    <li><a href="#label-No+trailing+whitespace">No trailing whitespace</a>
+    <li><a href="#label-Avoid+very+long+methods-2C+deep+nesting">Avoid very long methods, deep nesting</a>
+    <li><a href="#label-Avoid+over-commenting">Avoid over-commenting</a>
+    <li><a href="#label-Add+line+breaks+appropriately">Add line breaks appropriately</a>
+    <li><a href="#label-do-2Fend+vs+-7B-7D">do/end vs {}</a>
+    <li><a href="#label-Only+use+return+to+stop+early">Only use return to stop early</a>
+    <li><a href="#label-Interpolate-2C+don-27t+concatenate">Interpolate, don&#39;t concatenate</a>
+    <li><a href="#label-References">References</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d5/readings/coding-style.md">
+
+<h1 id="label-Coding+style">Coding style<span><a href="#label-Coding+style">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Always follow these most important rules:</p>
+<ul><li>
+<p>Indent your code.</p>
+</li><li>
+<p>Limit lines to 72 chars.</p>
+</li><li>
+<p>Avoid long methods and nesting more than two levels deep.</p>
+</li><li>
+<p>Don&#39;t over-comment.</p>
+</li></ul>
+</li></ul>
+
+<h2 id="label-Style+matters">Style matters<span><a href="#label-Style+matters">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>People have been writing code for a while, and there is an established way
+of doing things. You are new, so you&#39;re just learning these
+conventions. They may seem arbitrary and silly; some of them are. Others
+really do represent common sense.</p>
+
+<p>It is very important to learn and follow style rules. If you write stylish
+code, it will make you look professional and capable. If not, you&#39;ll
+look inexperienced.</p>
+
+<p>Luckily it&#39;s easy to follow the rules; just make sure you start doing
+it now so that you start building the habit of stylish coding.</p>
+
+<p>I list the most important rules here, in roughly declining order of
+importance. I also link a more comprehensive code style guide at the end.
+Long term, the best way to learn good style is to read a lot of code, and
+emulate your predecessors. Make your code look like theirs.</p>
+
+<h2 id="label-Indentation">Indentation<span><a href="#label-Indentation">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Many new programmers do not indent their code, because they haven&#39;t
+written enough code to understand that it really does help interpreting and
+understanding the code. It is a cardinal sin not to indent your code.
+Unindented code looks really, really bad to an experienced dev.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">CrazyClass</span>
+  <span class="ruby-comment"># indent classes</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">my_method</span>
+    <span class="ruby-comment"># indent methods</span>
+    <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">10</span>
+      <span class="ruby-comment"># indent loops</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hello!&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># count in</span>
+    <span class="ruby-value">4</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment"># indent blocks</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{n}!&quot;</span>
+
+      <span class="ruby-comment"># see how the ends always align with the start </span>
+      <span class="ruby-comment"># of the indented section?</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Indent with <em>two spaces</em>, not with tab stops. Set Atom to do this by
+default; in the Settings check <strong>Soft Tabs</strong> (which uses
+spaces instead of tabs) and <strong>set Tab Length to 2</strong> (use two
+spaces; four is too many!).</p>
+
+<h2 id="label-Keep+Lines+Short">Keep Lines Short<span><a href="#label-Keep+Lines+Short">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Keep your lines &lt;72 characters long. There are historical reasons to do
+this; shorter lines are also (said to be) easier to read. Long lines make
+you look like a yahoo or, worse, a Java developer (I was a Java dev once).</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">CrazyClass</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">crazy_method</span>
+    <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">100</span>
+      <span class="ruby-string">&quot;this is my long string&quot;</span>.<span class="ruby-identifier">a_long_method_name</span>(<span class="ruby-identifier">a_few_arguments</span>, <span class="ruby-identifier">and_then</span>, <span class="ruby-identifier">it_gets_too</span>, <span class="ruby-identifier">long</span>).<span class="ruby-identifier">should_have_split</span>(<span class="ruby-identifier">this_up</span>, <span class="ruby-identifier">a_while</span>, <span class="ruby-identifier">ago</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>To help you, set <strong>Preferred Line Length</strong> in the Atom
+Settings to 72. You may also have to enable the <strong>Wrap Guide</strong>
+package. This should show a vertical line at 72 characters; don&#39;t write
+code past the vertical line.</p>
+
+<h3 id="label-No+trailing+whitespace">No trailing whitespace<span><a href="#label-No+trailing+whitespace">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Don&#39;t leave extraneous whitespace (spaces or tabs) at the ends of
+lines. Atom will help you by stripping trailing whitespace when you save.
+You can configure this in Settings, by searching for the
+<strong>Whitespace</strong> package.</p>
+
+<h2 id="label-Avoid+very+long+methods-2C+deep+nesting">Avoid very long methods, deep nesting<span><a href="#label-Avoid+very+long+methods-2C+deep+nesting">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We&#39;ll talk about it more in another chapter, but long methods are bad.
+If a method is &gt;8 lines long, you should consider whether it might be
+broken into smaller methods. If your method is &gt;20 lines long, it is too
+long. &gt;40 lines and it&#39;s a beast; you need to break this up.</p>
+
+<p>New developers may write methods that are hundreds of lines. Don&#39;t do
+that.</p>
+
+<p>Deep nesting often goes hand-in-hand with long methods. Deep nesting is
+hard to read:</p>
+
+<pre class="ruby"><span class="ruby-keyword">while</span> <span class="ruby-identifier">this</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">that</span>
+    <span class="ruby-identifier">array</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">el</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">other</span>
+        <span class="ruby-comment"># whoa way too deep</span>
+</pre>
+
+<p>Three levels deep is plenty deep already. Break this up into smaller
+methods of one or two levels each.</p>
+
+<h2 id="label-Avoid+over-commenting">Avoid over-commenting<span><a href="#label-Avoid+over-commenting">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><strong>This</strong>: “Good code is like a good joke: it needs no
+explanation.”</p>
+
+<p>Do not comment trivial stuff. This code shouldn&#39;t have had any comments
+at all:</p>
+
+<pre class="ruby"><span class="ruby-comment"># set i to zero</span>
+<span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+
+<span class="ruby-comment"># loop while i &lt; 100</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">100</span>
+  <span class="ruby-comment"># print i</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">i</span>
+
+  <span class="ruby-comment"># increment i</span>
+  <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Don&#39;t tell your reader something obvious; assume they can read code.
+Use comments when the code is not obvious: when it&#39;s tricky. Of course,
+avoid tricky code, but if you can&#39;t, document it.</p>
+
+<h2 id="label-Add+line+breaks+appropriately">Add line breaks appropriately<span><a href="#label-Add+line+breaks+appropriately">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Don&#39;t double space your code; the extra space will look silly.</p>
+
+<p>Your methods should be short anyway, but it can be hard to follow many
+lines of code with no line breaks. This is a subtle thing, but my personal
+style is to add blank lines when I shift from one idea to another. It works
+like a paragraph that way. For instance:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">my_method</span>
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">100</span>
+    <span class="ruby-identifier">square</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">i</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">square</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Even square: #{square}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">another_method</span>
+  <span class="ruby-comment"># etc.</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>See how I separate the incrementing from the true “body” of the while loop?
+They&#39;re separate concerns, so I want to take a breath there.</p>
+
+<p>Likewise, you should always have a blank line before a method definition.</p>
+
+<p>As ever, your best guide is other people&#39;s code. Look especially at my
+code, since I&#39;m the one who will bug you about it :-)</p>
+
+<h2 id="label-do-2Fend+vs+-7B-7D">do/end vs {}<span><a href="#label-do-2Fend+vs+-7B-7D">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>When you write blocks, use <code>{}</code> notation for one liners, and
+<code>do</code>/<code>end</code> for multi-line blocks.</p>
+
+<h2 id="label-Only+use+return+to+stop+early">Only use return to stop early<span><a href="#label-Only+use+return+to+stop+early">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You should know that the return value of a method&#39;s last evaluated line
+is implicitly returned by the method. In particular, you don&#39;t need to
+use <code>return</code> at the end of every method.</p>
+
+<p>The only time you should use <code>return</code> is if you need to stop
+executing the method somewhere in the middle of the code.</p>
+
+<h2 id="label-Interpolate-2C+don-27t+concatenate">Interpolate, don&#39;t concatenate<span><a href="#label-Interpolate-2C+don-27t+concatenate">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-string">&quot;my favorite number is &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">favorite_number</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;!&quot;</span> <span class="ruby-comment"># nooooo</span>
+<span class="ruby-node">&quot;my favorite number is #{favorite_number.to_s}!&quot;</span> <span class="ruby-comment"># yessss</span>
+</pre>
+
+<h2 id="label-References">References<span><a href="#label-References">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Batsov&#39;s <a href="https://github.com/bbatsov/ruby-style-guide">style
+guide</a> is a good one to skim.</p>
+
+<p>Writing clean code is essential. Well formatted code is just as important
+as using proper grammar and punctuation. If you want people to understand
+your work and take you seriously as an engineer your code must look clean,
+consistent, and organized.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

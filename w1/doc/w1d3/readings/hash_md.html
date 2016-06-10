@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>hash - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Hash">Hash</a>
+    <li><a href="#label-Goals">Goals</a>
+    <li><a href="#label-What-27s+a+Hash-3F">What&#39;s a Hash?</a>
+    <li><a href="#label-Hash-23-5B-5D"><code>Hash#[]</code></a>
+    <li><a href="#label-Hash-23each"><code>Hash#each</code></a>
+    <li><a href="#label-Hash-23-5B-5D-3D"><code>Hash#[]=</code></a>
+    <li><a href="#label-Hash-23delete"><code>Hash#delete</code></a>
+    <li><a href="#label-Hash-23merge"><code>Hash#merge</code></a>
+    <li><a href="#label-Hash-23keys"><code>Hash#keys</code></a>
+    <li><a href="#label-Hash-23values"><code>Hash#values</code></a>
+    <li><a href="#label-Hash-23key-3F"><code>Hash#key?</code></a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../pass-by-reference_md.html">pass-by-reference</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d1/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d1/readings/array_md.html">array</a>
+  
+    <li><a href="../../w1d1/readings/method_md.html">method</a>
+  
+    <li><a href="../../w1d1/readings/object_md.html">object</a>
+  
+    <li><a href="../../w1d1/readings/rspec_md.html">rspec</a>
+  
+    <li><a href="../../w1d1/readings/string_md.html">string</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d2/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d2/readings/block_md.html">block</a>
+  
+    <li><a href="../../w1d2/readings/enumerable_md.html">enumerable</a>
+  
+    <li><a href="../../w1d2/readings/iteration_md.html">iteration</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d3/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d3/readings/class-i_md.html">class-i</a>
+  
+    <li><a href="../../w1d3/readings/hash_md.html">hash</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../w1d4/exercises/Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../w1d4/readings/class-ii_md.html">class-ii</a>
+  
+    <li><a href="../../w1d4/readings/scope_md.html">scope</a>
+  
+    <li><a href="../../w1d5/readings/coding-style_md.html">coding-style</a>
+  
+    <li><a href="../../w1d5/readings/debugger_md.html">debugger</a>
+  
+    <li><a href="../../w1d5/readings/dry_md.html">dry</a>
+  
+    <li><a href="../../w1d5/readings/method-decomposition_md.html">method-decomposition</a>
+  
+    <li><a href="../../w1d5/readings/naming_md.html">naming</a>
+  
+    <li><a href="../../w1d5/readings/refactoring_md.html">refactoring</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page w1d3/readings/hash.md">
+
+<h1 id="label-Hash"><a href="../../Hash.html">Hash</a><span><a href="#label-Hash">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Goals">Goals<span><a href="#label-Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Familiarize yourself with the selected, important methods here.</p>
+</li><li>
+<p>Know that a <code>Hash</code> should be used whenever you have keys and
+values.</p>
+</li><li>
+<p>Know:</p>
+</li><li>
+<p>how to access a value by key</p>
+</li><li>
+<p>how to set a value for a key</p>
+</li><li>
+<p>how to delete a key/value</p>
+</li></ul>
+
+<h2 id="label-What-27s+a+Hash-3F">What&#39;s a <a href="../../Hash.html">Hash</a>?<span><a href="#label-What-27s+a+Hash-3F">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A <a href="../../Hash.html">Hash</a> is a collection of key-value pairs.
+You can think of a hash like an array, but instead of the keys being
+incrementing integer indices (i.e., 0, 1, 2, 3, etc.), the keys are
+arbitrary, and can be any kind of object.</p>
+
+<p>You can create a hash a couple different ways:</p>
+
+<pre class="ruby"><span class="ruby-identifier">empty_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">another_empty_hash</span> = {} <span class="ruby-comment"># shorter and preferred</span>
+
+<span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+</pre>
+
+<h3 id="label-Hash-23-5B-5D"><code>Hash#[]</code><span><a href="#label-Hash-23-5B-5D">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We can look up values in a hash by its key:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+<span class="ruby-identifier">capitals</span>[<span class="ruby-string">&#39;New York&#39;</span>] <span class="ruby-comment"># =&gt; &#39;Albany&#39;</span>
+</pre>
+
+<h3 id="label-Hash-23each"><code>Hash#each</code><span><a href="#label-Hash-23each">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We can also <em>iterate</em> over the elements of the hash, just like we
+did with array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">state</span>, <span class="ruby-identifier">capital</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{capital} is the capital of #{state}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># =&gt; Albany is the capital of New York</span>
+<span class="ruby-comment">#    Sacramento is the capital of California</span>
+</pre>
+
+<p>Notice that when we iterate over a hash, each entry in the hash has both a
+key and a value.</p>
+
+<h3 id="label-Hash-23-5B-5D-3D"><code>Hash#[]=</code><span><a href="#label-Hash-23-5B-5D-3D">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We add a new key and value to a hash like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+<span class="ruby-identifier">capitals</span>[<span class="ruby-string">&#39;Texas&#39;</span>] = <span class="ruby-string">&#39;Austin&#39;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">capitals</span>
+<span class="ruby-comment"># =&gt; { &#39;New York&#39; =&gt; &#39;Albany&#39;, &#39;California&#39; =&gt; &#39;Sacramento&#39;, &#39;Texas&#39; =&gt; &#39;Austin&#39; }</span>
+</pre>
+
+<h3 id="label-Hash-23delete"><code>Hash#delete</code><span><a href="#label-Hash-23delete">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We can delete a key/value pair in a hash like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;California&#39;</span>)
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">capitals</span>
+<span class="ruby-comment"># =&gt; { &#39;New York&#39; =&gt; &#39;Albany&#39; }</span>
+</pre>
+
+<h3 id="label-Hash-23merge"><code>Hash#merge</code><span><a href="#label-Hash-23merge">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We can also merge two hashes together:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+<span class="ruby-identifier">more_capitals</span> = { <span class="ruby-string">&#39;Texas&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Austin&#39;</span>, <span class="ruby-string">&#39;Alaska&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Juneau&#39;</span> }
+
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">more_capitals</span>)
+<span class="ruby-comment"># =&gt; { &#39;New York&#39; =&gt; &#39;Albany&#39;, &#39;California&#39; =&gt; &#39;Sacramento&#39;, &#39;Texas&#39; =&gt; &#39;Austin&#39;, &#39;Alaska&#39; =&gt; &#39;Juneau&#39; }</span>
+</pre>
+
+<p>Notice that <code>hash1.merge(hash2)</code> is the same as
+<code>hash2.merge(hash1)</code> here. This isn&#39;t always the case; if
+you have two hashes with the same keys, duplicate entries in the merged <a
+href="../../Hash.html">Hash</a> take precedence over the ones in the
+calling Hash:</p>
+
+<pre class="ruby"><span class="ruby-identifier">h1</span> = {:<span class="ruby-identifier">a</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;apple&#39;</span>, :<span class="ruby-identifier">b</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bat&#39;</span>}
+<span class="ruby-identifier">h2</span> = {:<span class="ruby-identifier">b</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bravo&#39;</span>, :<span class="ruby-identifier">c</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;charlie&#39;</span>}
+
+<span class="ruby-identifier">h1</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">h2</span>) <span class="ruby-comment"># =&gt; {:a =&gt; &#39;apple&#39;, :b =&gt; &#39;bravo&#39;, :c =&gt; &#39;charlie&#39;}</span>
+<span class="ruby-identifier">h2</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">h1</span>) <span class="ruby-comment"># =&gt; {:a =&gt; &#39;apple&#39;, :b =&gt; &#39;bat&#39;, :c =&gt; &#39;charlie&#39;}</span>
+</pre>
+
+<p>Note also that <code>merge</code> does not modify either of the hashes, it
+creates a new hash which contains the keys and values of both. There is a
+bang version (<code>merge!</code>) which will modify the method receiver.</p>
+
+<h3 id="label-Hash-23keys"><code>Hash#keys</code><span><a href="#label-Hash-23keys">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If we want to get all of the keys in a hash we can use the
+<code>keys</code> method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">keys</span> <span class="ruby-comment"># =&gt; [&#39;New York&#39;, &#39;California&#39;]</span>
+</pre>
+
+<p>Notice that the return value of this method is an <em>array</em> of the
+hash&#39;s keys.</p>
+
+<h3 id="label-Hash-23values"><code>Hash#values</code><span><a href="#label-Hash-23values">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Similarly, we can get all of the values in a hash by using the Hash#values
+method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">values</span> <span class="ruby-comment"># =&gt; [&#39;Albany&#39;, &#39;Sacramento&#39;]</span>
+</pre>
+
+<h3 id="label-Hash-23key-3F"><code>Hash#key?</code><span><a href="#label-Hash-23key-3F">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>We can check if a hash has a specific key by using the
+<code>Hash#key?</code> method:</p>
+
+<pre class="ruby"><span class="ruby-identifier">capitals</span> = { <span class="ruby-string">&#39;New York&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Albany&#39;</span>, <span class="ruby-string">&#39;California&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Sacramento&#39;</span> }
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-string">&#39;New York&#39;</span>) <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">capitals</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-string">&#39;France&#39;</span>) <span class="ruby-comment"># =&gt; false</span>
+</pre>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
