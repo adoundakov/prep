@@ -45,3 +45,11 @@
 # eval_block(1, 2, 3)
 # # => "NO BLOCK GIVEN"
 # ```
+
+def eval_block(*args)
+  if block_given? == false
+    raise Exception.new("NO BLOCK GIVEN")
+  else
+    yield *args
+  end
+end
