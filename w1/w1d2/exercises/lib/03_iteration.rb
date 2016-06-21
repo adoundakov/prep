@@ -4,6 +4,14 @@
 # factors of a given number.
 
 def factors(num)
+    facts = [1]
+    check = 2
+    while check <= num / 2
+        facts << check if num % check == 0
+        check += 1
+    end
+
+    facts << num
 end
 
 # ### Bubble Sort
