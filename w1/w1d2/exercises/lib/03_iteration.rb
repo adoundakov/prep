@@ -55,9 +55,32 @@ end
 
 class Array
   def bubble_sort!
+      if block_given?
+      else
+          self.default_bubble
+      end
+  end
+
+  def default_bubble
+      return self if self.length <= 1
+      changed = true
+      while changed
+          changed = false
+          x = 0
+          while x < self.length - 1
+              y = x + 1
+              if self[x] > self[y]
+                  self[x],self[y] = self[y],self[x]
+                  changed = true
+              end
+              x += 1
+          end
+      end
+      self
   end
 
   def bubble_sort(&prc)
+      self.dup.bubble_sort!(&prc)
   end
 end
 
