@@ -54,15 +54,31 @@ end
 # http://stackoverflow.com/questions/827649/what-is-the-ruby-spaceship-operator
 
 class Array
-  def bubble_sort!
-      if block_given?
+  def bubble_sort!(&prc)
+    return self if self.length <= 1
+      if prc.nil?
+        self.default_bubble
       else
-          self.default_bubble
+        changed = true
+        while changed
+          changed = false
+          idx = 0
+          while idx < self.length - 1
+            check = idx + 1
+            num1 = self[idx]
+            num2 = self[check]
+            if prc.call([num1, num2]) == 1
+              changed = true
+              self[idx], self[check] = self[check], self[idx]
+            end
+            idx += 1
+          end
+        end
+        self
       end
   end
 
   def default_bubble
-      return self if self.length <= 1
       changed = true
       while changed
           changed = false
@@ -108,6 +124,7 @@ end
 # array with the original elements multiplied by two.
 
 def doubler(array)
+  return array.map { |num| num * 2  }
 end
 
 # ### My Each
@@ -135,6 +152,13 @@ end
 
 class Array
   def my_each(&prc)
+    idx = 0
+    while idx < self.length
+      prc.call(self[idx])
+      idx += 1
+    end
+
+    self
   end
 end
 
@@ -153,12 +177,24 @@ end
 
 class Array
   def my_map(&prc)
+    result = []
+    self.my_each do |el|
+      result << prc.call(el)
+    end
+    result
   end
 
   def my_select(&prc)
+    result = []
+    self.my_each do |el|
+      result << el unless prc.call(el) == false
+    end
+    result
   end
 
-  def my_inject(&blk)
+  def my_inject(&prc)
+    accumulator = self.first
+    self.my_each do |el|
   end
 end
 
