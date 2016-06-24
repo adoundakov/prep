@@ -5,6 +5,8 @@
 
 class Array
   def sum
+    return 0 if self.empty?
+    self.dup.inject(:+)
   end
 end
 
@@ -16,9 +18,11 @@ end
 
 class Array
   def square!
+    self.map! {|el| el ** 2}
   end
 
   def square
+    self.dup.square!
   end
 end
 
@@ -36,6 +40,11 @@ end
 
 class Array
   def my_uniq
+    uniq_array = []
+    self.each do |el|
+      uniq_array << el unless uniq_array.include?(el)
+    end
+    uniq_array
   end
 end
 
@@ -57,6 +66,17 @@ end
 
 class Array
   def two_sum
+    pairs = []
+    left = 0
+    while left < self.length
+      right = left + 1
+      while right < self.length
+        pairs << [left , right] if (self[left] + self[right] == 0)
+        right += 1
+      end
+      left += 1
+    end
+    pairs.sort.uniq
   end
 end
 
@@ -69,6 +89,16 @@ end
 
 class Array
   def median
+    sorted = self.sort
+    if sorted.empty?
+      return nil
+    elsif sorted.length.odd?
+      return sorted[sorted.length / 2]
+    elsif sorted.length.even?
+      right = sorted[sorted.length / 2]
+      left = sorted[(sorted.length / 2) - 1]
+      return (left + right) / 2.0
+    end
   end
 end
 
@@ -121,8 +151,23 @@ end
 
 class Array
   def my_transpose
+    tr_matrix = []
+    c_length = self.first.length
+
+    c_length.times do {tr_matrix << []}
+    x = 0
+
+    while x < c_length
+      self.each do |component|
+        tr_matrix[x] << component[x]
+      end
+      x += 1
+    end
+
+    tr_matrix
   end
 end
 
 # Bonus: Refactor your `Array#my_transpose` method to work with any rectangular
 # matrix (not necessarily a square one).
+# done!
