@@ -21,8 +21,13 @@ class String
     letters = self.split('')
     shifted_letters = []
     letters.each do |letter|
-      new_ord = ((letter.ord - 97) + shift) % 26 + 97
-      shifted_letters << new_ord.chr
+      if letter.upcase == letter
+        new_ord = ((letter.ord - 65) + shift) % 26 + 65
+        shifted_letters << new_ord.chr
+      else
+        new_ord = ((letter.ord - 97) + shift) % 26 + 97
+        shifted_letters << new_ord.chr
+      end
     end
 
     shifted_letters.join
@@ -114,17 +119,16 @@ end
 
 class Fixnum
   def stringify(base)
-    num_to_s = {1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5',
+    num_to_s = {0 => '0', 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5',
                 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => 'a',
                 11 => 'b', 12 => 'c', 13 => 'd', 14 => 'e', 15 => 'f'}
     return num_to_s[self] if self < base
     digits = []
-    pow = 1
-    div = nil
-    while div != 0
+    pow = 0
+    while true
       div = self / (base ** pow)
+      break if div == 0
       remainder = div % base
-      p div, remainder
       digits << num_to_s[remainder]
       pow += 1
     end
