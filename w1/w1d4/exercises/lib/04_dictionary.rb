@@ -36,9 +36,10 @@ class Dictionary
   end
 
   def printable
-    print_out = ""
+    print_out = []
     self.keywords.each do |keyword|
-      print_out << %Q{[#{keyword}] "#{@entries[keyword]}}
+      print_out << (%Q{[#{keyword}] "#{entries[keyword]}"})
     end
+    print_out.join("\n")
   end
 end
