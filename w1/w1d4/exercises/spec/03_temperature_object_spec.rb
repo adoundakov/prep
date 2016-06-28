@@ -99,27 +99,27 @@ describe Temperature do
 #  end
 
   # Here's another way to solve the problem!
-#  describe "Temperature subclasses" do
-#    describe "Celsius subclass" do
-#      it "is constructed in degrees celsius" do
-#        expect(Celsius.new(50).in_celsius).to eq(50)
-#        expect(Celsius.new(50).in_fahrenheit).to eq(122)
-#      end
-#
-#      it "is a Temperature subclass" do
-#        expect(Celsius.new(0)).to be_a(Temperature)
-#      end
-#    end
-#
-#    describe "Fahrenheit subclass" do
-#      it "is constructed in degrees fahrenheit" do
-#        expect(Fahrenheit.new(50).in_fahrenheit).to eq(50)
-#        expect(Fahrenheit.new(50).in_celsius).to eq(10)
-#      end
-#
-#      it "is a Temperature subclass" do
-#        expect(Fahrenheit.new(0)).to be_a(Temperature)
-#      end
-#    end
-#  end
+  describe "Temperature subclasses" do
+    describe "Celsius subclass" do
+      it "is constructed in degrees celsius" do
+        expect(Celsius.new(50).in_celsius).to eq(50)
+        expect(Celsius.new(50).in_fahrenheit).to eq(122)
+      end
+
+      it "is a Temperature subclass" do
+        expect(Celsius.new(0)).to be_a(Temperature)
+      end
+    end
+
+    describe "Fahrenheit subclass" do
+      it "is constructed in degrees fahrenheit" do
+        expect(Fahrenheit.new(50).in_fahrenheit).to eq(50)
+        expect(Fahrenheit.new(50).in_celsius).to eq(10)
+      end
+
+      it "is a Temperature subclass" do
+        expect(Fahrenheit.new(0)).to be_a(Temperature)
+      end
+    end
+  end
 end
