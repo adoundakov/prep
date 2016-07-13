@@ -1,12 +1,11 @@
 class RPNCalculator
-  attr_reader :store
 
   def initialize
     @store = []
   end
 
   def value
-    store.last unless empty?
+      @store.last
   end
 
   def push(number)
@@ -15,38 +14,62 @@ class RPNCalculator
 
   def plus
     unless empty?
-      store << pop + pop
+      b,a = pop , pop
+      store << a + b
     end
   end
 
   def minus
     unless empty?
-      store << pop - pop
+      b,a = pop , pop
+      store << a - b
     end
   end
 
   def times
     unless empty?
-      store << pop * pop
+      b,a = pop , pop
+      store << a * b
     end
   end
 
   def divide
     unless empty?
-      store << pop / pop
+      b,a = pop , pop
+      store << a.fdiv(b)
     end
   end
 
   def tokens(string)
+    operations = ['+', '-', '*', '/']
+    tokens = string.split
+    rpn_input = []
+    tokens.each do |token|
+      if operations.include?(token)
+        rpn_input << token.to_sym
+      else
+        rpn_input << token.to_i
+      end
+    end
+
+    rpn_input
   end
 
   def evaluate(string)
+    symbols = {:+ => :plus, :- => :minus, :* => :times, :/ => :divide}
+
+    rpn_input = tokens(string)
+
+    rpn_input.each do |token|
+      if token.class == Symbol
+        send(symbols[token])
+      else
+        push(token)
+      end
+    end
+
+    value
   end
-
-  private
-
-  @operations = {'+' => :plus, '-' => :minus,
-                '*' => :times, '/' => :divide}
 
   def empty?
     if @store.empty?
@@ -55,10 +78,6 @@ class RPNCalculator
   end
 
   def pop
-    if operations[value]
-      self.operations[value] # need to fix this function call
-    else
       @store.pop
-    end
   end
 end
