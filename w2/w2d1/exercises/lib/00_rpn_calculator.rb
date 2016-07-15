@@ -15,28 +15,28 @@ class RPNCalculator
   def plus
     unless empty?
       b,a = pop , pop
-      store << a + b
+      @store << a + b
     end
   end
 
   def minus
     unless empty?
       b,a = pop , pop
-      store << a - b
+      @store << a - b
     end
   end
 
   def times
     unless empty?
       b,a = pop , pop
-      store << a * b
+      @store << a * b
     end
   end
 
   def divide
     unless empty?
       b,a = pop , pop
-      store << a.fdiv(b)
+      @store << a.fdiv(b)
     end
   end
 
