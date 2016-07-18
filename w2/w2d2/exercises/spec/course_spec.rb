@@ -2,10 +2,10 @@ require 'course'
 require 'student'
 
 describe Course do
-  let(:course) { Course.new("Ruby 101", "CS", 4) }
+  #let(:course) { Course.new("Ruby 101", "CS", 4) }
 
   # Comment this line in when working on extras
-  # let(:course) { Course.new("Ruby 101", "CS", 4, [:mon, :tue, :wed], 1) }
+  let(:course) { Course.new("Ruby 101", "CS", 4, [:mon, :tue, :wed], 1) }
 
   describe "#initialize" do
     it "takes a name, department, and # of credits" do
