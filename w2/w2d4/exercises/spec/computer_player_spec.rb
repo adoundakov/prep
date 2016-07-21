@@ -29,6 +29,16 @@ describe "ComputerPlayer" do
       end
     end
 
+    context "when a diagonal winning move is available" do
+      it "should return the winning move" do
+        place_marks([[0,0],[1,1]], :O)
+        comp.mark = :O
+        comp.display(board)
+
+        expect(comp.get_move).to eq([2,2])
+      end
+    end
+    
     context "when no winning move is available" do
       it "returns a random move" do
         comp.display(board)

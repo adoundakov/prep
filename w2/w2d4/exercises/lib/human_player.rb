@@ -1,8 +1,10 @@
 class HumanPlayer
   attr_reader :name
+  attr_accessor :mark
 
-  def initialize(name='Player One')
+  def initialize(name='Player One', mark = :X)
     @name = name
+    @mark = mark
   end
 
   def display(board)
