@@ -40,7 +40,7 @@ class Game
     play_turn until board.over?
 
     display_game
-    
+
     puts "Game Over!"
     puts "Tie Game!" if board.tied?
     if board.winner == @player_one.mark
@@ -55,4 +55,16 @@ class Game
       puts row.join(' | ')
     end
   end
+end
+
+def default_game
+  p1 = HumanPlayer.new("Alex", :X)
+  p2 = HumanPlayer.new("Gizmo", :O)
+  Game.new(p1, p2)
+end
+
+
+if __FILE__ == $PROGRAM_NAME
+  game = default_game
+  game.play
 end

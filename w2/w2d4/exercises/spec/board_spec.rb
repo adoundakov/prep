@@ -60,7 +60,7 @@ describe "Board" do
     context "when :X has won" do
       context "on a row" do
         it "returns :X" do
-          place_marks([[0, 0], [0, 1], [0, 2]], :X)
+          place_marks([[1, 0], [1, 1], [1, 2]], :X)
 
           expect(board.winner).to be :X
         end

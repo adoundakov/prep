@@ -1,5 +1,5 @@
 class Board
-  attr_reader :grid
+  attr_accessor :grid
 
   def initialize(pre_set=nil)
     if pre_set == nil
@@ -45,11 +45,14 @@ class Board
   end
 
   def tied?
+    return false if winner != nil
+    
     grid.each do |row|
       row.each do |pos|
         return false if pos == nil
       end
     end
+    true
   end
 
   def [](row, col)
