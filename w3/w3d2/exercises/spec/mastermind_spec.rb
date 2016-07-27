@@ -141,6 +141,13 @@ describe Game do
     end
 
     describe "#get_guess" do
+      # code works perfectly well but fails this spec because
+      # 'gets' method pulls line 1 of the spec file instead of
+      # the actual stdin value provided. Alternatively, spec also
+      # fails with the error:
+      # Errno::EISDIR:
+      # Is a directory @ io_fillbuf - fd:7 spec
+
       it "should parse input and return Code object" do
         expect(game.get_guess).to be_instance_of(Code)
       end
