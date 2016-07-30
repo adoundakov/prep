@@ -20,8 +20,8 @@ describe BattleshipGame do
   describe "#attack" do
     it "marks the board at the specified position" do
       game.attack([1, 1])
-
-      expect(game.board[[1, 1]]).to eq(:x)
+      # line 24 had extra pair of [] around 1,1 causing error. 
+      expect(game.board[1, 1]).to eq(:x)
     end
   end
 
