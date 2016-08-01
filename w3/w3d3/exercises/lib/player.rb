@@ -5,7 +5,7 @@ class HumanPlayer
     @name = name
   end
 
-  def get_play
+  def get_play(rows, cols)
     position = []
     puts("#{name}'s turn. Please make an attack (row, col)")
     pos = gets.chomp
@@ -13,6 +13,14 @@ class HumanPlayer
       position << (el.strip.to_i) - 1
     end
 
-    position
+    return position if valid?(position, rows, cols)
+  end
+
+  def valid?(position, rows, cols)
+    if position[0] < rows && position[1] < cols
+      return true
+    else
+      return false
+    end
   end
 end

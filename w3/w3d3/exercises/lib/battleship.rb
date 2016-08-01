@@ -6,12 +6,13 @@ class BattleshipGame
   def initialize(player, board)
     @board = board
     @player = player
+    @num_rows = board.length
+    @num_cols = board[0].length
   end
 
   def play
     puts "Welcome to BATTLESHIP"
     while game_over? == false || board.empty?
-      display_status
       play_turn
     end
 
@@ -19,7 +20,17 @@ class BattleshipGame
   end
 
   def play_turn
-    pos = player.get_play
+    display_status
+    flag = false
+    until flag == true
+      pos = player.get_play(@num_rows, @num_cols)
+      if board.full?([*pos])
+        puts "Spot taken / Already guessed!"
+        flag = false
+      else
+        flag = true
+      end
+    end
     attack(pos)
   end
 
