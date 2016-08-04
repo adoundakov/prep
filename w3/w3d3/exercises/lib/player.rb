@@ -7,7 +7,8 @@ class HumanPlayer
 
   def get_play(rows, cols)
     position = []
-    puts("#{name}'s turn. Please make an attack (row, col)")
+    puts("#{name}'s turn. Please make an attack.")
+    puts "Please use the format 'row , col'"
     pos = gets.chomp
     pos.split(',').each do |el|
       position << (el.strip.to_i) - 1

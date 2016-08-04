@@ -1,13 +1,11 @@
-require 'byebug'
-
 class BattleshipGame
   attr_reader :board, :player
 
   def initialize(player, board)
     @board = board
     @player = player
-    @num_rows = board.length
-    @num_cols = board[0].length
+    @num_rows = board.grid.length
+    @num_cols = board.grid[0].length
   end
 
   def play
@@ -24,8 +22,8 @@ class BattleshipGame
     flag = false
     until flag == true
       pos = player.get_play(@num_rows, @num_cols)
-      if board.full?([*pos])
-        puts "Spot taken / Already guessed!"
+      if @board[*pos] == :x
+        puts "Already guessed!"
         flag = false
       else
         flag = true
@@ -56,6 +54,7 @@ class BattleshipGame
     board.won?
   end
 
+# will delete this after specs are done
   def self.newgame
     new_grid = Array.new(5) {Array.new(5)}
     board = Board.new(new_grid)
