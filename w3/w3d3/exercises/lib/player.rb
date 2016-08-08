@@ -1,8 +1,15 @@
+require_relative "board.rb"
+
 class HumanPlayer
   attr_reader :name
+  attr_accessor :board
 
-  def initialize(name = "Player One")
+  def initialize(name = "Player One", two_player = false)
     @name = name
+    @board = nil
+    if two_player
+      # pass
+    end
   end
 
   def get_play(rows, cols)

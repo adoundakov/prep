@@ -7,7 +7,7 @@ describe BattleshipGame do
   let(:two_ship_grid) { [[:s, :s], [nil, nil]] }
   let(:two_ship_board) { Board.new(two_ship_grid) }
 
-  let(:player) { double("player") }
+  let(:player) { HumanPlayer.new }
 
   let(:game) { BattleshipGame.new(player, two_ship_board) }
 
@@ -20,7 +20,7 @@ describe BattleshipGame do
   describe "#attack" do
     it "marks the board at the specified position" do
       game.attack([1, 1])
-      # line 24 had extra pair of [] around 1,1 causing error. 
+      # line 24 had extra pair of [] around 1,1 causing error.
       expect(game.board[1, 1]).to eq(:x)
     end
   end

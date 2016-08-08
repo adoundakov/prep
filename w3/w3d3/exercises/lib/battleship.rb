@@ -1,28 +1,65 @@
 class BattleshipGame
-  attr_reader :board, :player
+  attr_reader :board, :player, :player2, :board2, :current_player
 
-  def initialize(player, board)
-    @board = board
+  def initialize(player, board, player2 = nil)
     @player = player
-    @num_rows = board.grid.length
-    @num_cols = board.grid[0].length
+    @player.board = board
+    @board = @player.board
+
+    @player2 = player2
+    @board2 = nil
+    @current_player = nil
+
+    if player2
+      @player2 = player2
+      @board2 = @player2.board
+      @current_player = @player
+    end
   end
 
   def play
     puts "Welcome to BATTLESHIP"
+
+    if player2
+      puts "Starting two player game!"
+      two_player
+    else
+      puts "Starting one player game!"
+      one_player
+    end
+
+    puts "Game Over!"
+  end
+
+  def one_player
+    setup_phase if board.empty?
+
     while game_over? == false || board.empty?
       play_turn
     end
-
-    puts "Game over!"
   end
 
-  def play_turn
-    display_status
+  def two_player
+    setup_phase(player) if board.empty?
+    setup_phase(player2) if board2.empty?
+
+    while game_over? == false || board.empty? || board2.empty?
+      play_turn(current_player)
+      switch_players
+    end
+  end
+
+  def setup_phase(player = @player)
+    puts "#{player.name}, please set up your ships."
+    player.set_ships
+  end
+
+  def play_turn(player = @player)
+    display_board(player)
     flag = false
     until flag == true
       pos = player.get_play(@num_rows, @num_cols)
-      if @board[*pos] == :x
+      if @board[*pos] == :x or @board[*pos] == :o
         puts "Already guessed!"
         flag = false
       else
@@ -30,6 +67,16 @@ class BattleshipGame
       end
     end
     attack(pos)
+  end
+
+  def game_over?
+    test_2 = false
+
+    if player2
+      test_2 = board2.won?
+    end
+
+    return board.won? || test_2
   end
 
   def attack(position)
@@ -42,16 +89,12 @@ class BattleshipGame
     end
   end
 
-  def display_status
-    board.display
+  def count(player = @player)
+    player.board.count
   end
 
-  def count
-    board.count
-  end
-
-  def game_over?
-    board.won?
+  def display_board(player)
+    player.board.display
   end
 
 # will delete this after specs are done
@@ -66,3 +109,10 @@ class BattleshipGame
     game
   end
 end
+
+# TO - DO
+
+# re-write default game in Battleship.rb
+# test out full game starting with empty boards for each player
+# flesh out setup and display phases for each player
+#
