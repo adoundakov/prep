@@ -1,34 +1,32 @@
-require_relative "board.rb"
-
 class HumanPlayer
   attr_reader :name
-  attr_accessor :board
 
-  def initialize(name = "Player One", two_player = false)
+  def initialize(name = "Player One")
     @name = name
-    @board = nil
-    if two_player
-      # pass
+  end
+
+  def get_play(rows, cols, board)
+    puts("#{name}'s turn. Please make an attack. (row, col)")
+    move = gets.chomp
+    position = process_move(move)
+    return position
+  end
+
+  def set_ships(board)
+    5.times do
+      board.display_full
+      puts "Please place a ship."
+      pos = gets.chomp
+      position = process_move(pos)
+      board[*position] = :s
     end
   end
 
-  def get_play(rows, cols)
+  def process_move(move)
     position = []
-    puts("#{name}'s turn. Please make an attack.")
-    puts "Please use the format 'row , col'"
-    pos = gets.chomp
-    pos.split(',').each do |el|
+    move.split(',').each do |el|
       position << (el.strip.to_i) - 1
     end
-
-    return position if valid?(position, rows, cols)
-  end
-
-  def valid?(position, rows, cols)
-    if position[0] < rows && position[1] < cols
-      return true
-    else
-      return false
-    end
+    position
   end
 end

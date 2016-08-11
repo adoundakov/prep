@@ -25,6 +25,20 @@ class Board
     end
   end
 
+  def display_full
+    grid.each do |row|
+      printable_row = []
+      row.each do |pos|
+        if pos == nil
+          printable_row << '-'
+        else
+          printable_row << pos
+        end
+      end
+      puts printable_row.join('  ')
+    end
+  end
+
   def place_random_ship
     raise Exception.new("Board Full") if full?
 
