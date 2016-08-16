@@ -1,4 +1,5 @@
-require 'byebug'
+require_relative "ship.rb"
+
 class ComputerPlayer
   attr_reader :name
 
@@ -12,7 +13,6 @@ class ComputerPlayer
   end
 
   def scan(rows, cols, board)
-#    debugger
     available_spots = []
     x = 0
     while x < rows
@@ -29,8 +29,22 @@ class ComputerPlayer
   end
 
   def set_ships(board)
-    5.times do
-      board.place_random_ship
+    # need to add testing of overlap between each ship.
+    # at beginning, using ship.size attribute. 
+    orientations = ['h', 'v']
+    rows = board.grid.length
+    cols = board.grid[0].length
+
+    Ship.fleet.each do |ship|
+      orient = orientations.sample
+      if orient == 'h'
+        short_cols = cols - ship.size
+        position = [rand(rows, short_cols)]
+      else
+        short_rows = rows - ship.size
+        position = [rand(short_rows, cols)]
+      end
+      ship.place(position, orient, board)
     end
   end
 end

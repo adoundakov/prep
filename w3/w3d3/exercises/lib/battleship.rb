@@ -2,6 +2,7 @@ require "byebug"
 require_relative "board.rb"
 require_relative "player.rb"
 require_relative "computer.rb"
+require_relative "ship.rb"
 
 class BattleshipGame
   attr_reader :board, :player, :player2, :board2, :current_player,
@@ -62,6 +63,10 @@ class BattleshipGame
   def play_turn(player = @current_player, board = @current_board)
     display_board(board)
     pos = player.get_play(@rows, @cols, board)
+    if board[*pos] == :x || board[*pos] == :o
+      puts "Already guessed!"
+      play_turn
+    end
     attack(pos)
   end
 

@@ -1,3 +1,5 @@
+require_relative "ship.rb"
+
 class HumanPlayer
   attr_reader :name
 
@@ -7,18 +9,21 @@ class HumanPlayer
 
   def get_play(rows, cols, board)
     puts("#{name}'s turn. Please make an attack. (row, col)")
-    move = gets.chomp
-    position = process_move(move)
+    position = process_move(gets.chomp)
     return position
   end
 
   def set_ships(board)
-    5.times do
+    # need to move this off into its own method, like get_ship
+    # then test for overlap with other ships or going off board
+    Ship.fleet.each do |ship|
       board.display_full
-      puts "Please place a ship."
-      pos = gets.chomp
-      position = process_move(pos)
-      board[*position] = :s
+      puts "Please set the #{ship.name} of length #{ship.size}"
+      puts "Enter the left/top coordinate"
+      position = process_move(gets.chomp)
+      puts "Enter an orientation (h / v)"
+      orientation = gets.chomp
+      ship.place(position, orientation, board)
     end
   end
 
