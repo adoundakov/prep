@@ -30,21 +30,48 @@ class ComputerPlayer
 
   def set_ships(board)
     # need to add testing of overlap between each ship.
-    # at beginning, using ship.size attribute. 
-    orientations = ['h', 'v']
+    # at beginning, using ship.size attribute.
+    Ship.fleet.each do |ship|
+      position , orientation = get_ship_position(ship, board)
+      ship.place(position, orientation, board)
+    end
+  end
+
+  def get_ship_position(ship, board)
+    orientation = ['h', 'v'].sample
     rows = board.grid.length
     cols = board.grid[0].length
-
-    Ship.fleet.each do |ship|
-      orient = orientations.sample
-      if orient == 'h'
-        short_cols = cols - ship.size
-        position = [rand(rows, short_cols)]
+    if orientation == 'h'
+      short_cols = cols - ship.size
+      ship_row, ship_col = [rand(rows), rand(short_cols)]
+      if valid_placement?([ship_row, ship_col], 'h', ship.size, board.grid)
+        return [[ship_row,ship_col] , orientation]
       else
-        short_rows = rows - ship.size
-        position = [rand(short_rows, cols)]
+        get_ship_position(ship,board)
       end
-      ship.place(position, orient, board)
+    else
+      short_rows = rows - ship.size
+      ship_row, ship_col = [rand(short_rows), rand(cols)]
+      if valid_placement?([ship_row, ship_col], 'h', ship.size, board.grid)
+        return [[ship_row,ship_col] , orientation]
+      else
+        get_ship_position(ship,board)
+      end
     end
+  end
+
+  def valid_placement?(position, orientation, size, grid)
+    ship_row , ship_col = position
+
+    if orientation == 'h'
+      check = grid[ship_row][ship_col..(ship_col + size)]
+      return false if check.any? {|e| e != nil}
+    else
+      tr_grid = grid.transpose
+      check = tr_grid[ship_col][ship_row..(ship_row + size)]
+      return false if check.any? {|e| e!= nil}
+    end
+
+    return true
   end
 end

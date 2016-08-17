@@ -1,6 +1,3 @@
-# leave options to enable comp and humans to place ships.
-# the auto placing logic can be in the comp class
-
 class Ship
   attr_reader :name, :size
 
@@ -10,12 +7,17 @@ class Ship
   end
 
   def place(position, orientation, board)
+    row , col = position
     if orientation == 'h'
-      # iterate through lane from start and set appropriate number of
-      # slots to :s, using the self.size attribute
+      size.times do
+        board[row,col] = :s
+        col += 1
+      end
     else
-      # transpose so everything is an array of cols, then apply same
-      # logic as the horizontal block above. 
+      size.times do
+        board[row,col] = :s
+        row += 1
+      end
     end
   end
 

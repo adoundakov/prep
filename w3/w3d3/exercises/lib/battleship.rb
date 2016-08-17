@@ -115,3 +115,9 @@ class BattleshipGame
     BattleshipGame.new(p1, board1, p2, board2)
   end
 end
+
+# left to do:
+# add new logic to computer guessing
+# test a full game with the two boards / or just one?
+# edit one player game to have player guessing against a random board
+# done! (FINALLY!!!!)

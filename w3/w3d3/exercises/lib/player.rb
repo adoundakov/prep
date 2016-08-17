@@ -14,17 +14,41 @@ class HumanPlayer
   end
 
   def set_ships(board)
-    # need to move this off into its own method, like get_ship
-    # then test for overlap with other ships or going off board
     Ship.fleet.each do |ship|
       board.display_full
       puts "Please set the #{ship.name} of length #{ship.size}"
-      puts "Enter the left/top coordinate"
-      position = process_move(gets.chomp)
-      puts "Enter an orientation (h / v)"
-      orientation = gets.chomp
+      position, orientation = get_ship_position(ship, board)
       ship.place(position, orientation, board)
     end
+  end
+
+  def get_ship_position(ship, board)
+    puts "Enter an orientation (h / v)"
+    orientation = gets.chomp
+    puts "Enter the left/top coordinate"
+    position = process_move(gets.chomp)
+
+    if valid_placement?(position, orientation, ship.size, board.grid)
+      return [position, orientation]
+    else
+      puts "Error, please re-enter info."
+      get_ship_position(ship, board)
+    end
+  end
+
+  def valid_placement?(position, orientation, size, grid)
+    ship_row , ship_col = position
+
+    if orientation == 'h'
+      check = grid[ship_row][ship_col..(ship_col + size)]
+      return false if check.any? {|e| e != nil}
+    else
+      tr_grid = grid.transpose
+      check = tr_grid[ship_col][ship_row..(ship_row + size)]
+      return false if check.any? {|e| e!= nil}
+    end
+
+    return true
   end
 
   def process_move(move)
