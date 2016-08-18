@@ -1,9 +1,3 @@
-require "byebug"
-require_relative "board.rb"
-require_relative "player.rb"
-require_relative "computer.rb"
-require_relative "ship.rb"
-
 class BattleshipGame
   attr_reader :board, :player, :player2, :board2, :current_player,
               :current_board
@@ -51,7 +45,9 @@ class BattleshipGame
       play_turn(current_player, current_board)
       switch_players
     end
+    puts "#{player}'s board:'"
     display_board(board)
+    puts "#{player2}'s board:'"
     display_board(board2)
   end
 
@@ -82,7 +78,7 @@ class BattleshipGame
     if current_board[*position] == nil
       puts "Splash!"
       current_board[*position] = :x
-    elsif board[*position] == :s
+    elsif current_board[*position] == :s
       puts "BOOM!"
       current_board[*position] = :o
     end
@@ -105,19 +101,4 @@ class BattleshipGame
   def display_board(board)
     board.display
   end
-
-  def self.default_game
-    p1 = HumanPlayer.new
-    board1 = Board.new
-    p2 = ComputerPlayer.new
-    board2 = Board.new
-
-    BattleshipGame.new(p1, board1, p2, board2)
-  end
 end
-
-# left to do:
-# add new logic to computer guessing
-# test a full game with the two boards / or just one?
-# edit one player game to have player guessing against a random board
-# done! (FINALLY!!!!)

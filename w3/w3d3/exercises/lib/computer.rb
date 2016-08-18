@@ -8,6 +8,7 @@ class ComputerPlayer
   end
 
   def get_play(rows, cols, board)
+    # for next feature, add so comp can guess around hits
     puts "#{name}'s turn. Making an attack."
     scan(rows, cols, board).sample
   end
@@ -29,8 +30,6 @@ class ComputerPlayer
   end
 
   def set_ships(board)
-    # need to add testing of overlap between each ship.
-    # at beginning, using ship.size attribute.
     Ship.fleet.each do |ship|
       position , orientation = get_ship_position(ship, board)
       ship.place(position, orientation, board)
@@ -52,7 +51,7 @@ class ComputerPlayer
     else
       short_rows = rows - ship.size
       ship_row, ship_col = [rand(short_rows), rand(cols)]
-      if valid_placement?([ship_row, ship_col], 'h', ship.size, board.grid)
+      if valid_placement?([ship_row, ship_col], 'v', ship.size, board.grid)
         return [[ship_row,ship_col] , orientation]
       else
         get_ship_position(ship,board)
@@ -64,11 +63,11 @@ class ComputerPlayer
     ship_row , ship_col = position
 
     if orientation == 'h'
-      check = grid[ship_row][ship_col..(ship_col + size)]
+      check = grid[ship_row][ship_col...(ship_col + size)]
       return false if check.any? {|e| e != nil}
     else
       tr_grid = grid.transpose
-      check = tr_grid[ship_col][ship_row..(ship_row + size)]
+      check = tr_grid[ship_col][ship_row...(ship_row + size)]
       return false if check.any? {|e| e!= nil}
     end
 
