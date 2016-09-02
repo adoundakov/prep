@@ -1,3 +1,4 @@
+require 'byebug'
 class Hangman
   attr_reader :guesser, :referee, :board
 
@@ -105,7 +106,7 @@ class HumanPlayer
 end
 
 class ComputerPlayer
-  attr_reader :secret_word_length, :guesses
+  attr_reader :secret_word_length, :candidate_words, :board, :guesses
 
   def initialize(dictionary=nil)
     if dictionary
@@ -115,6 +116,7 @@ class ComputerPlayer
       @dictionary = contents.map { |line| line.strip }
     end
     @guesses = []
+    @board = []
     @candidate_words = @dictionary
   end
 
@@ -135,29 +137,52 @@ class ComputerPlayer
 
   def register_secret_length(length)
     @secret_word_length = length
-    trim_potentials
+    length.times {@board << nil}
+    trim_candidates
   end
 
   def guess(board)
-    ComputerPlayer.alphabet.sample
+    @board = board
+    guess, * = guess_list.max_by { |key, value| value }
+    guess
   end
 
   def handle_response(guess, match_indices)
+    @guesses << guess
+    if match_indices.empty?
+      trim_candidates
+    else
+      match_indices.each do |idx|
+        @board[idx] = guess
+      end
+      trim_candidates
+    end
   end
 
-  def trim_potentials
-    pot_words = @candidate_words.select {|e| e.length == @secret_word_length}
-    @guess_bank = pot_words
+  def trim_candidates
+    @candidate_words.delete_if {|e| e.length != secret_word_length}
+    @candidate_words.delete_if {|e| match?(e) == false}
   end
 
-  def filter_potentials(board)
-    # would use this to find words that have the right letters in the
-    # right spots. Could use regex (do they take wildcards?)
-    # - Could use hash with position --> letter
+  def guess_list
+    guess_list = Hash.new(0)
+    @candidate_words.each do |word|
+      word.split('').each do |letter|
+        guess_list[letter] += 1 unless board.include?(letter)
+      end
+    end
+
+    guess_list
   end
 
-  def self.alphabet
-    ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
-     'q','r','s','t','u','v','w','x','y','z']
+  def match?(word)
+    (0..secret_word_length).each do |idx|
+      if board[idx] != nil && board[idx] != word[idx]
+        return false
+      elsif board[idx] == nil && guesses.include?(word[idx])
+        return false
+      end
+    end
+    true
   end
 end
