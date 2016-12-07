@@ -2,10 +2,8 @@ require 'byebug'
 class Hangman
   attr_reader :guesser, :referee, :board
 
-  def initialize(players=nil)
-    unless players
-      raise Exception.new("No Players entered")
-    end
+  def initialize(players = nil)
+    raise Exception.new("No Players entered") unless players
     @guesser = players[:guesser]
     @referee = players[:referee]
     @board = []
@@ -14,7 +12,7 @@ class Hangman
   def setup
     word_length = referee.pick_secret_word
     guesser.register_secret_length(word_length)
-    word_length.times {@board << '_'}
+    word_length.times { @board << '_' }
   end
 
   def take_turn
@@ -36,14 +34,14 @@ class Hangman
   end
 
   def guessed?
-    board.none? {|e| e == '_'}
+    board.none? { |e| e == '_' }
   end
 
   def play_phase_1
-    puts "Welcome to Hangman. (PHASE 1)"
+    puts 'Welcome to Hangman. (PHASE 1)'
     setup
     take_turn until guessed?
-    puts "Game over!"
+    puts 'Game over!'
     display_board
   end
 end
@@ -52,8 +50,8 @@ class HumanPlayer
   attr_reader :secret_word_length, :guesses
 
   def initialize
-    contents = File.readlines("dictionary.txt")
-    @dictionary = contents.map {|line| line.strip}
+    contents = File.readlines('dictionary.txt')
+    @dictionary = contents.map(&:strip)
     @guesses = []
   end
 
@@ -67,9 +65,9 @@ class HumanPlayer
     end
   end
 
-  def guess(board)
+  def guess(_board)
     puts "Already guessed: #{guesses}"
-    puts "Please enter a guess: "
+    puts 'Please enter a guess: '
     gets.chomp
   end
 
@@ -80,16 +78,16 @@ class HumanPlayer
     end
     puts word
     puts "Computer guessed '#{guess}'."
-    puts "Please enter the correct indexes, separated by a space."
-    puts "If none hit <enter>"
+    puts 'Please enter the correct indexes, separated by a space.'
+    puts 'If none hit <enter>'
     input = gets.chomp
     process(input)
   end
 
   def process(input)
-    return [] if input == ""
+    return [] if input == ''
     split_input = input.split(' ')
-    match_indices = split_input.map { |e| (e.to_i) - 1 }
+    match_indices = split_input.map { |e| e.to_i - 1 }
     match_indices
   end
 
@@ -100,7 +98,7 @@ class HumanPlayer
   end
 
   def pick_secret_word
-    puts "Please enter the length of your secret word:"
+    puts 'Please enter the length of your secret word:'
     @secret_word_length = gets.chomp.to_i
   end
 end
@@ -108,12 +106,12 @@ end
 class ComputerPlayer
   attr_reader :secret_word_length, :candidate_words, :board, :guesses
 
-  def initialize(dictionary=nil)
+  def initialize(dictionary = nil)
     if dictionary
       @dictionary = dictionary
     else
-      contents = File.readlines("dictionary.txt")
-      @dictionary = contents.map { |line| line.strip }
+      contents = File.readlines('dictionary.txt')
+      @dictionary = contents.map(&:strip)
     end
     @guesses = []
     @board = []
@@ -137,13 +135,13 @@ class ComputerPlayer
 
   def register_secret_length(length)
     @secret_word_length = length
-    length.times {@board << nil}
+    length.times { @board << nil }
     trim_candidates
   end
 
   def guess(board)
     @board = board
-    guess, * = guess_list.max_by { |key, value| value }
+    guess, * = guess_list.max_by { |_, value| value }
     guess
   end
 
@@ -160,8 +158,8 @@ class ComputerPlayer
   end
 
   def trim_candidates
-    @candidate_words.delete_if {|e| e.length != secret_word_length}
-    @candidate_words.delete_if {|e| match?(e) == false}
+    @candidate_words.delete_if { |e| e.length != secret_word_length }
+    @candidate_words.delete_if { |e| match?(e) == false }
   end
 
   def guess_list
@@ -177,9 +175,9 @@ class ComputerPlayer
 
   def match?(word)
     (0..secret_word_length).each do |idx|
-      if board[idx] != nil && board[idx] != word[idx]
+      if !board[idx].nil? && board[idx] != word[idx]
         return false
-      elsif board[idx] == nil && guesses.include?(word[idx])
+      elsif board[idx].nil? && guesses.include?(word[idx])
         return false
       end
     end
